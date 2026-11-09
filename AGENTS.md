@@ -3,9 +3,9 @@
 ## 项目与当前阶段
 
 本项目研究并实现面向多约束场景的任务动态调度与重规划 Agent。
-当前范围为 P0 治理基础；实际验收、同步及 P1–P8 状态以 `docs/progress/PROGRESS.md` 为准。
+当前推进治理基础与 P1 开工设计准备；实际验收、同步及 P1–P8 状态以 `docs/progress/PROGRESS.md` 为准。
 `AGENTS.md` 是唯一约束入口。用户口头所称 `AGENT.md` 即本文件，不建立副本。
-设计源文档应导入为 `docs/design_v2.md`、`docs/codex_spec.md`；未取回时不得编造原文或宣称已导入。
+已核验设计原文位于 `docs/source/*.original.md`，哈希清单为 `docs/source/manifest.json`；先运行 `tools/verify_source.py`。旧引用 `docs/design_v2.md`、`docs/codex_spec.md` 对应上述原文，不建立可能漂移的副本，不静默修订原文。
 
 ## 开始任务前
 
@@ -15,6 +15,8 @@
 4. 已授权的常规文档编辑、检查和 GitHub 同步无需重复确认。
 5. Claude 未可用、提示词缺失或影响范围不清时，暂停依赖该计划的实施并向总设计师报告。
 6. 不跨阶段实现业务功能；不擅自扩大写入范围，不覆盖其他智能体或用户的改动。
+7. 所有 Codex 专项子智能体必须用 `gpt-6.1-terra`、`reasoning_effort=high`、`fork_turns=none`，提供自包含上下文。外部 Claude 继续负责计划与提示词，不受此模型策略替换；不可用时报告，不自动降级。
+8. 角色、完整提示词、实际模型、交接及恢复入口持久保存在 `docs/agents/`；运行会话 ID 只作追踪，不能替代文件记录。见 `registry.md`、`model-policy.md`、`RESUME.md`。
 
 ## 不可违反的架构原则
 
@@ -64,6 +66,7 @@
 - 新增实质行为先定义验收与有意义测试；不得删减测试以获得通过。
 - 每个工作包交付文件用途、实际命令与结果、已知限制、来源和未决事项。
 - 总设计师审查后更新进度、提交并同步 GitHub；专项智能体不得自行提交、推送或修改 Git 配置。
+- 当前用户暂缓 GitHub 登录和上传，只做本地提交；不得以插件上传绕过该决定。以后仅使用 cc703，提交作者 chm。
 - 推送失败时进度记为待同步，不得把本地提交写成已同步；禁止强推和改写公共历史。
 - 协作门禁见 `docs/engineering/review-gates.md`，Git 流程见 `docs/engineering/git-workflow.md`。
 

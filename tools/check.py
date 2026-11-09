@@ -22,6 +22,7 @@ def main() -> int:
     checks = [
         ["tools/check_repo_layout.py"],
         ["tools/check_import_boundaries.py"],
+        ["tools/verify_source.py"],
         ["-m", "pytest", "-q", "tests/governance"],
         ["-m", "ruff", "check", "tools", "tests/governance"],
         ["-m", "ruff", "format", "--check", "tools", "tests/governance"],

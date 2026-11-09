@@ -1,0 +1,19 @@
+# 角色索引
+
+持久化定义、派发全文和交接用于恢复，不意味着进程常驻。未来 Codex 专项模型策略见 [model-policy](model-policy.md)。实际历史模型未记录。账号 cc703，作者 chm。
+
+| id | 角色 / 类型 | 定义 | 提示词 / 版本 | 模型 | 写入范围 | 状态 / 最近交接 | 恢复入口 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| planner | 计划 / 外部 Claude | [定义](planner.md) | 每包 Claude 原文 | 外部 Claude，具体未记录 | 计划及提示词交付，实际文件由总设计师管理 | 可派发 / NOT-RECORDED | [恢复](RESUME.md) |
+| prompt-engineer | 提示词 / 外部 Claude | [定义](prompt-engineer.md) | 每包 Claude 原文 | 外部 Claude，具体未记录 | 同上 | 可派发 / NOT-RECORDED | [恢复](RESUME.md) |
+| architect | 总设计师 | [分工](README.md) | 每次任务 | 未记录 | 集成、进度、Git；按授权 | 活跃 / 进度文档 | [恢复](RESUME.md) |
+| reviewer | 独立审查 / Codex 专项 | [定义](reviewer.md) | 每包派发 | 历史未记录；未来见策略 | 只读；未参与该包实施 | 可派发 / NOT-RECORDED | [恢复](RESUME.md) |
+| storage-steward | 存储 / Codex 专项 | [定义](storage-steward.md) | 每包派发 | 历史未记录；未来见策略 | 仅经 G1 指定 | 可派发 / NOT-RECORDED | [恢复](RESUME.md) |
+| oss-scout | 依赖调研 / Codex 专项 | [定义](oss-scout.md) | 每包派发 | 历史未记录；未来见策略 | 仅经 G1 指定 | 可派发 / NOT-RECORDED | [恢复](RESUME.md) |
+| wp-a | P0 治理 / Codex 专项 | [P0](../work-packages/P0.md) | [实际派发 v001](../work-packages/p0-claude-review.md) | 未记录 | P0-A 卡片所列 | 本地提交，待同步 / 原始交接 NOT-RECORDED | [P0](../work-packages/P0.md) |
+| wp-b | P0 协作 / Codex 专项 | [P0](../work-packages/P0.md) | [实际派发 v001](../work-packages/p0-claude-review.md) | 未记录 | P0-B 卡片所列 | 本地提交，待同步 / 原始交接 NOT-RECORDED | [P0](../work-packages/P0.md) |
+| wp-c | P0 门禁 / Codex 专项 | [P0](../work-packages/P0.md) | [实际派发 v001](../work-packages/p0-claude-review.md) | 未记录 | P0-C 卡片所列 | 本地提交，待同步 / 原始交接 NOT-RECORDED | [P0](../work-packages/P0.md) |
+| source | 原文导入 / Codex 专项 | [工作包](../work-packages/source.md) | [Claude v001 第3节](../work-packages/continuation-claude-v001.md) | 本次实际配置待其交接 | SOURCE 卡片所列 | 并行实施，G3 待审 / 待交接 | [工作包](../work-packages/source.md) |
+| agent-resume | 恢复 / Codex 专项 | [工作包](../work-packages/agent-resume.md) | [Claude v001 第4节](../work-packages/continuation-claude-v001.md) | 本次 GPT-6.1 Terra / high | R 卡片所列 | R1 实施，R2 等待 SOURCE G3 / [交接](handoffs/agent-resume-r1.md) | [恢复](RESUME.md) |
+
+本次运行会话映射：`/root/resume_terra` → agent-resume；SOURCE 具体会话标识待其交接。会话标识仅作追踪，不作为恢复依赖。

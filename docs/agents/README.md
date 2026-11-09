@@ -36,3 +36,7 @@
 ## 跨会话恢复
 
 读取根 AGENTS.md、本角色定义、当前工作包、PROGRESS.md、已审查的 Claude 提示词、最近交接和真实 git status/log。核对尚未提交的他人改动，不覆盖、不重新执行未核实的动作。确认 G1 记录存在才恢复实施；缺失则回到 Claude 规划。不要依赖旧会话内存、进程句柄或自动持续运行的假设。
+
+## 恢复资料
+
+[角色索引](registry.md) · [模型策略](model-policy.md) · [恢复清单](RESUME.md) · 提示词库 `prompts/`（R2 待建立） · [交接](handoffs/agent-resume-r1.md)
