@@ -6,9 +6,9 @@
 
 | ID | 名称 | 负责专项 | 分支 | 状态 | 门禁 | 工程验收 | 远端同步 | 验收日期 | 提交证据 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| P0-A | 治理与规范 | governance | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 待同步 | 总设计师与独立审查通过 | cc703 认证待完成 | 2026-11-09 | 610ab30（本地已提交） |
-| P0-B | 协作机制 | collaboration_docs | codex/p0-governance | BLOCKED | G1/G2/G3 通过；G5 认证阻塞 | 独立审查发现循环门槛，修复后 ACCEPT | cc703 认证待完成 | 2026-11-09 | b9d94cff318ad1ef89394214eb2d9f132d12e7bd |
-| P0-C | 机器门禁 | machine_gates | codex/p0-governance | BLOCKED | G1/G2/G3 通过；G5 认证阻塞 | 配置驱动缺口修复后独立复审 ACCEPT | Git push 403 | 2026-11-09 | 4024077b3f9b4659ba82d5cd55c08bbe25059377 |
+| P0-A | 治理与规范 | governance | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 用户暂缓 | 总设计师与独立审查通过 | 用户选择稍后登录，仅保留本地 | 2026-11-09 | 610ab30（本地已提交） |
+| P0-B | 协作机制 | collaboration_docs | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 用户暂缓 | 独立审查发现循环门槛，修复后 ACCEPT | 用户选择稍后登录，仅保留本地 | 2026-11-09 | b9d94cff318ad1ef89394214eb2d9f132d12e7bd |
+| P0-C | 机器门禁 | machine_gates | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 用户暂缓 | 配置驱动缺口修复后独立复审 ACCEPT | 用户选择稍后登录，仅保留本地 | 2026-11-09 | 4024077b3f9b4659ba82d5cd55c08bbe25059377 |
 | P0-SOURCE | 原始设计与 Claude 原文导入 | 总设计师 | codex/p0-governance | BLOCKED | 附件读取/下载通道超时 | 未核验本地原文 | 不适用 | — | 无导入提交，不伪造文件 |
 
 分支为共享集成分支，不表示每个专项都有独立工作树。验收、检查、提交及远端 SHA 必须由总设计师按实际执行结果补记。
@@ -37,7 +37,8 @@
 - 完整设计 v2 尚待导入；依赖缺失章节的业务工作不能开始。
 - 原规格命名与缓存约束需要治理修复。用户已裁决 B1 外移和 solver 双 profile 两项建议暂不修改（DEFERRED，见 ADR 0002/0003），按原规格推进并保留批注；对应模块实施前再讨论，P0 不因此阻塞。
 - 文件检查提前至 P0，只完成治理机制不等于 P1 的 ArtifactStore 已实现。
-- 用户决定本项目统一使用 cc703。仓库局部 Git credential username 已设 cc703，已连接 GitHub 插件也是 cc703 且有 push 权限；本机账号认证正在办理。此前一次推送因账号无权限返回403，不能计为已同步。提交作者仍按用户要求为 chm；不改写已生成本地历史。工程验收与同步阻塞分开记录。
+- 用户决定本项目统一使用 cc703。仓库局部 Git credential username 已设 cc703，已连接 GitHub 插件也是 cc703 且有 push 权限。用户随后选择先保留本地提交、稍后登录，设备登录等待已结束；不继续推送或改用插件上传。此前推送403，不能计为已同步。提交作者仍为 chm。
+- 2026-11-09 隐私核对：项目根目录与 Git common-dir 均指向 D:/Default/Replan-mutil agent 内，只有一个工作树，未共享其他仓库的 .git。远端 ls-remote 无分支引用，GitHub 仓库 size=0，未发现本轮提交已上传；仓库当前为 public。未来上传到公开仓库的文件和提交作者邮箱可被公众读取，本次未修改可见性或作者邮箱。
 - 浏览器读取可能超时；无本工作包 Claude 完整提示词时不能绕过 G1。
 
 ## 本轮验证与审查证据
