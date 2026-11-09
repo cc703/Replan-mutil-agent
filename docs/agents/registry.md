@@ -1,5 +1,7 @@
 # 角色索引
 
+当前源码交付：`/root/p1a_code_terra` 已完成P1-A；实际派发 gpt-6.1-terra/high/fork_turns=none，独立 reviewer `/root/p1_review_terra` 同策略复用会话，工程G3 ACCEPT。完整Claude计划、实施及审查提示词与限定类型增补合并在 [P1-A工作包](../work-packages/p1-a.md)，[实施交接](handoffs/p1-a.md)、[独立审查](handoffs/p1-a-review.md)可恢复。进度和Git仍由总设计师单写。用户工程委托已取代历史逐字段G4阻塞。
+
 持久化定义、派发全文和交接用于恢复，不意味着进程常驻。未来 Codex 专项模型策略见 [model-policy](model-policy.md)。实际历史模型未记录。账号 cc703，作者 chm。
 
 | id | 角色 / 类型 | 定义 | 提示词 / 版本 | 模型 | 写入范围 | 状态 / 最近交接 | 恢复入口 |

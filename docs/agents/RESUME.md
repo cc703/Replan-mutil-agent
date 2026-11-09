@@ -2,7 +2,9 @@
 
 ## 当前续作入口（2026-11-09）
 
-用户已恢复开发，历史 Claude 额度阻塞已解除。按 [P1 G1与派发](../work-packages/p1-claude-review.md) 的开源调研及契约提案已完成独立文档 G3，下一步审阅 [提案八项选择](../planning/p1-contract-proposal.md) 并记录用户 G4；三个 OPEN-DATA-SOURCE 的路线与细节须区分。完整 Claude 捕获为 p1-claude-plan.v001.md / v002.md，精确代码块摘录见 prompts/p1-*.md，实际派发全文见 prompts/p1-dispatch-log.v001.md。角色状态以 registry、PROGRESS 和实际 handoffs 为准，不假设旧运行仍存活。P1-A 尚未获实施授权；GitHub 仍不上传。
+最新用户授权已解除逐项工程审批阻塞：“按原设计和推荐推进，工程细节你们决定，业务规则变化再问我”。见 AGENTS 和 ADR 0006；[P1-A实施包](../work-packages/p1-a.md) 含 Claude 消息66完整计划/两提示词、消息68类型增补及G1。模型与TimeAxis源码已落盘，实施与独立审查完成G3 ACCEPT，62 passed/1 skipped，原文/布局/全量mypy/ruff通过。先核源码、测试、交接和Git状态，不重开已完成的提案审批，也不假定旧代理仍运行。下一包独立validator仍须Claude计划，三个后续数据来源由工程方在P1-B前落实，缺数据不能判正式计划通过。
+
+历史 SOURCE/OSS/P1-0 计划与提示词仍按原路径保留，不再扩建准备性资料。当前恢复以 P1-A 包、registry、PROGRESS、handoffs 和真实 Git 状态为准；GitHub 仍不上传。
 
 ## 通用恢复步骤
 

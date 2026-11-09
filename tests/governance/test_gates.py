@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 import subprocess
 from types import ModuleType
+from typing import cast
 
 import pytest
 
@@ -87,7 +88,7 @@ def test_ignored_run_still_requires_manifest(repo: Path) -> None:
 def test_manifest_identity_and_completion(repo: Path) -> None:
     run_id = "20261109-120000_abc1234_test"
     name = f"artifacts/runs/experiment/e2/{run_id}/manifest.json"
-    manifest = dict(
+    manifest: dict[str, object] = dict(
         run_id=run_id,
         kind="experiment",
         name="e2",
@@ -114,10 +115,10 @@ def test_manifest_identity_and_completion(repo: Path) -> None:
     write(repo, name, json.dumps(manifest))
     assert "R-manifest" in codes(repo)
     manifest["command"] = "demo"
-    manifest["git"]["commit"] = ""
+    cast(dict[str, object], manifest["git"])["commit"] = ""
     write(repo, name, json.dumps(manifest))
     assert "R-manifest" in codes(repo)
-    manifest["git"]["commit"] = "abc123"
+    cast(dict[str, object], manifest["git"])["commit"] = "abc123"
     manifest["name"] = "wrong"
     write(repo, name, json.dumps(manifest))
     assert "R-manifest" in codes(repo)

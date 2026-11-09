@@ -1,6 +1,6 @@
 # 依赖登记
 
-本表只登记 P0 治理实际工具与待核实状态；业务技术栈在对应阶段核实后登记。版本的机器来源为 uv.lock，安装状态需以实际命令验证。
+本表登记已引入工具与业务依赖；其他技术栈在对应阶段核实后登记。版本的机器来源为 uv.lock，安装状态需以实际命令验证。
 
 | 名称 | 用途 | 固定版本/状态 | 许可证 | 一手来源 | 核实日期 | 维护状态 | 替代 | 工作包 | 审批 |
 |---|---|---|---|---|---|---|---|---|---|
@@ -17,3 +17,18 @@ WP-C 已记录治理检查通过，最终验收及同步以项目进度为准。
 ## 新条目必填
 
 名称；解决的问题；直接/传递依赖；版本与锁文件位置；官方文档及源码许可链接；检查日期；维护证据；许可义务与 NOTICE；替代方案；引入工作包；审查结论；安装/API/安全验证；需要用户裁决的事项。
+
+
+## P1-A 数据模型依赖
+
+2026-11-09 核对 `uv.lock`、已安装包 `importlib.metadata`（版本、License-Expression、License-File、Project-URL），及以下固定版本官方元数据。五包均随 `uv sync` 实际安装；Pydantic 核心模型与判别等 API 已通过本包探针及测试。来源的固定版本和发布信息提供维护证据，本次未额外评估未来维护状态或做漏洞审计。
+
+| 包与固定版本 | 关系和用途 | 官方固定版本元数据与源码许可 | 替代及选择 |
+|---|---|---|---|
+| pydantic 2.14.3 | 直接；类型化数据模型与输入校验 | [PyPI](https://pypi.org/pypi/pydantic/2.14.3/json)，[源码 MIT](https://github.com/pydantic/pydantic/blob/v2.14.3/LICENSE) | 标准库 dataclasses 须自行实现校验；按既定 Pydantic v2 规范选用 |
+| pydantic-core 2.50.4 | 传递；Pydantic 校验和序列化核心 | [PyPI](https://pypi.org/pypi/pydantic-core/2.50.4/json)，[对应源码 MIT](https://github.com/pydantic/pydantic/blob/v2.14.3/pydantic-core/LICENSE) | Pydantic 精确依赖，不单独替换 |
+| annotated-types 0.8.0 | 传递；类型注解约束元数据 | [PyPI](https://pypi.org/pypi/annotated-types/0.8.0/json)，[源码 MIT](https://github.com/annotated-types/annotated-types/blob/v0.8.0/LICENSE) | 随 Pydantic 解析，不单独替换 |
+| typing-inspection 0.4.5 | 传递；运行时类型注解检查 | [PyPI](https://pypi.org/pypi/typing-inspection/0.4.5/json)，[源码许可](https://github.com/pydantic/typing-inspection/blob/v0.4.5/LICENSE)；安装元数据 MIT | 随 Pydantic 解析，不单独替换 |
+| typing-extensions 4.16.0 | 传递；跨 Python 版本类型功能 | [PyPI](https://pypi.org/pypi/typing-extensions/4.16.0/json)，[源码许可](https://github.com/python/typing_extensions/blob/4.16.0/LICENSE)；安装元数据 PSF-2.0 | 标准库 typing 不能单独替代依赖指定版本 |
+
+版本和关系以 `uv.lock` 为准；直接依赖在 `pyproject.toml`。MIT 分发时须保留版权和许可声明，PSF-2.0 分发时须保留许可及版权声明，修改时还须按许可说明变更；具体适用义务须以完整许可文本和实际分发形式复核。安装元数据均列有 LICENSE；本次未逐项检查完整发行包、第三方捆绑许可或 NOTICE 内容，不声称已完成发行审计。分发前须检查实际 wheel/源码包及其 NOTICE 和附带许可。P1-A 常规工程引入已按工作包 G1 授权；无新增付费服务或用户业务规则裁决。独立 G3 审查待完成。

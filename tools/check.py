@@ -23,10 +23,10 @@ def main() -> int:
         ["tools/check_repo_layout.py"],
         ["tools/check_import_boundaries.py"],
         ["tools/verify_source.py"],
-        ["-m", "pytest", "-q", "tests/governance"],
-        ["-m", "ruff", "check", "tools", "tests/governance"],
-        ["-m", "ruff", "format", "--check", "tools", "tests/governance"],
-        ["-m", "mypy", "tools"],
+        ["-m", "pytest", "-q", "tests"],
+        ["-m", "ruff", "check", "tools", "tests", "src"],
+        ["-m", "ruff", "format", "--check", "tools", "tests", "src"],
+        ["-m", "mypy", "--explicit-package-bases", "tools", "tests", "src"],
     ]
     failed = False
     for command in checks:

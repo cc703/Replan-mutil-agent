@@ -2,7 +2,32 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
+from typing import TypedDict, cast
 from tools.verify_source import CANONICAL, verify
+
+
+class BatchEntry(TypedDict):
+    start: int
+    end: int
+    bytes: int
+    sha256: str
+
+
+class SourceEntry(TypedDict):
+    path: str
+    original_name: str
+    encoding: str
+    newline: str
+    source: str
+    verified_at: str
+    bytes: int
+    lines: int
+    sha256: str
+    batches: list[BatchEntry]
+
+
+class SourceManifest(TypedDict):
+    files: list[SourceEntry]
 
 
 def fixture(root: Path) -> list[Path]:
@@ -98,10 +123,10 @@ def test_duplicate_and_empty_batches(tmp_path: Path) -> None:
 def test_gap_or_overlap(tmp_path: Path) -> None:
     fixture(tmp_path)
 
-    def change(m: dict) -> None:
+    def change(m: SourceManifest) -> None:
         b = m["files"][0]["batches"][0]
         b["end"] = 1
-        m["files"][0]["batches"].append(dict(b, start=1, end=2))
+        m["files"][0]["batches"].append(cast(BatchEntry, dict(b, start=1, end=2)))
 
     mutate(tmp_path, change)
     assert not verify(tmp_path)

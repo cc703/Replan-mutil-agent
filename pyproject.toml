@@ -2,7 +2,9 @@
 name = "replan-governance"
 version = "0.0.0"
 requires-python = ">=3.11,<3.12"
-dependencies = []
+dependencies = [
+    "pydantic==2.14.3",
+]
 
 [dependency-groups]
 dev = ["pytest==8.3.5", "ruff==0.11.13", "mypy==1.15.0"]
@@ -11,7 +13,8 @@ dev = ["pytest==8.3.5", "ruff==0.11.13", "mypy==1.15.0"]
 package = false
 
 [tool.pytest.ini_options]
-testpaths = ["tests/governance"]
+testpaths = ["tests"]
+pythonpath = ["src"]
 addopts = "-ra"
 cache_dir = "artifacts/tmp/pytest_cache"
 
@@ -23,4 +26,5 @@ cache-dir = "artifacts/tmp/ruff_cache"
 [tool.mypy]
 python_version = "3.11"
 strict = true
+mypy_path = "src"
 cache_dir = "artifacts/tmp/mypy_cache"

@@ -1,5 +1,15 @@
 # P1 实际派发日志 v001
 
+## P1-A 当前源码派发（2026-11-09）
+
+用户最新工程委托见AGENTS/ADR0006；外部Claude消息66完整计划和两份提示词合并归档在 docs/work-packages/p1-a.md。实际spawn配置：model=gpt-6.1-terra、reasoning_effort=high、fork_turns=none；运行 /root/p1a_code_terra。
+
+```text
+现在实际实现 P1-A 源码。运行配置gpt-6.1-terra/high/fork_turns=none，绝对工作目录 D:/Default/Replan-mutil agent，共享分支codex/p0-governance。先读根AGENTS.md最新用户工程委托、ADR0006，再完整读docs/work-packages/p1-a.md：其中已归档外部Claude消息66完整计划、实施提示词、审查提示词和总设计师G1 PASS/实际派发解释。按其中实施提示词立即写源码与测试，不只回复计划。必读docs/source/codex_spec_v1.1.original.md第3节21模型及Slot/Event、design_v2.original.md人员/时间、docs/engineering/coding-standards.md/file-storage-standard.md、已完成OSS报告。只可写该实施包列明3源码、2测试、pyproject/uv.lock、tools/check.py、README/dependency-register、本包卡片END捕获区之后、docs/agents/handoffs/p1-a.md；不要改p1-a.md保护区捕获与哈希，不要改AGENTS/ADR/PROGRESS/CHANGELOG/registry/RESUME/其它工具或测试/原文。root正写授权规则和进度，是合法共享树差异，不得回退。先记录git起点；所有专项不提交/推送/登录或改Git。只引入pydantic==2.14.3及必要传递依赖，核core2.50.4；按计划实测已安装API与许可证metadata，只有真实失败才上报，勿添加准备性文档。全部模型TimeAxis按计划有意义测试、独立validator职责边界、旧JSON及容器默认隔离、UTC整数时间/严格槽、import防循环与完整check覆盖业务。业务源码/测试先落盘再自检修复，完成后真实记录命令/结果/未实现范围。不实现V1-V11/solver/generator；未来业务ctx不在P1-A引入，也不阻塞编码。用户明确工程细节你们定、仅业务规则变化再问，所以工程命名/配置/测试不再停下来请求审批，交接解释即可。完成源码后通知我，并每5分钟简短报实际进度。
+```
+
+用户目录规范提醒与总设计师定向检查已转达：所有源码只在src/scheduler_core，测试只在tests/unit，API探针和缓存只在artifacts/tmp，不允许放宽检查器；检查Person.id和技能元素非空、默认容器隔离、UTC严格槽及独立validator职责。完整实施上下文以本包Claude提示词与G1为准。
+
 本文件保留总设计师实际发送给专项的完整消息；Claude 原文及摘录另存，不能混称。消息中的引用文件也是实际执行上下文的一部分，恢复时必须逐一读取。未派发的角色不预填成已执行。
 
 ## OSS-1 — /root/p1_oss_terra
