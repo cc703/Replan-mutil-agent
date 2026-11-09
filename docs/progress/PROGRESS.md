@@ -9,9 +9,9 @@
 | P0-A | 治理与规范 | governance | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 用户暂缓 | 总设计师与独立审查通过 | 用户选择稍后登录，仅保留本地 | 2026-11-09 | 610ab30（本地已提交） |
 | P0-B | 协作机制 | collaboration_docs | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 用户暂缓 | 独立审查发现循环门槛，修复后 ACCEPT | 用户选择稍后登录，仅保留本地 | 2026-11-09 | b9d94cff318ad1ef89394214eb2d9f132d12e7bd |
 | P0-C | 机器门禁 | machine_gates | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 用户暂缓 | 配置驱动缺口修复后独立复审 ACCEPT | 用户选择稍后登录，仅保留本地 | 2026-11-09 | 4024077b3f9b4659ba82d5cd55c08bbe25059377 |
-| SOURCE | 原始设计与 Claude 原文导入 | source_terra | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 仅本地 | review_terra 修复后复审 ACCEPT | 用户暂缓，仅本地 | 2026-11-09 | checkpoint 提交主题见下 |
-| AGENT-RESUME-R1 | 模型策略、角色索引及恢复 | resume_terra | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过 | 独立 review_terra ACCEPT | 用户暂缓，仅本地 | 2026-11-09 | 本次待提交 |
-| AGENT-RESUME-R2 | 提示词库及 P1 开工设计 | resume_terra | codex/p0-governance | TODO | 等待 SOURCE G3 | 尚未启动 | 用户暂缓，仅本地 | — | 无 |
+| SOURCE | 原始设计与 Claude 原文导入 | source_terra | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 仅本地 | review_terra 修复后复审 ACCEPT | 用户暂缓，仅本地 | 2026-11-09 | 5dbcdee |
+| AGENT-RESUME-R1 | 模型策略、角色索引及恢复 | resume_terra | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过 | 独立 review_terra ACCEPT | 用户暂缓，仅本地 | 2026-11-09 | 5dbcdee |
+| AGENT-RESUME-R2 | 提示词库及 P1 开工设计 | resume_terra | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 仅本地 | review_terra ACCEPT，7份摘录及21类/2别名覆盖已核对 | 用户暂缓，仅本地 | 2026-11-09 | 以5dbcdee为基线，本次交付待提交 |
 
 分支为共享集成分支，不表示每个专项都有独立工作树。验收、检查、提交及远端 SHA 必须由总设计师按实际执行结果补记。
 
@@ -43,6 +43,7 @@
 - 2026-11-09 隐私核对：项目根目录与 Git common-dir 均指向 D:/Default/Replan-mutil agent 内，只有一个工作树，未共享其他仓库的 .git。远端 ls-remote 无分支引用，GitHub 仓库 size=0，未发现本轮提交已上传；仓库当前为 public。未来上传到公开仓库的文件和提交作者邮箱可被公众读取，本次未修改可见性或作者邮箱。
 - 浏览器读取可能超时；无本工作包 Claude 完整提示词时不能绕过 G1。
 - 用户指定后续所有 Codex 专项均为 GPT-6.1 Terra/high；本次 source_terra、resume_terra、review_terra 已以 model=gpt-6.1-terra、reasoning_effort=high、fork_turns=none 实际派发。旧 P0 会话不追溯冒称同模型。角色索引/模型策略/交接/恢复清单见 docs/agents/。
+- 用户已选择“补齐人员资源契约提案，保留 V7”。仅批准下一步提案方向，尚未批准具体字段、接口冻结或业务实现；正向 Claude 请求 P1-0 完整计划与专项提示词。其余契约问题见 docs/planning/p1-readiness.md，不重复询问已延期的 B1/双 profile。
 
 ## 本轮验证与审查证据
 

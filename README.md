@@ -16,7 +16,9 @@
 - [变更记录](CHANGELOG.md)。
 - [本轮 Claude 计划审查与派发提示词](docs/work-packages/p0-claude-review.md)。
 
-完整设计框架 v2 与开发规格原文由总设计师导入 `docs/design_v2.md`、`docs/codex_spec.md`；是否已导入以文件和进度记录为准，不用摘要冒充原文。
+完整设计框架 v2、开发规格 v1.1 与历史完整计划已逐字导入 [来源目录](docs/source/README.md)，全文及分块哈希通过核验；旧路径引用统一映射到 `docs/source/*.original.md`，不建立易漂移副本。勘误独立保存，不静默升级原文。
+
+[智能体恢复入口](docs/agents/RESUME.md) · [模型策略](docs/agents/model-policy.md) · [P1 开工准备](docs/planning/p1-readiness.md)。当前 P1 文档为评审草案，不是已批准契约或业务实现。
 
 ## 执行检查
 

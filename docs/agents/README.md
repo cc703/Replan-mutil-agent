@@ -39,4 +39,6 @@
 
 ## 恢复资料
 
-[角色索引](registry.md) · [模型策略](model-policy.md) · [恢复清单](RESUME.md) · 提示词库 `prompts/`（R2 待建立） · [交接](handoffs/agent-resume-r1.md)
+[角色索引](registry.md) · [模型策略](model-policy.md) · [恢复清单](RESUME.md) · [提示词库入口](prompts/agent-resume.v001.md) · [R1交接](handoffs/agent-resume-r1.md) · [R2交接](handoffs/agent-resume-r2.md) · [R2独立复审](handoffs/agent-resume-g3.md)
+
+R2 更新：[提示词库](prompts/agent-resume.v001.md) · [R2 交接](handoffs/agent-resume-r2.md) · [P1 准备](../planning/p1-readiness.md)。

@@ -13,7 +13,9 @@
 | wp-a | P0 治理 / Codex 专项 | [P0](../work-packages/P0.md) | [实际派发 v001](../work-packages/p0-claude-review.md) | 未记录 | P0-A 卡片所列 | 本地提交，待同步 / 原始交接 NOT-RECORDED | [P0](../work-packages/P0.md) |
 | wp-b | P0 协作 / Codex 专项 | [P0](../work-packages/P0.md) | [实际派发 v001](../work-packages/p0-claude-review.md) | 未记录 | P0-B 卡片所列 | 本地提交，待同步 / 原始交接 NOT-RECORDED | [P0](../work-packages/P0.md) |
 | wp-c | P0 门禁 / Codex 专项 | [P0](../work-packages/P0.md) | [实际派发 v001](../work-packages/p0-claude-review.md) | 未记录 | P0-C 卡片所列 | 本地提交，待同步 / 原始交接 NOT-RECORDED | [P0](../work-packages/P0.md) |
-| source | 原文导入 / Codex 专项 | [工作包](../work-packages/source.md) | [Claude v001 第3节](../work-packages/continuation-claude-v001.md) | 本次实际配置待其交接 | SOURCE 卡片所列 | 并行实施，G3 待审 / 待交接 | [工作包](../work-packages/source.md) |
-| agent-resume | 恢复 / Codex 专项 | [工作包](../work-packages/agent-resume.md) | [Claude v001 第4节](../work-packages/continuation-claude-v001.md) | 本次 GPT-6.1 Terra / high | R 卡片所列 | R1 实施，R2 等待 SOURCE G3 / [交接](handoffs/agent-resume-r1.md) | [恢复](RESUME.md) |
+| source | 原文导入 / Codex 专项 | [工作包](../work-packages/source.md) | [Claude v001 第3节](../work-packages/continuation-claude-v001.md) | 本次 GPT-6.1 Terra / high | SOURCE 卡片所列 | G3 ACCEPT / [交接](handoffs/source-g3.md) | [工作包](../work-packages/source.md) |
+| agent-resume | 恢复 / Codex 专项 | [工作包](../work-packages/agent-resume.md) | [Claude v001 第4节](../work-packages/continuation-claude-v001.md) | 本次 GPT-6.1 Terra / high | R 卡片所列 | R2 交审 / [交接](handoffs/agent-resume-r2.md) | [恢复](RESUME.md) |
 
-本次运行会话映射：`/root/resume_terra` → agent-resume；SOURCE 具体会话标识待其交接。会话标识仅作追踪，不作为恢复依赖。
+本次运行会话映射：`/root/resume_terra` → agent-resume；`/root/source_terra` → source；`/root/review_terra` → SOURCE 独立审查，均 GPT-6.1 Terra / high。会话标识仅作追踪，不作为恢复依赖。
+
+原始 Claude 提示词摘录见 [提示词库](prompts/agent-resume.v001.md)，实际派发内容及总设计师审查调整以 [R2 交接](handoffs/agent-resume-r2.md) 和 [P0 派发记录](../work-packages/p0-claude-review.md) 为准，不能与原文混称。
