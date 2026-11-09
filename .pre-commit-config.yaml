@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: governance
+        name: P0 governance checks
+        entry: uv run --python 3.11 --group dev python tools/check.py
+        language: system
+        pass_filenames: false
+        always_run: true

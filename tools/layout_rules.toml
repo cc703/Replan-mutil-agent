@@ -1,0 +1,77 @@
+version = 1
+
+[root]
+rule = "R-root"
+allowed = ["AGENTS.md", "README.md", "CHANGELOG.md", "LICENSE", "Makefile", "pyproject.toml", "uv.lock", "docker-compose.yml", ".gitignore", ".gitattributes", ".editorconfig", ".env.example", ".pre-commit-config.yaml", ".github", "docs", "src", "apps", "experiments", "data", "tests", "tools", "artifacts"]
+
+[naming]
+rule = "R-naming"
+pattern = "^[a-z0-9_.-]+$"
+conventional = ["AGENTS.md", "README.md", "CHANGELOG.md"]
+
+[generated]
+rule = "R-generated"
+source_roots = ["src", "apps", "experiments"]
+forbidden_extensions = [".log", ".csv", ".jsonl", ".tmp"]
+image_extensions = [".png", ".svg", ".pdf"]
+asset_prefixes = ["apps/frontend/src/assets/", "apps/frontend/public/"]
+config_prefixes = ["experiments/configs/"]
+
+[size]
+rule = "R-size"
+max_bytes = 1048576
+exceptions = ["uv.lock", "apps/frontend/package-lock.json"]
+
+[artifacts]
+rule = "R-artifacts"
+tracked_allowed = ["artifacts/README.md"]
+
+[manifest]
+rule = "R-manifest"
+required = ["run_id", "kind", "name", "status", "started_at", "ended_at", "command", "git", "config_sha256", "seeds", "versions"]
+kinds = ["experiment", "sim", "agent_eval"]
+statuses = ["running", "completed", "failed", "partial"]
+run_id_pattern = '^[0-9]{8}-[0-9]{6}_[a-f0-9]{7,40}_[a-z0-9][a-z0-9_-]*$'
+
+[magic]
+rule = "R-magic"
+extensions = [".png", ".pdf", ".svg"]
+
+[ignore]
+rule = "R-ignore"
+probes = [".venv/probe", ".env", ".mypy_cache/probe", ".ruff_cache/probe", ".pytest_cache/probe", "__pycache__/probe", "node_modules/probe", ".idea/probe", ".vscode/probe", ".DS_Store", "artifacts/tmp/probe"]
+
+[[exceptions]]
+rule = "R-naming"
+scope = "docs/"
+target = "path"
+pattern = '^docs/(?!results/).+$'
+reason = "文档允许中文与大写；docs/results 除外。"
+
+[[exceptions]]
+rule = "R-naming"
+scope = "docs/results/"
+target = "path"
+pattern = '^docs/results/INDEX\.md$'
+reason = "最终结果索引约定文件。"
+
+[[exceptions]]
+rule = "R-naming"
+scope = "apps/backend/"
+target = "filename"
+pattern = '^[A-Z][A-Za-z0-9]*\.java$'
+reason = "Java 类名允许 PascalCase，其他路径仍受默认命名规则约束。"
+
+[[exceptions]]
+rule = "R-naming"
+scope = "apps/backend/src/main/resources/db/migration/"
+target = "filename"
+pattern = '^V[0-9]+__[a-z0-9_-]+\.sql$'
+reason = "Flyway 约定迁移文件名。"
+
+[[exceptions]]
+rule = "R-naming"
+scope = "apps/frontend/"
+target = "filename"
+pattern = '^[A-Z][A-Za-z0-9]*\.vue$'
+reason = "Vue 组件允许 PascalCase，其他路径仍受默认命名规则约束。"
