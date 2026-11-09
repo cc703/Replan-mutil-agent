@@ -8,7 +8,7 @@
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | P0-A | 治理与规范 | governance | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 待同步 | 总设计师与独立审查通过 | 待执行 | 2026-11-09 | 待提交 |
 | P0-B | 协作机制 | collaboration_docs | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 待同步 | 独立审查发现循环门槛，修复后 ACCEPT | 待执行 | 2026-11-09 | 待提交 |
-| P0-C | 机器门禁 | machine_gates | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 待同步 | 配置驱动缺口修复后独立复审 ACCEPT | 待执行 | 2026-11-09 | 提交主题 chore(p0-c): establish executable governance gates |
+| P0-C | 机器门禁 | machine_gates | codex/p0-governance | BLOCKED | G1/G2/G3 通过；G5 认证阻塞 | 配置驱动缺口修复后独立复审 ACCEPT | Git push 403 | 2026-11-09 | 4024077b3f9b4659ba82d5cd55c08bbe25059377 |
 | P0-SOURCE | 原始设计与 Claude 原文导入 | 总设计师 | codex/p0-governance | BLOCKED | 附件读取/下载通道超时 | 未核验本地原文 | 不适用 | — | 无导入提交，不伪造文件 |
 
 分支为共享集成分支，不表示每个专项都有独立工作树。验收、检查、提交及远端 SHA 必须由总设计师按实际执行结果补记。
@@ -37,10 +37,8 @@
 - 完整设计 v2 尚待导入；依赖缺失章节的业务工作不能开始。
 - 原规格命名与缓存约束需要治理修复。用户已裁决 B1 外移和 solver 双 profile 两项建议暂不修改（DEFERRED，见 ADR 0002/0003），按原规格推进并保留批注；对应模块实施前再讨论，P0 不因此阻塞。
 - 文件检查提前至 P0，只完成治理机制不等于 P1 的 ArtifactStore 已实现。
-- Git 同步尚未执行；没有推送和远端 SHA 核验前不得宣称 GitHub 已更新。当前其他专项文件尚未分包提交，由总设计师显式暂存各自清单。
+- 本机 Git 以 ZCloud2014 推送，目标仓库拒绝写入（403）；已连接 GitHub 插件以 cc703 登录且有 push 权限。已向用户询问切换本机认证或使用插件生成远端提交，尚未选择前不改认证或提交历史。工程验收与同步阻塞分开记录。
 - 浏览器读取可能超时；无本工作包 Claude 完整提示词时不能绕过 G1。
-
-## 更新规则
 
 ## 本轮验证与审查证据
 
