@@ -1,6 +1,6 @@
 # 项目进度
 
-更新日期：2026-11-09（Asia/Shanghai）。当前推进原设计核验、专项智能体持久恢复与 P1 开工设计准备；P1–P8 业务实现尚未开始。
+更新日期：2026-11-09（Asia/Shanghai）。来源核验、智能体恢复及 P1 开工准备已本地保存。因 Claude 额度不足未生成下一包计划，按用户条件停止后续推进；P1–P8 业务实现尚未开始。
 
 ## 当前工作包
 
@@ -11,7 +11,8 @@
 | P0-C | 机器门禁 | machine_gates | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 用户暂缓 | 配置驱动缺口修复后独立复审 ACCEPT | 用户选择稍后登录，仅保留本地 | 2026-11-09 | 4024077b3f9b4659ba82d5cd55c08bbe25059377 |
 | SOURCE | 原始设计与 Claude 原文导入 | source_terra | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 仅本地 | review_terra 修复后复审 ACCEPT | 用户暂缓，仅本地 | 2026-11-09 | 5dbcdee |
 | AGENT-RESUME-R1 | 模型策略、角色索引及恢复 | resume_terra | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过 | 独立 review_terra ACCEPT | 用户暂缓，仅本地 | 2026-11-09 | 5dbcdee |
-| AGENT-RESUME-R2 | 提示词库及 P1 开工设计 | resume_terra | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 仅本地 | review_terra ACCEPT，7份摘录及21类/2别名覆盖已核对 | 用户暂缓，仅本地 | 2026-11-09 | 以5dbcdee为基线，本次交付待提交 |
+| AGENT-RESUME-R2 | 提示词库及 P1 开工设计 | resume_terra | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 仅本地 | review_terra ACCEPT，7份摘录及21类/2别名覆盖已核对 | 用户暂缓，仅本地 | 2026-11-09 | 1dd1b3e |
+| P1-0 | 开源借鉴调研与契约评审的下一步规划 | Claude 计划角色 | codex/p0-governance | BLOCKED | G1 PENDING，未获得计划正文 | 无提案或源码交付 | 不上传 | — | 额度阻塞记录见下 |
 
 分支为共享集成分支，不表示每个专项都有独立工作树。验收、检查、提交及远端 SHA 必须由总设计师按实际执行结果补记。
 
@@ -44,6 +45,7 @@
 - 浏览器读取可能超时；无本工作包 Claude 完整提示词时不能绕过 G1。
 - 用户指定后续所有 Codex 专项均为 GPT-6.1 Terra/high；本次 source_terra、resume_terra、review_terra 已以 model=gpt-6.1-terra、reasoning_effort=high、fork_turns=none 实际派发。旧 P0 会话不追溯冒称同模型。角色索引/模型策略/交接/恢复清单见 docs/agents/。
 - 用户已选择“补齐人员资源契约提案，保留 V7”。仅批准下一步提案方向，尚未批准具体字段、接口冻结或业务实现；正向 Claude 请求 P1-0 完整计划与专项提示词。其余契约问题见 docs/planning/p1-readiness.md，不重复询问已延期的 B1/双 profile。
+- 最新用户要求：可先检索可借鉴的开源项目，再做下一步；如果 Claude 无额度无法制定计划则中止目标。页面已显示用量耗尽、P1-0 回复暂停且无计划正文，显示15:40恢复（页面本地时间）。依此停止后续调研和实施，不以 Codex 自拟计划绕过 Claude，不购买额度、不设定时任务。恢复时先重新取得 Claude 的开源调研/契约提案计划，见 [阻塞与恢复记录](../work-packages/p1-planning-blocker.md)。
 
 ## 本轮验证与审查证据
 
