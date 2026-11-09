@@ -1,6 +1,6 @@
 # 项目进度
 
-更新日期：2026-11-09（Asia/Shanghai）。P1-A 数据模型与TimeAxis源码及测试已完成，独立工程G3 ACCEPT；完整检查62 passed、1 skipped，布局/导入/原文/ruff/全量mypy通过。用户工程委托已落实，GitHub仍暂缓上传；P1整体尚未完成，独立校验器/生成器/产物基础设施后续实施。
+更新日期：2026-11-09（Asia/Shanghai）。P1-A已提交ac0ba9f。P1-B的Claude初版计划与完整修订已取回，随后页面明确显示五小时额度耗尽，按用户“没有额度就停止”条件停止推进；P1-B未派发、未写源码，G1待恢复后复核。GitHub仍暂缓上传，P1整体未完成。
 
 ## 当前工作包
 
@@ -15,7 +15,8 @@
 | P1-PLAN | Claude 续作计划与实际派发归档 | 总设计师 | codex/p0-governance | IN-REVIEW | G1 PASS；档案独立前置 PASS；G5 仅本地 | 四份提示词payload/行范围/捕获哈希一致 | 不上传 | 2026-11-09 | 8a5914d |
 | OSS-1 | 类似开源项目与 P1 依赖核实 | p1_oss_terra | codex/p0-governance | IN-REVIEW | G0/G1/G2/G3 PASS；G5 仅本地 | R1修复后独立工程 ACCEPT；仅参考，不安装/改锁 | 不上传 | 2026-11-09 | f145a1a |
 | P1-0 | 人员资源与契约缺口提案 | p1_contract_terra | codex/p0-governance | IN-REVIEW | G1/G2/G3 PASS；G4 已获工程委托；G5 仅本地 | 已审查推荐按用户新授权落实 | 不上传 | 2026-11-09 | 452b2be；授权更新见 ADR 0006 |
-| P1-A | 全数据模型与 TimeAxis 源码 | p1a_code_terra | codex/p0-governance | IN-REVIEW | G0/G1/G2/G3 PASS；G4工程委托；G5仅本地 | 独立ACCEPT，62 passed/1 skipped，全部检查通过 | 用户暂缓，不上传 | 2026-11-09 | 本地提交主题 feat(core): implement scheduling contracts and exact time axis |
+| P1-A | 全数据模型与 TimeAxis 源码 | p1a_code_terra | codex/p0-governance | IN-REVIEW | G0/G1/G2/G3 PASS；G4工程委托；G5仅本地 | 独立ACCEPT，62 passed/1 skipped，全部检查通过 | 用户暂缓，不上传 | 2026-11-09 | ac0ba9f |
+| P1-B | V1–V11 独立业务校验器 | 尚未派发 | codex/p0-governance | BLOCKED | G0 PASS；G1 PENDING，按用户条件停止 | 消息70/72已完整归档；无P1-B源码 | 用户暂缓，不上传 | — | docs/work-packages/p1-b.md；本地额度检查点 |
 
 分支为共享集成分支，不表示每个专项都有独立工作树。验收、检查、提交及远端 SHA 必须由总设计师按实际执行结果补记。
 
@@ -39,6 +40,8 @@
 计划/提示词来源：[Claude 原会话](https://claude.ai/chat/54ab7bfe-2bca-4714-9759-e3ae3e5474e7)，2026-11-09 P0 计划。具体版本、原文和审查证据见 [P0 工作包](../work-packages/P0.md)。
 
 ## 风险与阻塞
+
+- 用户本轮明确：Claude没有额度就停止。P1-B消息70与72已完整取回，随后浏览器显示“You hit your 5-hour message limit”；因此停止后续复核与实施，仅保存本地检查点。消息72补齐上下文、DONE执行证据与RUNNING容量去重，尚未通过完整G1或派发专项。页面显示8:40 PM恢复，不设自动恢复，不升级；GitHub仍暂缓。
 
 - 原设计缺失阻塞及核验器返工均已解除：三份全文与14分块哈希匹配，清单完整性、重复条目、分块覆盖和路径边界修复后独立复审 ACCEPT。R2 可按已审查的 Claude 计划启动。
 - 原规格命名与缓存约束需要治理修复。用户已裁决 B1 外移和 solver 双 profile 两项建议暂不修改（DEFERRED，见 ADR 0002/0003），按原规格推进并保留批注；对应模块实施前再讨论，P0 不因此阻塞。

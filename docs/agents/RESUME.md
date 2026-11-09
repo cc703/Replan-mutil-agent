@@ -2,6 +2,8 @@
 
 ## 当前续作入口（2026-11-09）
 
+当前按用户“Claude没有额度就停止”条件停止。P1-A在ac0ba9f已完成；[P1-B](../work-packages/p1-b.md)含消息70初版和72完整修订，归档后Claude额度耗尽，G1仍PENDING、未派发源码专项。恢复先确认Claude可用并重新审查该完整工作包，不把已归档计划当已实施。GitHub仍不上传。
+
 最新用户授权已解除逐项工程审批阻塞：“按原设计和推荐推进，工程细节你们决定，业务规则变化再问我”。见 AGENTS 和 ADR 0006；[P1-A实施包](../work-packages/p1-a.md) 含 Claude 消息66完整计划/两提示词、消息68类型增补及G1。模型与TimeAxis源码已落盘，实施与独立审查完成G3 ACCEPT，62 passed/1 skipped，原文/布局/全量mypy/ruff通过。先核源码、测试、交接和Git状态，不重开已完成的提案审批，也不假定旧代理仍运行。下一包独立validator仍须Claude计划，三个后续数据来源由工程方在P1-B前落实，缺数据不能判正式计划通过。
 
 历史 SOURCE/OSS/P1-0 计划与提示词仍按原路径保留，不再扩建准备性资料。当前恢复以 P1-A 包、registry、PROGRESS、handoffs 和真实 Git 状态为准；GitHub 仍不上传。
