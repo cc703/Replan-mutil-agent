@@ -34,3 +34,33 @@ G1 的分阶段审查将 OSS 工程 G3 ACCEPT 与需要远程同步的整体状�
 - 未运行完整治理检查、pytest、ruff、mypy 或布局检查；总设计师报告的基线结果不是本人执行结果。
 - 本次仅新增本交接文件，用于保留分阶段审查证据；无被审文件修改。未发现需立即提交的新用户裁决；后续 G4 由完整提案审查汇总。
 - 下一步：等待总设计师 followup，在 OSS 交付后独立复核；不自行进入提案阶段。
+
+## 阶段 1：OSS 工程 G3 — REWORK
+
+**发现 R1（重要，阻断工程 ACCEPT）**：`docs/planning/p1-oss-research.md:26,44,61` 将 Hypothesis 的 MPL-2.0 写为须审查及新增依赖须授权，但没有明确指出依 `docs/engineering/open-source-policy.md`，未来引入 MPL 候选须先向用户提交 G4 裁决及链接方式、修改范围、分发方式、替代方案；一般授权/审查不应被误读为已完成该特定门禁。建议作者补充明确前置与状态（本轮仅参考，未引入；未来 G4 PENDING），无需现在提前要求用户批准。固定版本 [官方许可证](https://github.com/HypothesisWorks/hypothesis/blob/v6.170.15/LICENSE.txt) 和 [PyPI 元数据](https://pypi.org/pypi/hypothesis/6.170.15/json) 为 MPL-2.0 证据。
+
+### 独立核对表（2026-11-09）
+
+| 条目 | 独立来源与结果 |
+|---|---|
+| OR-Tools | [v9.15 tag](https://api.github.com/repos/google/or-tools/commits/v9.15) 解析为 `551ad10d94835c99e5e1e684500d3db398c0e345`；三个文档所列固定 Python 示例与根 Apache 2.0 LICENSE 的 raw 文件可读取；[固定递归树](https://api.github.com/repos/google/or-tools/git/trees/551ad10d94835c99e5e1e684500d3db398c0e345?recursive=1) 5121 项、truncated=false，文件名无 NOTICE。 |
+| PyJobShop | [v0.0.9 tag](https://api.github.com/repos/PyJobShop/PyJobShop/commits/v0.0.9) 解析为 `5e1cbee697f44ca451fcdd8c6fb97bec151930d5`；根许可为 MIT；[固定递归树](https://api.github.com/repos/PyJobShop/PyJobShop/git/trees/5e1cbee697f44ca451fcdd8c6fb97bec151930d5?recursive=1) 137 项、truncated=false，文件名无 NOTICE。Model.py、ProblemData.py、solve.py 可读取；solve.py 默认 ortools、可选 cpoptimizer；所读模型与数据文件无 skill 字样，有 allow_breaks。具体 breaks 的边界与 setup 细节本轮尚未独立逐条复核，需补查，不凭名称推断。 |
+| 依赖与许可 | 直接读取 PyPI 的最新 JSON 和所列固定 JSON：pydantic 2.14.3、numpy 2.5.4、pytest 9.2.0、hypothesis 6.170.15、ortools 9.15.6755 为服务返回最新版；候选 requires-python、所列 Windows cp311/纯 Python wheel 与日期均与表一致。pydantic 强制 core==2.50.4，core 有 cp311 Windows wheel；Hypothesis pytest extra >=4.6。读取五个固定源码许可文件：Pydantic/pytest MIT、NumPy 根 BSD、Hypothesis MPL、OR-Tools Apache；NumPy 分发表达式另含 0BSD/MIT/Zlib/CC0。NumPy 最新 wheel 发布日期待独立补查；pytest/OR-Tools 旧元数据 license_expression 为空，其根许可文本为依据。 |
+
+递归树结果仅覆盖仓库文件名而非文件内容和发行包；本包无复制或安装授权。分发包额外许可、传递依赖、Windows 安装与动态联测均 NOT-RUN，不作为此元数据研究的验收前提。
+
+### 实际检查与范围
+
+本 reviewer 运行：`python tools/check_repo_layout.py` → Layout PASS；`python tools/check_import_boundaries.py` → Imports PASS；`python tools/verify_source.py` → 三原文和 14 批 PASS。`uv run --python 3.11 --group dev python -m pytest -q -p no:cacheprovider tests/governance` → 33 passed、1 skipped（symlinks unavailable）、1 warning（禁用 cacheprovider 后未知 cache_dir），7.98s；`uv run --python 3.11 --group dev ruff check . --no-cache` → All checks passed；`uv run --python 3.11 --group dev ruff format --check . --no-cache` → 6 files already formatted；`uv run --python 3.11 --group dev mypy tools` → 4 source files 无问题。设置 PYTHONDONTWRITEBYTECODE；mypy 缓存指定 artifacts/tmp。检查非业务验收。作者交接如实披露 check.py 内 pytest 未关闭 cacheprovider，后续已单独指定选项重跑；本 reviewer 未运行 check.py。
+
+相对 8a5914d，已跟踪变化为 root 的 dispatch-log、registry、PROGRESS，未跟踪交付为作者两份文件；共享树不能把 root 合法变更当作者越界。无依赖、锁、源码、原文或测试变化。此后本 reviewer 只追加本报告。P1-0 仍 NOT-STARTED，G4 待完整提案；OSS 的 REWORK 修正和上述未完成的细节复核后再作工程 G3，工程 G3 不等同远程同步状态。
+
+### 阶段 1 补核完成
+
+对前表标为待核的项目继续直接读取官方文件：[ProblemData.py:15–22](https://github.com/PyJobShop/PyJobShop/blob/5e1cbee697f44ca451fcdd8c6fb97bec151930d5/pyjobshop/ProblemData.py#L15) 检查非负、起点小于终点、只在前终点大于后起点时拒绝，故允许相接；[同文件:211–213](https://github.com/PyJobShop/PyJobShop/blob/5e1cbee697f44ca451fcdd8c6fb97bec151930d5/pyjobshop/ProblemData.py#L211) 描述 allow_breaks 的中断和恢复；[同文件:534–535](https://github.com/PyJobShop/PyJobShop/blob/5e1cbee697f44ca451fcdd8c6fb97bec151930d5/pyjobshop/ProblemData.py#L534) 声明 setup 可在 machine breaks 内发生。[NumPy 2.5.4 PyPI JSON](https://pypi.org/pypi/numpy/2.5.4/json) 的 wheel 上传 UTC 日期为 2026-10-10，与稿件一致。这两项待核已解除；工程结论仍为 **REWORK（R1 待作者补充）**。
+
+### 阶段 1 R1 定向复审 — 最终工程 G3 ACCEPT
+
+复核 `docs/planning/p1-oss-research.md:67–71` 与 `docs/agents/handoffs/p1-oss.md:31–35`：明确 Hypothesis 的 MPL-2.0 在未来实际引入前须经用户 G4，状态 PENDING，裁决材料须说明链接方式、修改范围、分发方式和替代方案；候选替代仅供比较，明确不擅自移除原规格要求或改变评估协议。R1 已解决，未见新增矛盾。此前 REWORK 保留为真实审查历史。
+
+OSS 工程 G3 **ACCEPT**；可进入 P1-0 文档提案。此结论不授权安装、复制代码或冻结业务契约，也不代表用户 G4 或 Git 远端同步已完成。Windows 动态安装联测及发行包额外许可仍为 NOT-RUN/未核验，未来引入前处理。此次仅执行定向文档阅读与 `git status --short`；不重复前次已完成的网络与治理检查。
