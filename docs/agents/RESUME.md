@@ -2,7 +2,7 @@
 
 ## 当前续作入口（2026-11-09）
 
-用户已恢复开发，历史 Claude 额度阻塞已解除。当前先按 [P1 G1与派发](../work-packages/p1-claude-review.md) 执行开源调研，再提案、独立审查与用户裁决；完整 Claude 捕获为 p1-claude-plan.v001.md / v002.md，精确代码块摘录见 prompts/p1-*.md，实际派发全文见 prompts/p1-dispatch-log.v001.md。角色状态以 registry、PROGRESS 和实际 handoffs 为准，不假设旧运行仍存活。P1-A 尚未获实施授权；GitHub 仍不上传。
+用户已恢复开发，历史 Claude 额度阻塞已解除。按 [P1 G1与派发](../work-packages/p1-claude-review.md) 的开源调研及契约提案已完成独立文档 G3，下一步审阅 [提案八项选择](../planning/p1-contract-proposal.md) 并记录用户 G4；三个 OPEN-DATA-SOURCE 的路线与细节须区分。完整 Claude 捕获为 p1-claude-plan.v001.md / v002.md，精确代码块摘录见 prompts/p1-*.md，实际派发全文见 prompts/p1-dispatch-log.v001.md。角色状态以 registry、PROGRESS 和实际 handoffs 为准，不假设旧运行仍存活。P1-A 尚未获实施授权；GitHub 仍不上传。
 
 ## 通用恢复步骤
 

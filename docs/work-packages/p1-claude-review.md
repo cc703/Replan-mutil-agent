@@ -46,4 +46,4 @@
 
 ## 当前状态
 
-G0 PASS；G1 PASS。OSS-1 可启动；P1-0 等 OSS 工程审查 ACCEPT；实施 G4 PENDING；G5 仅本地，远端暂缓。实际交接、后续命令和提交证据以进度与 handoffs 更新为准。
+G0/G1 PASS。OSS-1 与 P1-0 文档工程独立 G3 均已 ACCEPT；发现和返工历史见 p1-review.md。业务 G4 PENDING；文档仅保存本地检查点，完整 G5 与远端同步未完成。具体接口/字段与三个 OPEN-DATA-SOURCE 未冻结，下一步用户审阅提案八项选择。实际交接、后续命令和提交证据以进度与 handoffs 为准。
