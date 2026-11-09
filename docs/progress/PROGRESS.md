@@ -6,7 +6,7 @@
 
 | ID | 名称 | 负责专项 | 分支 | 状态 | 门禁 | 工程验收 | 远端同步 | 验收日期 | 提交证据 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| P0-A | 治理与规范 | governance | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 待同步 | 总设计师与独立审查通过 | cc703 认证待完成 | 2026-11-09 | 提交主题 docs(p0-a): establish project engineering standards |
+| P0-A | 治理与规范 | governance | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 待同步 | 总设计师与独立审查通过 | cc703 认证待完成 | 2026-11-09 | 610ab30（本地已提交） |
 | P0-B | 协作机制 | collaboration_docs | codex/p0-governance | BLOCKED | G1/G2/G3 通过；G5 认证阻塞 | 独立审查发现循环门槛，修复后 ACCEPT | cc703 认证待完成 | 2026-11-09 | b9d94cff318ad1ef89394214eb2d9f132d12e7bd |
 | P0-C | 机器门禁 | machine_gates | codex/p0-governance | BLOCKED | G1/G2/G3 通过；G5 认证阻塞 | 配置驱动缺口修复后独立复审 ACCEPT | Git push 403 | 2026-11-09 | 4024077b3f9b4659ba82d5cd55c08bbe25059377 |
 | P0-SOURCE | 原始设计与 Claude 原文导入 | 总设计师 | codex/p0-governance | BLOCKED | 附件读取/下载通道超时 | 未核验本地原文 | 不适用 | — | 无导入提交，不伪造文件 |
