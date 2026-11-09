@@ -6,8 +6,8 @@
 
 | ID | 名称 | 负责专项 | 分支 | 状态 | 门禁 | 工程验收 | 远端同步 | 验收日期 | 提交证据 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| P0-A | 治理与规范 | governance | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 待同步 | 总设计师与独立审查通过 | 待执行 | 2026-11-09 | 待提交 |
-| P0-B | 协作机制 | collaboration_docs | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 待同步 | 独立审查发现循环门槛，修复后 ACCEPT | 待执行 | 2026-11-09 | 待提交 |
+| P0-A | 治理与规范 | governance | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 待同步 | 总设计师与独立审查通过 | cc703 认证待完成 | 2026-11-09 | 提交主题 docs(p0-a): establish project engineering standards |
+| P0-B | 协作机制 | collaboration_docs | codex/p0-governance | BLOCKED | G1/G2/G3 通过；G5 认证阻塞 | 独立审查发现循环门槛，修复后 ACCEPT | cc703 认证待完成 | 2026-11-09 | b9d94cff318ad1ef89394214eb2d9f132d12e7bd |
 | P0-C | 机器门禁 | machine_gates | codex/p0-governance | BLOCKED | G1/G2/G3 通过；G5 认证阻塞 | 配置驱动缺口修复后独立复审 ACCEPT | Git push 403 | 2026-11-09 | 4024077b3f9b4659ba82d5cd55c08bbe25059377 |
 | P0-SOURCE | 原始设计与 Claude 原文导入 | 总设计师 | codex/p0-governance | BLOCKED | 附件读取/下载通道超时 | 未核验本地原文 | 不适用 | — | 无导入提交，不伪造文件 |
 
@@ -37,7 +37,7 @@
 - 完整设计 v2 尚待导入；依赖缺失章节的业务工作不能开始。
 - 原规格命名与缓存约束需要治理修复。用户已裁决 B1 外移和 solver 双 profile 两项建议暂不修改（DEFERRED，见 ADR 0002/0003），按原规格推进并保留批注；对应模块实施前再讨论，P0 不因此阻塞。
 - 文件检查提前至 P0，只完成治理机制不等于 P1 的 ArtifactStore 已实现。
-- 本机 Git 以 ZCloud2014 推送，目标仓库拒绝写入（403）；已连接 GitHub 插件以 cc703 登录且有 push 权限。已向用户询问切换本机认证或使用插件生成远端提交，尚未选择前不改认证或提交历史。工程验收与同步阻塞分开记录。
+- 用户决定本项目统一使用 cc703。仓库局部 Git credential username 已设 cc703，已连接 GitHub 插件也是 cc703 且有 push 权限；本机账号认证正在办理。此前一次推送因账号无权限返回403，不能计为已同步。提交作者仍按用户要求为 chm；不改写已生成本地历史。工程验收与同步阻塞分开记录。
 - 浏览器读取可能超时；无本工作包 Claude 完整提示词时不能绕过 G1。
 
 ## 本轮验证与审查证据

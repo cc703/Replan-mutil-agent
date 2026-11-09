@@ -4,7 +4,7 @@
 
 ## 分支与所有权
 
-当前仓库 origin 为 https://github.com/cc703/Replan-mutil-agent.git，启动时为空仓；当前集成分支为 `codex/p0-governance`。Git 作者在本仓库局部配置为 chm，邮箱保留于本地 Git 配置，不在进度文档反复展示。
+当前仓库 origin 为 https://github.com/cc703/Replan-mutil-agent.git，启动时为空仓；当前集成分支为 `codex/p0-governance`。用户指定 GitHub 登录账号统一为 cc703，本仓库局部 credential username 为 cc703；不得回退使用其他账号重试。Git 作者在本仓库局部配置为 chm，邮箱保留于本地 Git 配置，不在进度文档反复展示。作者信息与远端登录认证分别验证。
 
 后续分支使用 `codex/<phase>-<topic>`。同一共享工作树内最多三个实施会话，按互斥文件清单协作，不各自 checkout。需要多分支时总设计师显式建立并登记隔离工作树。空仓可以直接提交首个实际交付；只有确需统一基线时才创建空提交，未执行就不得宣称存在。
 
