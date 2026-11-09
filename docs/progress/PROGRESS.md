@@ -1,6 +1,6 @@
 # 项目进度
 
-更新日期：2026-11-09（Asia/Shanghai）。来源核验、智能体恢复及 P1 开工准备已本地保存。因 Claude 额度不足未生成下一包计划，按用户条件停止后续推进；P1–P8 业务实现尚未开始。
+更新日期：2026-11-09（Asia/Shanghai）。用户已恢复开发；Claude 已恢复响应，P1 调研及契约提案 v002 计划与提示词已归档并通过 G1，先开展开源项目调研。P1–P8 业务源码尚未开始，具体契约待 G4；GitHub 仍暂缓上传。
 
 ## 当前工作包
 
@@ -12,7 +12,9 @@
 | SOURCE | 原始设计与 Claude 原文导入 | source_terra | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 仅本地 | review_terra 修复后复审 ACCEPT | 用户暂缓，仅本地 | 2026-11-09 | 5dbcdee |
 | AGENT-RESUME-R1 | 模型策略、角色索引及恢复 | resume_terra | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过 | 独立 review_terra ACCEPT | 用户暂缓，仅本地 | 2026-11-09 | 5dbcdee |
 | AGENT-RESUME-R2 | 提示词库及 P1 开工设计 | resume_terra | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 仅本地 | review_terra ACCEPT，7份摘录及21类/2别名覆盖已核对 | 用户暂缓，仅本地 | 2026-11-09 | 1dd1b3e |
-| P1-0 | 开源借鉴调研与契约评审的下一步规划 | Claude 计划角色 | codex/p0-governance | BLOCKED | G1 PENDING，未获得计划正文 | 无提案或源码交付 | 不上传 | — | 额度阻塞记录见下 |
+| P1-PLAN | Claude 续作计划与实际派发归档 | 总设计师 | codex/p0-governance | IN-REVIEW | G1 PASS；档案独立前置 PASS；G5 仅本地 | 四份提示词payload/行范围/捕获哈希一致 | 不上传 | 2026-11-09 | 本地提交主题 docs(p1): archive Claude research and contract planning |
+| OSS-1 | 类似开源项目与 P1 依赖核实 | p1_oss_terra | codex/p0-governance | IN-PROGRESS | G0/G1 PASS；G2/G3 PENDING | 只读调研，不安装/改锁 | 不上传 | — | Claude 消息64及 p1-claude-review.md |
+| P1-0 | 人员资源与契约缺口提案 | 待派发文档专项 | codex/p0-governance | TODO | G1 PASS；依赖 OSS 工程 G3 ACCEPT；G4 PENDING | 不冻结字段、不创建源码 | 不上传 | — | Claude v002计划已归档 |
 
 分支为共享集成分支，不表示每个专项都有独立工作树。验收、检查、提交及远端 SHA 必须由总设计师按实际执行结果补记。
 
@@ -45,9 +47,12 @@
 - 浏览器读取可能超时；无本工作包 Claude 完整提示词时不能绕过 G1。
 - 用户指定后续所有 Codex 专项均为 GPT-6.1 Terra/high；本次 source_terra、resume_terra、review_terra 已以 model=gpt-6.1-terra、reasoning_effort=high、fork_turns=none 实际派发。旧 P0 会话不追溯冒称同模型。角色索引/模型策略/交接/恢复清单见 docs/agents/。
 - 用户已选择“补齐人员资源契约提案，保留 V7”。仅批准下一步提案方向，尚未批准具体字段、接口冻结或业务实现；正向 Claude 请求 P1-0 完整计划与专项提示词。其余契约问题见 docs/planning/p1-readiness.md，不重复询问已延期的 B1/双 profile。
-- 最新用户要求：可先检索可借鉴的开源项目，再做下一步；如果 Claude 无额度无法制定计划则中止目标。页面已显示用量耗尽、P1-0 回复暂停且无计划正文，显示15:40恢复（页面本地时间）。依此停止后续调研和实施，不以 Codex 自拟计划绕过 Claude，不购买额度、不设定时任务。恢复时先重新取得 Claude 的开源调研/契约提案计划，见 [阻塞与恢复记录](../work-packages/p1-planning-blocker.md)。
+- 历史额度阻塞已解除：用户恢复开发后，Claude 原会话消息62完成旧请求，消息64补齐类似开源项目、依赖核实、提案与独立审查完整提示词。此前确实停止并保存 c8e1243，见 [历史阻塞](../work-packages/p1-planning-blocker.md)；不把历史暂停写成当前阻塞。当前计划与实际派发解释见 [G1记录](../work-packages/p1-claude-review.md)。
+- 当前阻塞边界：P1-0 等 OSS 工程审查通过；P1-A 业务实现等具体契约的用户 G4 与后续 Claude 实施计划。人员资源、V2/V9、时间取整、求解结果类型，以及 overrun/V11/NEGOTIABLE 数据来源均只允许提案，不能由 Agent 静默确定。
 
 ## 本轮验证与审查证据
+
+- P1-PLAN：p1_review_terra 独立档案前置 PASS，见 docs/agents/handoffs/p1-review.md；该结论不代表尚未交付的 OSS/契约提案已验收。总设计师再次完整运行 check.py：33 passed、1 skipped in 8.03s（符号链接权限），布局/导入/来源/ruff/mypy 全通过。
 
 - 续作前由总设计师执行 `uv run --python 3.11 --group dev python tools/check.py`：来源全文及14批 PASS；33 passed、1 skipped in 7.68s；ruff check/format PASS；mypy 4 source files PASS。唯一跳过为本机不能创建符号链接，代码边界已审查，未宣称动态验证该项。
 - SOURCE G3：review_terra 定向复核 ACCEPT；其单独来源测试10 passed、1 skipped，全文及14批校验退出0。索引的三份原文均为 `i/lf w/lf attr/-text`。

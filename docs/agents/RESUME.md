@@ -1,5 +1,11 @@
 # 跨会话恢复清单
 
+## 当前续作入口（2026-11-09）
+
+用户已恢复开发，历史 Claude 额度阻塞已解除。当前先按 [P1 G1与派发](../work-packages/p1-claude-review.md) 执行开源调研，再提案、独立审查与用户裁决；完整 Claude 捕获为 p1-claude-plan.v001.md / v002.md，精确代码块摘录见 prompts/p1-*.md，实际派发全文见 prompts/p1-dispatch-log.v001.md。角色状态以 registry、PROGRESS 和实际 handoffs 为准，不假设旧运行仍存活。P1-A 尚未获实施授权；GitHub 仍不上传。
+
+## 通用恢复步骤
+
 1. 阅读根 AGENTS.md、进度 PROGRESS.md、工程规范、门禁、角色索引、模型策略、工作包卡片、Claude 完整计划与派发提示词、最近交接；按需阅读已核验的设计原文与勘误。
 2. 在仓库根目录运行 `git status --short` 看未提交改动，`git log --oneline -n 10` 核对本地提交；运行 `python tools/check_repo_layout.py`，PASS 才为布局通过；运行 `python -m pytest tests/governance -q`，看退出码与测试数；SOURCE 合入后运行 `python tools/verify_source.py`，退出码 0 才为核验通过。未就绪不等于通过。检查变动所属工作包，不覆盖他人工作。
 3. 状态以 PROGRESS、工作包、门禁证据与实际 Git 状态综合判断；本地提交不代表同步。R2 需总设计师确认 SOURCE G3 通过，并先复跑源文件校验。
