@@ -1,31 +1,34 @@
 # 项目进度
 
-更新日期：2026-11-10（Asia/Shanghai）。用户已明确“可以推送github了”，解除此前 GitHub 登录与上传暂缓。仅使用 cc703、作者 chm，同步分支 codex/p0-governance；目前认证待完成，未宣称推送成功。P1-A已提交ac0ba9f；P1-B计划在e72cdca保存，仍未派发、未写源码，Claude可用性和G1待恢复后复核，P1整体未完成。
+更新日期：2026-11-10（Asia/Shanghai）。P1-B独立校验器已完成G2与独立G3 ACCEPT；162 passed/1既有系统skip，完整检查通过。GitHub已使用cc703同步历史至d37f2d6；本次P1-B交付待提交推送核验。用户要求本轮结束后停止，不启动下一包；P1整体尚未完成。
+
+用户最新要求：当前P1-B本轮完成后停止并汇报；完成G2/G3、进度更新与普通GitHub同步后暂停，不启动P1-C或P2。
 
 ## GitHub 恢复同步与目录复核（2026-11-10）
 
-- 新授权覆盖下文历史“用户暂缓/不上传”记录；表内远端同步栏为此前检查点，实际新回执在本节记录。
-- GitHub连接账号核验为cc703；本地作者为chm，origin为cc703/Replan-mutil-agent。本机无可用cc703非交互Git凭证，正在发起设备登录；未使用其他账号。
+- 新授权覆盖下文历史“用户暂缓/不上传”记录；实际新回执在本节及表内记录。
+- GitHub连接账号核验为cc703；本地作者为chm，origin为cc703/Replan-mutil-agent。用户完成设备登录后，Git凭证通过GitHub /user核验为cc703；未使用其他账号。
 - fetch发现远端main为40cdafd47c66d3dd075d16a81d004eee088b97ab（独立最小演示，包含根main.py等5文件），不覆盖、不合并其内容到已审查集成树。推送现有codex/p0-governance并保留其完整13个历史提交。
 - 已阅读用户提供的lingxyz目录规范，参考映射记录在file-storage-standard.md；现有源码/测试/文档/产物职责保持既定布局，无批量搬迁或预建占位目录。
 - 实测完整检查：62 passed、1 skipped（系统符号链接权限）；layout/import/source/ruff/format/mypy全部通过。Git跟踪102个文件，常见凭证与私钥模式未命中；未将忽略的环境、缓存或临时捕获纳入提交。
-- 当前同步状态：待cc703登录及推送核验；P1-B原暂停状态保持。
+- 当前同步回执：d37f2d6a4634334fa08ca4d738908247e2b3257e 已普通推送至codex/p0-governance，ls-remote与本地HEAD一致；远端main仍为40cdafd47c66d3dd075d16a81d004eee088b97ab。完整历史保留，无强推。
+- Claude原会话已正常回复Δ-B2，确定性穷举替代随机取样，不新增依赖；P1-B G1 PASS，已派发源码实施，尚未G2/G3验收。
 
 ## 当前工作包
 
 | ID | 名称 | 负责专项 | 分支 | 状态 | 门禁 | 工程验收 | 远端同步 | 验收日期 | 提交证据 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| P0-A | 治理与规范 | governance | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 用户暂缓 | 总设计师与独立审查通过 | 用户选择稍后登录，仅保留本地 | 2026-11-09 | 610ab30（本地已提交） |
-| P0-B | 协作机制 | collaboration_docs | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 用户暂缓 | 独立审查发现循环门槛，修复后 ACCEPT | 用户选择稍后登录，仅保留本地 | 2026-11-09 | b9d94cff318ad1ef89394214eb2d9f132d12e7bd |
-| P0-C | 机器门禁 | machine_gates | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 用户暂缓 | 配置驱动缺口修复后独立复审 ACCEPT | 用户选择稍后登录，仅保留本地 | 2026-11-09 | 4024077b3f9b4659ba82d5cd55c08bbe25059377 |
-| SOURCE | 原始设计与 Claude 原文导入 | source_terra | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 仅本地 | review_terra 修复后复审 ACCEPT | 用户暂缓，仅本地 | 2026-11-09 | 5dbcdee |
-| AGENT-RESUME-R1 | 模型策略、角色索引及恢复 | resume_terra | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过 | 独立 review_terra ACCEPT | 用户暂缓，仅本地 | 2026-11-09 | 5dbcdee |
-| AGENT-RESUME-R2 | 提示词库及 P1 开工设计 | resume_terra | codex/p0-governance | IN-REVIEW | G1/G2/G3 通过；G5 仅本地 | review_terra ACCEPT，7份摘录及21类/2别名覆盖已核对 | 用户暂缓，仅本地 | 2026-11-09 | 1dd1b3e |
-| P1-PLAN | Claude 续作计划与实际派发归档 | 总设计师 | codex/p0-governance | IN-REVIEW | G1 PASS；档案独立前置 PASS；G5 仅本地 | 四份提示词payload/行范围/捕获哈希一致 | 不上传 | 2026-11-09 | 8a5914d |
-| OSS-1 | 类似开源项目与 P1 依赖核实 | p1_oss_terra | codex/p0-governance | IN-REVIEW | G0/G1/G2/G3 PASS；G5 仅本地 | R1修复后独立工程 ACCEPT；仅参考，不安装/改锁 | 不上传 | 2026-11-09 | f145a1a |
-| P1-0 | 人员资源与契约缺口提案 | p1_contract_terra | codex/p0-governance | IN-REVIEW | G1/G2/G3 PASS；G4 已获工程委托；G5 仅本地 | 已审查推荐按用户新授权落实 | 不上传 | 2026-11-09 | 452b2be；授权更新见 ADR 0006 |
-| P1-A | 全数据模型与 TimeAxis 源码 | p1a_code_terra | codex/p0-governance | IN-REVIEW | G0/G1/G2/G3 PASS；G4工程委托；G5仅本地 | 独立ACCEPT，62 passed/1 skipped，全部检查通过 | 用户暂缓，不上传 | 2026-11-09 | ac0ba9f |
-| P1-B | V1–V11 独立业务校验器 | 尚未派发 | codex/p0-governance | BLOCKED | G0 PASS；G1 PENDING，按用户条件停止 | 消息70/72已完整归档；无P1-B源码 | 用户暂缓，不上传 | — | docs/work-packages/p1-b.md；本地额度检查点 |
+| P0-A | 治理与规范 | governance | codex/p0-governance | ACCEPTED | G1/G2/G3 通过；G5 PASS | 总设计师与独立审查通过 | 已同步d37f2d6，ls-remote核验 | 2026-11-09 | 610ab30（本地已提交） |
+| P0-B | 协作机制 | collaboration_docs | codex/p0-governance | ACCEPTED | G1/G2/G3 通过；G5 PASS | 独立审查发现循环门槛，修复后 ACCEPT | 已同步d37f2d6，ls-remote核验 | 2026-11-09 | b9d94cff318ad1ef89394214eb2d9f132d12e7bd |
+| P0-C | 机器门禁 | machine_gates | codex/p0-governance | ACCEPTED | G1/G2/G3 通过；G5 PASS | 配置驱动缺口修复后独立复审 ACCEPT | 已同步d37f2d6，ls-remote核验 | 2026-11-09 | 4024077b3f9b4659ba82d5cd55c08bbe25059377 |
+| SOURCE | 原始设计与 Claude 原文导入 | source_terra | codex/p0-governance | ACCEPTED | G1/G2/G3 通过；G5 PASS | review_terra 修复后复审 ACCEPT | 已同步d37f2d6，ls-remote核验 | 2026-11-09 | 5dbcdee |
+| AGENT-RESUME-R1 | 模型策略、角色索引及恢复 | resume_terra | codex/p0-governance | ACCEPTED | G1/G2/G3 通过 ；G5 PASS | 独立 review_terra ACCEPT | 已同步d37f2d6，ls-remote核验 | 2026-11-09 | 5dbcdee |
+| AGENT-RESUME-R2 | 提示词库及 P1 开工设计 | resume_terra | codex/p0-governance | ACCEPTED | G1/G2/G3 通过；G5 PASS | review_terra ACCEPT，7份摘录及21类/2别名覆盖已核对 | 已同步d37f2d6，ls-remote核验 | 2026-11-09 | 1dd1b3e |
+| P1-PLAN | Claude 续作计划与实际派发归档 | 总设计师 | codex/p0-governance | ACCEPTED | G1 PASS；G5 PASS | 四份提示词payload/行范围/捕获哈希一致 | 已同步d37f2d6，ls-remote核验 | 2026-11-09 | 8a5914d |
+| OSS-1 | 类似开源项目与 P1 依赖核实 | p1_oss_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3 PASS；G5 PASS | R1修复后独立工程 ACCEPT；仅参考，不安装/改锁 | 已同步d37f2d6，ls-remote核验 | 2026-11-09 | f145a1a |
+| P1-0 | 人员资源与契约缺口提案 | p1_contract_terra | codex/p0-governance | ACCEPTED | G1/G2/G3 PASS；G5 PASS | 已审查推荐按用户新授权落实 | 已同步d37f2d6，ls-remote核验 | 2026-11-09 | 452b2be；授权更新见 ADR 0006 |
+| P1-A | 全数据模型与 TimeAxis 源码 | p1a_code_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3 PASS；G5 PASS | 独立ACCEPT，62 passed/1 skipped，全部检查通过 | 已同步d37f2d6，ls-remote核验 | 2026-11-09 | ac0ba9f |
+| P1-B | V1–V11 独立业务校验器 | p1b_code_terra / p1b_tests_terra / p1b_review_terra | codex/p0-governance | IN-REVIEW | G0/G1/G2/G3 PASS；G4工程委托；G5 PENDING | 独立ACCEPT，162 passed/1 skipped；61reason，5829穷举例 | 历史已同步，本包待推送核验 | 2026-11-10 | 提交主题feat(core): add independent schedule validation |
 
 分支为共享集成分支，不表示每个专项都有独立工作树。验收、检查、提交及远端 SHA 必须由总设计师按实际执行结果补记。
 
@@ -33,7 +36,7 @@
 
 | 阶段 | 目标 | 状态 |
 | --- | --- | --- |
-| P1 | 数据契约、校验与产出物基础设施 | IN-PROGRESS（模型/TimeAxis已工程验收；校验/生成/产物后续） |
+| P1 | 数据契约、校验与产出物基础设施 | IN-PROGRESS（模型/TimeAxis/校验器已工程验收；实例生成与ArtifactStore待实现） |
 | P2 | 初始调度 | TODO |
 | P3 | 仿真器 | TODO |
 | P4 | 重规划 | TODO |
@@ -50,6 +53,8 @@
 
 ## 风险与阻塞
 
+2026-11-10覆盖说明：下文额度耗尽及GitHub暂缓为历史检查点；当前Claude已正常回复、P1-B G1 PASS，GitHub已使用cc703推送核验。B1/双profile延期与其余架构约束仍有效。
+
 - 用户本轮明确：Claude没有额度就停止。P1-B消息70与72已完整取回，随后浏览器显示“You hit your 5-hour message limit”；因此停止后续复核与实施，仅保存本地检查点。消息72补齐上下文、DONE执行证据与RUNNING容量去重，尚未通过完整G1或派发专项。页面显示8:40 PM恢复，不设自动恢复，不升级；GitHub仍暂缓。
 
 - 原设计缺失阻塞及核验器返工均已解除：三份全文与14分块哈希匹配，清单完整性、重复条目、分块覆盖和路径边界修复后独立复审 ACCEPT。R2 可按已审查的 Claude 计划启动。
@@ -65,6 +70,10 @@
 - OSS-1 核实 OR-Tools v9.15、PyJobShop v0.0.9 的固定提交/源码/许可证文件及仓库树 NOTICE 范围，并核实五项依赖的版本与平台元数据。全部仅参考，复制与新增依赖为0；Python 3.11 Windows 动态安装联测 NOT-RUN，不能把元数据支持当运行验证。Hypothesis 的 MPL-2.0 未来实际引入前须用户 G4，PENDING；原规格要求未删除。详见 docs/planning/p1-oss-research.md。
 
 ## 本轮验证与审查证据
+
+- P1-B最终G2/G3：六类验证上下文、独立V1–V11与61reason、人工mini、两个测试文件已交付。独立reviewer ACCEPT，完整pytest162 passed、1原符号链接权限skip；关闭cacheprovider时另有既有cache_dir警告。layout/import/source/ruff/format/mypy（15文件）全部PASS。2049重叠+3780容量=5829确定性实例，12种需求/容量组合，独立暴力oracle核对参与集合/组件/输出上界/最大溢出段。源码/测试/审查均Terra/high/fork none，完整派发和交接已归档。原模型/轴/依赖/检查入口及来源未变，没有复制开源代码或新增依赖；仅参考既有OR-Tools/PyJobShop问题分解。
+
+- 2026-11-10 P1-B中间态：作者已写两个源码、mini与README，测试拆给Terra/high独占两个测试文件，独立G3预审已启动。总设计师内存探针：读取mini.json，手工makespan10计划通过；改C为3–9检出V2[A,C]；改B为3–7检出V3[A,B]（同时V2[B,D]）。这不是求解最优或完整验收。穷举与完整错误矩阵仍在编写，不能将阶段性17passed当G2/G3。
 
 - P1-A：外部Claude消息66与全量类型检查增补消息68完整保存在 docs/work-packages/p1-a.md，G1通过；src/scheduler_core仅三个源码文件，tests/unit仅两个单元测试文件。21个原模型、两别名、Person/PersonBlockedWindow及人员默认兼容、精确UTC整槽TimeAxis已实现，不含独立validator/solver/generator。
 - P1-A独立审查关闭TimeAxis极端日期/终点溢出、依赖来源登记、治理测试不准确嵌套类型标注三项。增补只修旧测试类型和必要cast，数据/断言/skip保持不变；mypy覆盖tools/tests/src全部11源码文件，无缩小目录或放宽配置。独立完整check为62 passed、1 skipped（符号链接权限），ruff/format/mypy/layout/source PASS；最后类型收窄后定向测试及全量类型/静态复查再次通过。关闭cacheprovider时原cache_dir产生配置警告，如实保留。详见 docs/agents/handoffs/p1-a-review.md 与 p1-a.md。

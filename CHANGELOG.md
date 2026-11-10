@@ -6,6 +6,8 @@
 
 ### Added
 
+- P1-B独立V1–V11校验器、六类执行/授权上下文、人工mini实例和61reason正反测试；2049重叠+3780容量确定性穷举。修复可变模型键引用/重复实体漏判与扫描边界；独立G3 ACCEPT，162 passed/1既有系统skip，完整检查通过。
+
 - `src/scheduler_core/models.py`、`axis.py`：全部原数据契约、人员扩展与旧JSON缺省兼容；带时区UTC精确槽转换、端点范围和日期溢出校验。
 - `tests/unit/`模型与时间轴测试；检查入口覆盖全部测试和src、锁定Pydantic依赖，全量mypy通过。P1-A独立工程审查ACCEPT，62通过/1环境跳过；未实现独立校验器、求解器或生成器。
 
@@ -29,6 +31,8 @@
 - 本轮 Claude 计划来源、审查调整、实际派发提示词及原文导入阻塞记录。
 
 ### Clarified
+
+- cc703设备登录完成，账号经API核验；d37f2d6普通推送与远端SHA一致，main演示保留。Claude已恢复可用，P1-B Δ-B2确认确定性穷举测试，G1 PASS后派发实施，尚未业务验收。
 
 - 2026-11-10用户重新授权GitHub推送，仅cc703/作者chm；保留远端main独立演示，现有集成分支待认证与同步核验。目录规范增加用户提供的lingxyz参考映射，沿用src/tests/data/apps/artifacts职责；不改变源码布局或P1-B暂停边界。
 

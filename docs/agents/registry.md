@@ -1,5 +1,7 @@
 # 角色索引
 
+2026-11-10本轮P1-B G2/G3已完成，独立ACCEPT。实际会话/root/p1b_code_terra、/root/p1b_tests_terra、/root/p1b_review_terra均gpt-6.1-terra/high/fork_turns=none。作者写两个源码/mini/README/卡片/交接，测试独占两个测试文件，reviewer仅写handoffs/p1-b-review.md；完整提示词与实际派发在[p1-b工作包](../work-packages/p1-b.md)及[日志](prompts/p1-dispatch-log.v001.md)。[实施交接](handoffs/p1-b.md)/[独立审查](handoffs/p1-b-review.md)为恢复依据，不依赖会话常驻。G5由总设计师执行，之后按用户要求暂停；实际回执见PROGRESS。
+
 当前源码交付：`/root/p1a_code_terra` 已完成P1-A；实际派发 gpt-6.1-terra/high/fork_turns=none，独立 reviewer `/root/p1_review_terra` 同策略复用会话，工程G3 ACCEPT。完整Claude计划、实施及审查提示词与限定类型增补合并在 [P1-A工作包](../work-packages/p1-a.md)，[实施交接](handoffs/p1-a.md)、[独立审查](handoffs/p1-a-review.md)可恢复。进度和Git仍由总设计师单写。用户工程委托已取代历史逐字段G4阻塞。
 
 持久化定义、派发全文和交接用于恢复，不意味着进程常驻。未来 Codex 专项模型策略见 [model-policy](model-policy.md)。实际历史模型未记录。账号 cc703，作者 chm。

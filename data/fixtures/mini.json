@@ -1,0 +1,12 @@
+{
+  "axis": {"t0": "2026-01-01T00:00:00Z", "horizon_slots": 40},
+  "now": 0,
+  "devices": [{"id": "D1", "type": "device"}, {"id": "D2", "type": "device"}],
+  "tasks": [
+    {"id": "A", "experiment_id": "mini", "type": "task", "duration": 4, "compatible_devices": ["D1", "D2"]},
+    {"id": "B", "experiment_id": "mini", "type": "task", "duration": 4, "compatible_devices": ["D1", "D2"]},
+    {"id": "C", "experiment_id": "mini", "type": "task", "duration": 6, "compatible_devices": ["D1", "D2"]},
+    {"id": "D", "experiment_id": "mini", "type": "task", "duration": 6, "compatible_devices": ["D1", "D2"]}
+  ],
+  "precedences": [{"pred": "A", "succ": "B"}]
+}

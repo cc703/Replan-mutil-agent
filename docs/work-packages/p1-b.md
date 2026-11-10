@@ -1,12 +1,12 @@
 # P1-B 独立校验器实施包
 
-日期：2026-11-09 Asia/Shanghai；基线ac0ba9f，分支codex/p0-governance。用户工程细节已委托；GitHub暂缓。
-G0 PASS；G1 PENDING：消息70初版及消息72完整Δ-B1修订已取回。归档后页面明确显示Claude五小时额度耗尽，触发用户“没有额度就停止”的条件；停止G1后续复核与源码派发。未创建validate.py/validation_context.py，也没有P1-B实施专项。
+日期：计划2026-11-09，实施与验收2026-11-10 Asia/Shanghai；源码基线ac0ba9f，集成起点d37f2d6，分支codex/p0-governance。用户工程细节已委托，GitHub已恢复。
+当前G0/G1/G2/G3 PASS；独立审查ACCEPT，G5待总设计师提交与同步。2026-11-10 Claude正常回复Δ-B2后完成原计划及两次增量，162 passed/1既有skip。下列额度段与原文中的GitHub暂缓为历史记录，未冒称当时已实施。
 来源：https://claude.ai/chat/54ab7bfe-2bca-4714-9759-e3ae3e5474e7 消息70，DOM innerText渲染捕获，非原始Markdown；归档时去除表格空单元格产生的行尾制表符，提示词正文未改。以下包含原完整计划和两份派发提示词，不单拆新准备文件；后续增量是同包必读输入。
 
-额度证据：浏览器页面显示“You hit your 5-hour message limit”，并显示8:40 PM恢复；仅记录页面原样提示，不设自动恢复或升级服务。截图位于本地忽略目录artifacts/tmp/p1-b-claude-plan.png，不入库。
+历史额度证据（2026-11-09）：浏览器页面显示“You hit your 5-hour message limit”，并显示8:40 PM恢复；仅记录页面原样提示，不设自动恢复或升级服务。截图位于本地忽略目录artifacts/tmp/p1-b-claude-plan.png，不入库。
 
-恢复入口：用户恢复后先确认Claude可用，再复核消息70+72完整计划与源码范围、CB契约及测试矩阵，G1通过才派发Terra/high实施与独立审查。消息72覆盖原CB2和相关DONE/RUNNING窗口/复杂度，不能只读初版。测试穷举或随机性的实现方式仍需按现行AGENTS核对，未在本检查点批准。GitHub仍不上传。
+当前恢复入口：消息70→72 Δ-B1→Δ-B2→G1→实施G2与独立G3；后者覆盖冲突。完整交接见handoffs/p1-b.md及p1-b-review.md。用户要求本轮G5完成后停止，不自动开启后续包。
 
 <!-- BEGIN CLAUDE P1-B 70 -->
 Claude responded: P1-B 独立 Validator：计划与提示词
@@ -330,3 +330,88 @@ text
 
 1 minute ago
 <!-- END CLAUDE P1-B 72 -->
+
+## Claude 修订 Δ-B2（2026-11-10）
+
+同一原会话最后回复，DOM innerText捕获；Claude已明确能正常回应，无额度提示。仅去行尾空白；覆盖Δ-B1测试i的随机取样，原业务语义不变。截图artifacts/tmp/p1-b-delta-b2.png仅本地忽略。捕获文本SHA256：428559aab22c27dcc87269e89ff8ecbe803ee4c03832a5b52351c4f0a9cbbfc9。
+
+<!-- BEGIN CLAUDE P1-B DELTA-B2 -->
+Claude responded: 确认：我能正常回应，没有升级服务。
+
+确认：我能正常回应，没有升级服务。
+
+对工程调整的确认：同意。"固定种子随机小实例"与"随机性只用 numpy Generator"确实冲突，而 numpy 现在也没有安装。改成 itertools 确定性穷举，不引入新依赖，覆盖更完整，也更容易复现。
+
+Δ-B2（附在原实施与审查提示词之后，冲突以本增量为准）
+
+文件范围仍是原 P1-B 包，目录不变：源码在 src/scheduler_core/，测试在 tests/unit/，人工实例在 data/fixtures/mini.json，生成物在 artifacts/，不新增准备文档。
+
+业务规则不变。 本增量只替换 Δ-B1 中测试 i 的取样方式，不改任何校验语义。
+
+实施提示词增量
+
+text
+增量 Δ-B2（实施）
+1 替换 Δ-B1 任务 3 的测试 i：不使用 random 与 numpy，不新增依赖；
+  测试与业务源码均禁止 import random、numpy。用标准库 itertools 做确定性穷举，生成有限小实例。
+2 穷举空间（槽位小，如 0 至 6，任务数 n≤4，必要时 n≤5）：
+  区间 [s,e)，s<e，长度覆盖 1、2、3 及以上；
+  覆盖：嵌套、相同起点、相同终点、完全相同、端点相接（半开，不算重叠）、多个互不相连的连通分量、部分重叠链。
+  需求组合：demand 取 1、2、3，capacity 取 1、2、3、4，各组合都要出现；
+  同时含 demand>capacity 的单任务（只报 V9，不进入扫描）。
+  对人员同样穷举（V7 PERSON_OVERLAP），含任务混合有无 person_id。
+3 在测试内独立实现 O(n²) 暴力 oracle：
+  V2、V7：对半开区间两两判断重叠，得到"参与任意重叠的任务集合"；
+  V9：对各区间端点切分后逐段求和，得到溢出段（半开边界）及段内活跃任务并集。
+  oracle 不得复用 validate.py 的任何函数或常量。
+4 断言（每个穷举实例都做）：
+  a 违规的 task_ids 并集等于 oracle 的参与任务集合；
+  b 同一资源上的 V2 或 V7 重叠违规条数 ≤ 该资源任务数−1；
+  c 每个 oracle 连通分量至少产生一条违规；
+  d V9 报告的溢出段与 oracle 一致，段内任务集合一致，端点相接不算溢出；
+  e 无重叠实例必须零违规；
+  f 不声称枚举全部重叠对，不以条数等于 oracle 配对数断言。
+5 实例数量要有下限并在测试中显式断言（防止穷举被意外改空），测试用时应在数秒内，不降低既有正反例要求。
+6 交接单增加：穷举空间参数、实例总数、各类组合的覆盖统计，以及一句说明"未使用随机来源"。
+7 验收增加：对 src 与 tests 扫描，无 import random 与 numpy；git diff 不含 pyproject、uv.lock。
+审查提示词增量
+
+text
+增量 Δ-B2（审查）
+1 确认测试 i 已改为 itertools 穷举：全仓扫描 src 与 tests 无 import random、numpy，依赖文件未变。
+2 核对穷举空间：区间长度、嵌套、相同起点与终点、完全相同、端点相接、多个连通分量、demand 与 capacity 组合、
+  demand>capacity 单任务、人员有无 person_id 的混合均有覆盖；实例总数有下限断言；运行耗时合理。
+3 核对 oracle 独立：不复用 validate.py 的函数或常量；V9 的半开边界与逐段求和正确。
+4 核对断言口径：参与任务并集相等；条数上界；每个连通分量至少一条；V9 溢出段与任务并集一致；
+  没有以"报告全部重叠对"作为断言，README 复杂度仍为 O(n log n + 输出规模)。
+5 用内存探针补测至少三组实例（嵌套加相同起点、端点相接链、capacity 3 的 demand 组合），确认与 oracle 一致。
+6 既有正反例与 Δ-B1 的 a 至 h 未被削弱，结论仍为 ACCEPT / REWORK / ESCALATE。
+
+关于 GitHub：这次只确认 Δ-B2，推送是总设计师的操作。你强调只用 cc703 账号和作者 chm，建议推送前仍按之前的检查执行一遍：git status 干净、没有 .env 或密钥、artifacts/ 未入库。
+
+
+
+
+
+
+just now
+<!-- END CLAUDE P1-B DELTA-B2 -->
+
+## 总设计师 G1 复核（2026-11-10）
+
+G0/G1 PASS；G4为用户已委托工程裁决；G2/G3待实施。阅读顺序为原计划→Δ-B1→Δ-B2，后者覆盖冲突；历史额度/不上传仅描述当时状态。新授权允许GitHub同步，仅cc703，作者chm。基线d37f2d6已推送并核验同SHA，main演示保持40cdafd不动。
+
+- 已复核原规格签名、V1–V11职责、mini验收及现有models；新增context是原设计执行证据与人类授权的兼容工程细化，不改变既定业务规则。结构校验不证明授权真伪，上层L1/L2负责，不得以bool豁免硬约束。
+- Δ-B1完整CB2替换截断表格，DONE真实完成与历史冻结分开，RUNNING窗口去重按实际demand，扫描复杂度包括输出规模；Δ-B2独立暴力oracle与确定性穷举已获Claude确认，不装numpy、不使用random。
+- 范围限定本卡原清单。源码仅src/scheduler_core/validate.py、validation_context.py；测试仅tests/unit/test_validate.py、test_validation_context.py；人工mini仅data/fixtures/mini.json；README及本卡实施记录、handoffs/p1-b.md。原文捕获区不可改。所有依赖/既有模型/检查入口只读。
+- 实施完整覆盖后交独立Terra/high审查，不能把缺失测试作为建议留待后续。独立审查仅写handoffs/p1-b-review.md。总设计师单写进度/registry/RESUME/派发记录并执行提交同步。
+
+## 实施 G2 记录（2026-11-10）
+
+按原消息70、Δ-B1、Δ-B2 实施独立 V1–V11、六类上下文、人工 mini 和测试；共享树的总设计师治理改动未覆盖。新增实体唯一性及赋值键引用防御，新增 reason 已登记 README 与测试清单。事件真实性和 L1/L2 确认仍由上层负责。
+
+完整 pytest：162 passed、1 skipped（原系统符号链接权限）、1 warning（关闭 cacheprovider 的既有 cache_dir）；`tools/check.py`：162 passed、1 skipped，layout/import/source/ruff/format/mypy PASS；独立 layout 与 source 入口 PASS。穷举 oracle 2049 重叠例与 3780 容量例，未用随机来源。61 reason 正反测试逐项映射、完整命令、工程保守取值与限制见 `docs/agents/handoffs/p1-b.md`。以上是实施自检，不代替独立 G3 或总设计师验收。
+
+## 总设计师 G3 集成结论（2026-11-10）
+
+独立p1b_review_terra最终ACCEPT；已读完整审查与61项交接。旧源码/模型/依赖/检查入口未改，原Claude70/72保护区逐段与HEAD核对未变，原设计来源哈希仍通过。总设计师手工mini黄金及篡改探针通过；额外1000任务+5000人员窗口+5000未绑定运行窗口、1e9视野（1分钟槽）无冲突探针0.019s，仅运行证据不当复杂度证明。键引用与三类实体唯一性漏判已补并独立复核。求解/生成/产物/仿真与上层授权真实性仍未实现或未验证；G5后按用户要求暂停。

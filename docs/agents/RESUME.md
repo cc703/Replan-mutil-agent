@@ -2,13 +2,11 @@
 
 ## 当前续作入口（2026-11-10）
 
-用户已明确“可以推送github了”，此前 GitHub 暂缓已解除；仅使用 cc703、作者 chm。已发现远端 main 的独立演示提交 40cdafd，保留该分支，现有工作同步到 codex/p0-governance。实际认证、推送和核验回执以 PROGRESS 为准；下文“不上传”属于历史检查点，不再作为当前权限限制。P1-B 的 Claude 额度与 G1 前置条件仍保留，本次同步不代表继续实施。
+当前本轮P1-B已完成G2与独立G3 ACCEPT：V1–V11、六类上下文、mini、61reason及5829确定性穷举，完整162 passed/1既有skip。交接p1-b.md / p1-b-review.md，计划工作包p1-b.md含原Claude70/72、Δ-B2及G1/G2/G3。作者/测试/审查实际Terra/high/fork none；Git与进度仍总设计师单写。
 
-当前按用户“Claude没有额度就停止”条件停止。P1-A在ac0ba9f已完成；[P1-B](../work-packages/p1-b.md)含消息70初版和72完整修订，归档后Claude额度耗尽，G1仍PENDING、未派发源码专项。恢复先确认Claude可用并重新审查该完整工作包，不把已归档计划当已实施。GitHub仍不上传。
+GitHub已用cc703认证并同步历史d37f2d6，本轮交付待最终G5回执；main演示40cdafd保持不动，禁止强推。当前以PROGRESS、Git状态与远端SHA为准。
 
-最新用户授权已解除逐项工程审批阻塞：“按原设计和推荐推进，工程细节你们决定，业务规则变化再问我”。见 AGENTS 和 ADR 0006；[P1-A实施包](../work-packages/p1-a.md) 含 Claude 消息66完整计划/两提示词、消息68类型增补及G1。模型与TimeAxis源码已落盘，实施与独立审查完成G3 ACCEPT，62 passed/1 skipped，原文/布局/全量mypy/ruff通过。先核源码、测试、交接和Git状态，不重开已完成的提案审批，也不假定旧代理仍运行。下一包独立validator仍须Claude计划，三个后续数据来源由工程方在P1-B前落实，缺数据不能判正式计划通过。
-
-历史 SOURCE/OSS/P1-0 计划与提示词仍按原路径保留，不再扩建准备性资料。当前恢复以 P1-A 包、registry、PROGRESS、handoffs 和真实 Git 状态为准；GitHub 仍不上传。
+用户最新停止边界：本轮P1-B完成同步后停止并汇报，不自动启动P1-C/P2。后续恢复需用户新指令。下一步仍是P1剩余的实例生成与ArtifactStore，不把P1-B完成当P1–P8已完成。用户已委托工程细节，业务规则变更再问；B1/双profile仍DEFERRED。下次实施先取得对应Claude完整计划，若再次额度耗尽按用户要求停止。
 
 ## 通用恢复步骤
 
@@ -16,7 +14,7 @@
 2. 在仓库根目录运行 `git status --short` 看未提交改动，`git log --oneline -n 10` 核对本地提交；运行 `python tools/check_repo_layout.py`，PASS 才为布局通过；运行 `python -m pytest tests/governance -q`，看退出码与测试数；SOURCE 合入后运行 `python tools/verify_source.py`，退出码 0 才为核验通过。未就绪不等于通过。检查变动所属工作包，不覆盖他人工作。
 3. 状态以 PROGRESS、工作包、门禁证据与实际 Git 状态综合判断；本地提交不代表同步。R2 需总设计师确认 SOURCE G3 通过，并先复跑源文件校验。
 4. 重新派发先取得本包 Claude 计划、完整提示词及 G1；当前 [Claude v001](../work-packages/continuation-claude-v001.md) 第 2、3、4 节为本轮原始提示词来源，P0 实际派发见 [审查记录](../work-packages/p0-claude-review.md)。逐字摘录及来源哈希见 `docs/agents/prompts/`；实际派发调整另见 R2 交接。按模型策略设置并提供自包含上下文、绝对目录、写入范围与验收；不得假设旧会话仍在运行。
-5. 待裁决事项见 [讨论](../planning/open-discussions.md) 与 ADR；B1 和 solver 建议保持延期。禁止改写原文、扩大范围、提前实施业务、改契约、提交推送或改 Git 配置。GitHub 用户暂缓登录和上传。
+5. 待裁决事项见 [讨论](../planning/open-discussions.md) 与 ADR；B1 和 solver 建议保持延期。专项禁止改写原文、扩大范围、提前实施业务或自行提交推送、改Git配置；总设计师按当前用户授权执行普通同步。
 6. 恢复外部 Claude 时提供 AGENTS、进度、相关工作包、审查记录、三份原文与全文哈希、逐 200 行批次哈希清单、勘误和用户裁决。原文可经已验证整文件 Copy 加全文哈希传递，仍逐批核对；缺失或不匹配不得声称核验。
 
 本轮 SOURCE G3 已 ACCEPT，见 [SOURCE 交接](handoffs/source-g3.md)；本地 checkpoint `5dbcdee`，未推送。恢复时仍须复核当前状态。
