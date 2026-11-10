@@ -74,3 +74,20 @@ if not report.passed:
 | V9 | CAPACITY_EXCEEDED, DEMAND_EXCEEDS_CAPACITY |
 | V10 | DURATION_MISMATCH, RUNNING_NO_SNAPSHOT, SNAPSHOT_STALE, SNAPSHOT_PLAN_MISMATCH, SNAPSHOT_RECORD_INVALID, END_MISMATCH, DONE_NO_EVIDENCE, DONE_END_AFTER_NOW, DONE_HISTORY_REWRITTEN |
 | V11 | PARENT_MISMATCH, BASE_REQUIRED, FREE_UNKNOWN_TASK, FREE_CONTAINS_FROZEN, ADDED_NOT_FREE, REMOVED_NOT_FREE, BASE_TASK_UNKNOWN, NONFREE_CHANGED, FROZEN_PERSON_CHANGED, FROZEN_END_NO_EVIDENCE, FROZEN_END_EVIDENCE_INVALID |
+
+### ArtifactStore 用法
+
+在仓库根目录的 PowerShell 中先执行 `$env:PYTHONPATH="src"`，然后运行以下 Python 代码（项目 `package=false`）：
+
+```python
+from scheduler_core.io import ArtifactStore
+
+store = ArtifactStore(root="artifacts")
+run = store.new_run(kind="experiment", name="e2_replan_micro", tag="small-light")
+raw_path = run.path("raw.csv")
+raw_path.write_text("a,b\n1,2\n", encoding="utf-8")
+run.write_json("plans/inst1_m.json", {"k": 1})
+run.finish(status="completed", outputs=["raw.csv", "plans/inst1_m.json"])
+```
+
+`config=None` 保存空配置及其真实哈希；`clock`、`metadata`、`inputs` 和显式 `git` 为调用方提供的工程扩展。调用方负责命令、配置与元数据脱敏以及显式 git 证据真实性。终态文件设置只读；Windows 只读属性不是目录 ACL，不防并发替换或手工改权限。失败的 finish 可能已将部分文件设为只读，需要修改时应新建运行。

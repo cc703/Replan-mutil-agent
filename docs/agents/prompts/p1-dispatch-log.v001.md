@@ -1,5 +1,34 @@
 # P1 实际派发日志 v001
 
+## P1-C1 实施派发载荷（2026-11-10）
+
+### 独立审查实际spawn正文
+
+```text
+角色P1-C1独立G3审查；gpt-6.1-terra/high/fork_turns=none。工作目录D:/Default/Replan-mutil agent，基线568d5a3。只写docs/agents/handoffs/p1-c1-review.md，其余只读，不读作者会话，无Git变更/推送。先读AGENTS、storage-steward/reviewer角色、coding/file-storage/review-gates/model-policy及PROGRESS当前头/本包行；完整读docs/work-packages/p1-c1.md初版→Δ-C1→root G1，按其中完整外部Claude独立审查提示词执行。只读直接S134–213/551–554、layout_rules/checker相关段及本包代码，不必读无关历史长档案。源码严格六io文件、四tests/unit/io/test_artifact_*（无tests io init，以免stdlib包冲突）、最小用法文档/交接；root合法改进度/registry/RESUME/log/CHANGELOG不是作者越界。旧模型/validator/依赖/工具/原文/数据不改。
+当前作者/root/p1c1_storage_terra仍在补完整矩阵和G2，六源码首版/初步33测试已落盘；你现在先只读安全/契约预审、可用系统临时目录作独立探针，不在写入竞态反复全套check、不先ACCEPT。G2信号后完整复跑并报告ACCEPT/REWORK/ESCALATE（不能停留预审等继续）。root前置预检3.11.15只读temp替换可写目标、readonly写拒绝/cleanup通过；没有新依赖。
+高优先级按CB与修订审：config=None仍空yaml+64hexhash，精确字节与read_manifest真实核验；严格Pydantic/JSON duplicate keys/NaN/extra/types/UTC/startend/来源绑定；自动git真实且提供git/metadata真实性由caller，避免虚报/环境变量泄露。Path链从未规范化的原路径查lstat/reparse/junction再resolve，全部写前守卫，metadata保留名、大小写/尾点/ADS/UNC/盘符/8.3等；root内部/父级/finish前注入junction真实Windows验证，文件symlink缺权限必须如实逻辑测试，不能新skip。
+所有修改先磁盘状态与路径门禁，再清理可信模块temp；终态调用不删文件，重建Run不能绕过。finish先全验证/构造manifest与序列化→非旧manifest文件readonly→新manifest temp写/fsync/readonly→os.replace最后发布，之后无可失败IO；故障各阶段旧manifest字节原样running、temp无残留、合法finish可重试；失败后readonly输出不能覆盖的限制真实披露。创建失败只清理自己新目录，先在root内/非链接确认，不能掩盖原异常或删旧run；同秒冲突不可覆盖。README示例逐行实际写raw.csv而非只path；outputs普通文件存在/去重/metadata保护。读取不原地变输入，所有API边界docstring、模块函数简单清晰、无继承框架/插件/万能utils/ignore/noqa。
+root已实测并报作者的三项（作者称修复，请独立闭环）：inputs=['data/config.yaml']被保留名错误拦截；篡改started_at但run_id时间不匹配被错误接受；终态write_json不合法obj先抛TypeError而非RunClosedError。另原始root/junction/../链不可先abspath抹证据、清理必须安全保留原异常。探索其他边界，勿因已有测试绿就接受。关键验收含完整字段负例、每步故障注入和来源真实性、真实目录junction、layout机器正则/字段一致性。
+G2后独立运行uv run --python 3.11 --group dev python -m pytest tests -q -p no:cacheprovider及完整tools/check.py、source/layout，旧163case不降/原1skip不增；独立临时目录读写探针/只读属性/故障注入要有证据，Win只读属性并非目录ACL，未防TOCTOU/手动改权限需写限制。报告真实命令/定位发现/未核实/模型；只改报告，缺陷发root和作者。当前先预审，收到G2后自主推进最终结论。
+```
+
+```text
+实际模型gpt-6.1-terra/high/fork_turns=none。你是P1-C1存储实施专项（storage-steward），工作目录D:/Default/Replan-mutil agent，共享分支codex/p0-governance，基线568d5a3。用户恢复开发、要求简单完整、可读、目录清楚；仍原阶段顺序，未批准提前网页。工程命名/API/测试由root与Claude决定，业务规则变更再问。GitHub仅cc703/作者chm；专项不提交/推送/改Git配置。外部Claude初版+Δ-C1完整收到，G1 PASS，本机3.11.15只读temp替换可写manifest已实测可行。
+先读AGENTS、docs/agents/storage-steward.md、coding-standards/file-storage-standard/review-gates、model-policy、PROGRESS；完整读docs/work-packages/p1-c1.md初版→Δ-C1→末尾root G1。运行python tools/verify_source.py；仅需读本包直接来源S134–213/551–554及tools/layout_rules.toml/现有checker236–239和已安装API，不重读无关历史P0/P1B/R1原始长档案以消耗上下文。你的完整实施提示词/CB在该卡，必须全部执行，不只是本摘要。旧162pass/1符号链接skip、30源码静态均过。
+精确源码仅src/scheduler_core/io/{__init__,errors,paths,manifest,provenance,artifacts}.py；精确测试仅tests/unit/io/test_artifact_{manifest,paths,lifecycle,layout_rules}.py。测试io目录不要加__init__.py：pytest默认导入前缀io会与标准库io冲突，独一test基名直接收集即可；源scheduler_core/io/__init__.py必须有。README短用法、file-storage-standard仅API用法、dependency-register仅一行无新增依赖可写；本卡仅保护区后追加、handoffs/p1-c1.md可写。其他模型/validator/上下文/依赖/锁/工具/布局规则/数据/原文都只读；不做generator、clean、archive/report/trace。root合法单写进度/CHANGELOG/registry/RESUME/派发log，不覆盖。
+一次完整实现Store/Run/Manifest与六模块职责，API/契约严格按卡。config=None也写空config.yaml和64hex哈希；read_manifest真核config原字节/身份/输出/严格JSON，不放重复键/NaN/extra/坏类型。自动Git证据真实，提供git/脱敏由caller负责，无环境变量/主机/用户名采集。clock aware UTC，结束时间可显式给或clock补。Run新建对象同样每次从磁盘验状态，所有终态关闭。
+路径从未resolve的原root目录链逐层lstat查symlink/junction/reparse，resolve纵深防御；每次修改先安全/状态running门禁，再清理仅本模块temp（不得先动终态目录），finish提交前全部复检。非法相对路径/盘符/UNC/..、ADS、反斜杠/保留名/尾点/8.3/大写/空段/manifest与config别名全部拒绝。真实Windows目录junction测试按计划，文件symlink无权限要逻辑测试并如实标未核，不新增skip/xfail。
+finish先构造终态Manifest并序列化，非旧manifest的普通文件readonly，新manifest temp写flush/fsync且temp上chmod readonly，os.replace最后发布、之后无可失败IO，返回已构造对象。失败旧manifest字节原样running、临时文件清理（只读temp先可写）、合法finish重试；输出可能已readonly的限制文档化。原子JSON序列化失败不伤旧文件，发布失败注入每步都测。正式运行绝不覆盖，ID同秒-2..-99，创建失败只清理本次新目录，路径先校验，不能误删旧目录或根外。所有测试产物系统tmp_path，只读/Junction fixture清理只动自己创建的路径，不能混shell递归删除或改无关权限。
+新源通常150–300行、函数20–60行参考，超长先拆职责；完整简单、不加继承框架/插件/动态注册/万能utils。必要自定义异常继承与Pydantic基类属正常类型；obj可用object避免Any。先有意义测试和源码，再文档，别只写准备或空壳。初版+Δ全部正反/故障注入/真实junction/布局规则一致性/可运行README逐行全覆盖；原case不删不减，测试不镜像实现、不加skip/xfail、mypy/ruff严格无ignore/noqa偷渡。
+验收uv run --python 3.11 --group dev python -m pytest tests -q -p no:cacheprovider；完整python tools/check.py、layout/source；Git diff只原清单，无生成物/密钥/依赖。交接含真实命令/输出、API实测/平台限制、失败注入到测试名、函数/文件行数、未做范围、全部来源/模型。持续做至完整G2，不要只基线检查后结束“请续派”；若上下文紧可具体里程碑落盘后告诉root已完成与剩余，root协调，同范围可继续的部分不要停。真要扩大文件/改业务立即具体报root，其余独立部分继续。
+```
+
+实际spawn包装消息：
+```text
+你是P1-C1存储实施专项，gpt-6.1-terra/high/fork_turns=none；工作目录D:/Default/Replan-mutil agent，基线568d5a3。完整自包含执行载荷在docs/agents/prompts/p1-dispatch-log.v001.md最前“P1-C1实施派发载荷”，外部Claude初版/Δ-C1和root G1在docs/work-packages/p1-c1.md。先完整读取两处及载荷指定规范/直接源码来源后按白名单实施，源码和测试仅你一位作者，root写治理进度，独立review后续派发。务必直接完成有意义测试、完整ArtifactStore与manifest并自检至G2；不扩阶段、不改原模型/依赖/工具，不停在计划或基线；无Git操作，问题向root具体报告。
+```
+
 ## P1-B-R1 实施派发载荷（2026-11-10）
 
 外部Claude消息76及root G1在docs/work-packages/p1-b-r1.md。载荷如下；实际spawn包装消息要求读取本节与完整工作包后执行。

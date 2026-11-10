@@ -32,3 +32,5 @@ WP-C 已记录治理检查通过，最终验收及同步以项目进度为准。
 | typing-extensions 4.16.0 | 传递；跨 Python 版本类型功能 | [PyPI](https://pypi.org/pypi/typing-extensions/4.16.0/json)，[源码许可](https://github.com/python/typing_extensions/blob/4.16.0/LICENSE)；安装元数据 PSF-2.0 | 标准库 typing 不能单独替代依赖指定版本 |
 
 版本和关系以 `uv.lock` 为准；直接依赖在 `pyproject.toml`。MIT 分发时须保留版权和许可声明，PSF-2.0 分发时须保留许可及版权声明，修改时还须按许可说明变更；具体适用义务须以完整许可文本和实际分发形式复核。安装元数据均列有 LICENSE；本次未逐项检查完整发行包、第三方捆绑许可或 NOTICE 内容，不声称已完成发行审计。分发前须检查实际 wheel/源码包及其 NOTICE 和附带许可。P1-A 常规工程引入已按工作包 G1 授权；无新增付费服务或用户业务规则裁决。独立 G3 审查待完成。
+
+P1-C1 ArtifactStore 使用 Python 标准库及已登记 Pydantic；无新增依赖。

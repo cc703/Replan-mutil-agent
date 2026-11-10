@@ -10,6 +10,8 @@
 
 ### Added
 
+- C1 ArtifactStore/Run与严格manifest、运行来源/原字节配置哈希、路径及链接守卫、原子终态和只读关闭；四个测试文件新增88项，全量250通过/1原skip，独立G3 ACCEPT，无新增依赖。
+
 - P1-B独立V1–V11校验器、六类执行/授权上下文、人工mini实例和61reason正反测试；2049重叠+3780容量确定性穷举。修复可变模型键引用/重复实体漏判与扫描边界；独立G3 ACCEPT，162 passed/1既有系统skip，完整检查通过。
 
 - `src/scheduler_core/models.py`、`axis.py`：全部原数据契约、人员扩展与旧JSON缺省兼容；带时区UTC精确槽转换、端点范围和日期溢出校验。

@@ -1,8 +1,10 @@
 # 项目进度
 
-更新日期：2026-11-10（Asia/Shanghai）。用户已重新授权继续开发并强调简单完整、目录清晰、代码可读；当前P1-B-R1最终G3 ACCEPT且G5已完成，唯一结构返工已闭环，提交ead0c62已推送核验。原P1-B已ACCEPTED，162 passed/1既有系统skip；799ea56已同步。P1整体尚未完成。
+更新日期：2026-11-10（Asia/Shanghai）。当前C1 ArtifactStore与manifest已完成G2及独立G3 ACCEPT，250 passed/1既有系统skip，40源码静态与布局/导入/来源全部通过，待G5提交同步。本包结束后按用户要求暂停。P1仍缺实例生成与清理/归档工具，P2–P8未开始。
 
 当前授权：用户已恢复开发，覆盖上一轮“完成后暂停”；Claude无额度即停止条件保留。先整理523行单函数与1184行测试，再推进C1产物存储和C2实例生成，各包先有Claude计划与G1，完成后检查/审查/同步。
+
+用户当前要求：C1这一part完成G2/G3、提交同步后暂停并汇报；本轮不启动C2、清理工具或前后端。
 
 ## 最新同步回执（P1-B-R1，2026-11-10）
 
@@ -41,6 +43,7 @@ ead0c62087e933748a824426f32c37676c4d230b（refactor(core): split validator into 
 | P1-A | 全数据模型与 TimeAxis 源码 | p1a_code_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3 PASS；G5 PASS | 独立ACCEPT，62 passed/1 skipped，全部检查通过 | 已同步d37f2d6，ls-remote核验 | 2026-11-09 | ac0ba9f |
 | P1-B | V1–V11 独立业务校验器 | p1b_code_terra / p1b_tests_terra / p1b_review_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3/G5 PASS；G4工程委托 | 独立ACCEPT，162 passed/1 skipped；61reason，5829穷举例 | 已推送1255113并核验 | 2026-11-10 | 1255113bb22b87ffc6c51a3d8de0ab18cc5774f3 |
 | P1-B-R1 | 校验器可读性重构（行为不变） | p1br1_code_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3/G5 PASS | 6044次差分与35独立边界一致，162 passed/1 skip | 已推送ead0c62并核验 | 2026-11-10 | ead0c62087e933748a824426f32c37676c4d230b |
+| P1-C1 | ArtifactStore与manifest | p1c1_storage_terra | codex/p0-governance | IN-REVIEW | G0/G1/G2/G3 PASS；G5 PENDING | 独立ACCEPT，250 passed/1 skip，40文件静态通过 | 当前包待推送核验 | 2026-11-10 | 提交主题feat(io): implement artifact run storage and manifests |
 
 分支为共享集成分支，不表示每个专项都有独立工作树。验收、检查、提交及远端 SHA 必须由总设计师按实际执行结果补记。
 
@@ -48,7 +51,7 @@ ead0c62087e933748a824426f32c37676c4d230b（refactor(core): split validator into 
 
 | 阶段 | 目标 | 状态 |
 | --- | --- | --- |
-| P1 | 数据契约、校验与产出物基础设施 | IN-PROGRESS（模型/TimeAxis/校验器已工程验收；实例生成与ArtifactStore待实现） |
+| P1 | 数据契约、校验与产出物基础设施 | IN-PROGRESS（模型/TimeAxis/校验器已工程验收；ArtifactStore已工程验收；实例生成与清理/归档待实现） |
 | P2 | 初始调度 | TODO |
 | P3 | 仿真器 | TODO |
 | P4 | 重规划 | TODO |
@@ -64,6 +67,8 @@ ead0c62087e933748a824426f32c37676c4d230b（refactor(core): split validator into 
 计划/提示词来源：[Claude 原会话](https://claude.ai/chat/54ab7bfe-2bca-4714-9759-e3ae3e5474e7)，2026-11-09 P0 计划。具体版本、原文和审查证据见 [P0 工作包](../work-packages/P0.md)。
 
 ## 风险与阻塞
+
+当前C1：Claude初版与Δ-C1已完整归档并G1 PASS，本机只读临时文件替换预检通过；标准库+既有Pydantic，不加依赖。结束来源/路径/配置哈希规则已工程细化，不再向用户问字段。C1不含生成器/清理归档/报告，不能提前宣称P1完成。
 
 2026-11-10最新覆盖：用户已恢复开发，上一轮暂停不是当前阻塞。Claude消息76已正常完整生成，P1-B-R1 G1 PASS。保持简单可读及原行为，新旧差分验证必须真实执行；发现旧缺陷另报，不混入本次重构。
 
@@ -84,6 +89,8 @@ ead0c62087e933748a824426f32c37676c4d230b（refactor(core): split validator into 
 - OSS-1 核实 OR-Tools v9.15、PyJobShop v0.0.9 的固定提交/源码/许可证文件及仓库树 NOTICE 范围，并核实五项依赖的版本与平台元数据。全部仅参考，复制与新增依赖为0；Python 3.11 Windows 动态安装联测 NOT-RUN，不能把元数据支持当运行验证。Hypothesis 的 MPL-2.0 未来实际引入前须用户 G4，PENDING；原规格要求未删除。详见 docs/planning/p1-oss-research.md。
 
 ## 本轮验证与审查证据
+
+- C1最终G2/G3：六个io模块、四个测试文件，新增88项测试（全量250 passed/1原skip），完整check与40文件静态全部通过；真实目录junction/hardlink/只读属性、临时Git来源、JSON/字段与配置哈希绑定、每阶段故障注入和重试均验证。真实文件symlink权限不足仅逻辑模拟，Windows只读非目录ACL、不防手工改权限/TOCTOU的边界披露。根设计师和独立审查分别实际临时目录探针通过，详见两份C1交接。代码未增加依赖、未改旧核心/工具/原始来源。
 
 - P1-B-R1最终G3 ACCEPT：纯区间算法提取返工已关闭；入口523→67行、validate函数507→46行；六实现模块最大execution190行，resources179、intervals105，其余不超过135。各源函数<=80，62行的证据检查按完整决策流程保留并说明。原34测试函数/参数化与163收集ID不减不重；61reason/5829oracle保留。root最终独立6042报告+2异常差分一致，reviewer另35边界一致；完整check162 passed/1既有skip与全部静态/来源/布局通过。未变业务规则、新依赖为0。
 

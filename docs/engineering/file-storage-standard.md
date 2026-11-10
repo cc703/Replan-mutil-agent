@@ -148,3 +148,9 @@ LLM trace 在写盘前去掉 API key、授权头、个人信息与不必要的�
 | 完成运行直接重跑覆盖 | 新建 run_id，保留旧结果及来源 |
 
 P0 验证入口：`python tools/check.py`。当前工具检查 Git 视角文件、规定的忽略路径、格式、体积，以及本地运行目录的 manifest 字段/身份/状态基本完整性；被忽略的运行目录仍接受 manifest 检查。UTC时间语义、run_id 唯一性、哈希真实性、只读生命周期、清理与报告复制属于后续 ArtifactStore/维护工具验收，P0 不声称已经实现全部。
+
+### ArtifactStore API
+
+通过 `ArtifactStore.new_run` 创建运行，用 `run.path` 获取安全路径或 `run.write_json` 写入 JSON，输出存在后用 `run.finish` 发布终态。`read_manifest` 验证目录身份、配置哈希和输出。可传入配置、时间、输入、元数据与 Git 证据；调用方负责脱敏与显式证据真实性。Windows 只读属性不等于 ACL 或防并发篡改，finish 失败可能使部分输出已只读，修改需新建运行。
+
+运行目录拒绝共享硬链接；请先复制文件，再将副本放入运行目录。
