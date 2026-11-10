@@ -28,6 +28,12 @@
 
 P0 不创建 src/apps/experiments 的占位业务代码。实际目录按实施阶段需要创建。
 
+### 用户提供的目录规范参考（2026-11-10）
+
+已阅读 [lingxyz/standard《项目目录结构规范》](https://github.com/lingxyz/standard/blob/master/drafts/项目目录结构规范.md)。采纳语义清晰、根目录按职责划分、源码按功能与业务组织、内容资源归属明确的原则；仅作结构参考，不复制原文或代码、不引入依赖。
+本项目沿用已审查的 Python 与多应用布局：核心源码在 `src/scheduler_core/`，测试在 `tests/unit/`（治理测试在 `tests/governance/`），人工实例在 `data/fixtures/`，应用代码按需进入 `apps/`，中间产物只在 `artifacts/`。参考中的前端示例目录按实际应用需要建立，不预建空目录；本次不迁移既有文件、不修改机器规则。
+2026-11-10 对当前 Git 文件执行布局、导入边界、来源校验及完整检查，布局通过。后续新增代码仍由 `tools/layout_rules.toml` 与工作包文件清单约束。
+
 ## 可机器检查规则
 
 ### R-root：根目录与检查范围

@@ -1,6 +1,15 @@
 # 项目进度
 
-更新日期：2026-11-09（Asia/Shanghai）。P1-A已提交ac0ba9f。P1-B的Claude初版计划与完整修订已取回，随后页面明确显示五小时额度耗尽，按用户“没有额度就停止”条件停止推进；P1-B未派发、未写源码，G1待恢复后复核。GitHub仍暂缓上传，P1整体未完成。
+更新日期：2026-11-10（Asia/Shanghai）。用户已明确“可以推送github了”，解除此前 GitHub 登录与上传暂缓。仅使用 cc703、作者 chm，同步分支 codex/p0-governance；目前认证待完成，未宣称推送成功。P1-A已提交ac0ba9f；P1-B计划在e72cdca保存，仍未派发、未写源码，Claude可用性和G1待恢复后复核，P1整体未完成。
+
+## GitHub 恢复同步与目录复核（2026-11-10）
+
+- 新授权覆盖下文历史“用户暂缓/不上传”记录；表内远端同步栏为此前检查点，实际新回执在本节记录。
+- GitHub连接账号核验为cc703；本地作者为chm，origin为cc703/Replan-mutil-agent。本机无可用cc703非交互Git凭证，正在发起设备登录；未使用其他账号。
+- fetch发现远端main为40cdafd47c66d3dd075d16a81d004eee088b97ab（独立最小演示，包含根main.py等5文件），不覆盖、不合并其内容到已审查集成树。推送现有codex/p0-governance并保留其完整13个历史提交。
+- 已阅读用户提供的lingxyz目录规范，参考映射记录在file-storage-standard.md；现有源码/测试/文档/产物职责保持既定布局，无批量搬迁或预建占位目录。
+- 实测完整检查：62 passed、1 skipped（系统符号链接权限）；layout/import/source/ruff/format/mypy全部通过。Git跟踪102个文件，常见凭证与私钥模式未命中；未将忽略的环境、缓存或临时捕获纳入提交。
+- 当前同步状态：待cc703登录及推送核验；P1-B原暂停状态保持。
 
 ## 当前工作包
 

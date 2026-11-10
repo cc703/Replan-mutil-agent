@@ -30,6 +30,8 @@
 
 ### Clarified
 
+- 2026-11-10用户重新授权GitHub推送，仅cc703/作者chm；保留远端main独立演示，现有集成分支待认证与同步核验。目录规范增加用户提供的lingxyz参考映射，沿用src/tests/data/apps/artifacts职责；不改变源码布局或P1-B暂停边界。
+
 - P1-B初版及完整修订已归档；随后Claude五小时额度耗尽，按用户条件停止，未派发P1-B源码，仅保留本地检查点。
 
 - 本地 checkpoint 保存续作现场；GitHub 登录与上传继续按用户决定暂缓。
