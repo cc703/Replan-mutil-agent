@@ -168,3 +168,7 @@ G0/G1 PASS；G4为用户已委托工程组织、行为不变重构，无业务�
 ## 总设计师 G3 集成（2026-11-10）
 
 最终独立G3 ACCEPT，保留首次结构REWORK及closure。root最终树内存差分6042份完整report JSON与2个异常类型/消息一致，六测试模块挂钩；独立reviewer另有35自造边界一致。163收集ID无减/增/重，原34test函数和全部参数化保留，61reason及5829oracle不减。纯扫描已位于105行intervals，领域资源179行，入口67行（函数46行）；所有源函数<=80。原始来源/数据契约/依赖/锁/工具/mini未变，捕获76哈希复核一致。G5待提交同步；用户尚未批准阶段调整，后续仍原顺序先C1，再C2，须新Claude计划，不再扩大本重构。
+
+## G5 同步回执
+
+ead0c62087e933748a824426f32c37676c4d230b已普通推送至origin/codex/p0-governance并核验同SHA，R1 ACCEPTED。总设计师实际复核收集ID163→163，0缺/增/重；最终完整check162 passed/1既有skip、30文件ruff/mypy及layout/import/source全部PASS。当前回执另行提交，不自引用其SHA。

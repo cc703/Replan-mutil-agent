@@ -1,10 +1,14 @@
 # 项目进度
 
-更新日期：2026-11-10（Asia/Shanghai）。用户已重新授权继续开发并强调简单完整、目录清晰、代码可读；当前P1-B-R1最终G3 ACCEPT，唯一结构返工已闭环，待G5提交同步。原P1-B已ACCEPTED，162 passed/1既有系统skip；799ea56已同步。P1整体尚未完成。
+更新日期：2026-11-10（Asia/Shanghai）。用户已重新授权继续开发并强调简单完整、目录清晰、代码可读；当前P1-B-R1最终G3 ACCEPT且G5已完成，唯一结构返工已闭环，提交ead0c62已推送核验。原P1-B已ACCEPTED，162 passed/1既有系统skip；799ea56已同步。P1整体尚未完成。
 
 当前授权：用户已恢复开发，覆盖上一轮“完成后暂停”；Claude无额度即停止条件保留。先整理523行单函数与1184行测试，再推进C1产物存储和C2实例生成，各包先有Claude计划与G1，完成后检查/审查/同步。
 
-## 本轮交付与停止回执（2026-11-10）
+## 最新同步回执（P1-B-R1，2026-11-10）
+
+ead0c62087e933748a824426f32c37676c4d230b（refactor(core): split validator into readable rule modules）已由cc703普通push至codex/p0-governance，ls-remote与本地HEAD一致，工作区干净。原记录中的P1-B暂停已被用户恢复开发覆盖。后续仍原顺序先C1存储，再C2生成；当前未批准阶段调整。163收集ID由总设计师实际复核：前后各163，缺失/额外/重复均0；完整check162 passed/1原skip，30文件ruff/mypy通过。
+
+## 上一轮交付与停止回执（2026-11-10）
 
 - P1-B正式提交：1255113bb22b87ffc6c51a3d8de0ab18cc5774f3（feat(core): add independent schedule validation）。普通push至origin/codex/p0-governance成功，ls-remote与本地HEAD逐字一致。main仍40cdafd47c66d3dd075d16a81d004eee088b97ab，无覆盖或强推。
 - 总设计师最终完整检查162 passed/1既有skip，ruff/format/mypy15文件、layout/import/source PASS；14文件2447行新增/28行删除，显式暂存已审查清单，密钥常见模式未命中，未含环境/缓存/临时捕获。原Claude70/72捕获保护区与前一HEAD逐段一致。
@@ -36,7 +40,7 @@
 | P1-0 | 人员资源与契约缺口提案 | p1_contract_terra | codex/p0-governance | ACCEPTED | G1/G2/G3 PASS；G5 PASS | 已审查推荐按用户新授权落实 | 已同步d37f2d6，ls-remote核验 | 2026-11-09 | 452b2be；授权更新见 ADR 0006 |
 | P1-A | 全数据模型与 TimeAxis 源码 | p1a_code_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3 PASS；G5 PASS | 独立ACCEPT，62 passed/1 skipped，全部检查通过 | 已同步d37f2d6，ls-remote核验 | 2026-11-09 | ac0ba9f |
 | P1-B | V1–V11 独立业务校验器 | p1b_code_terra / p1b_tests_terra / p1b_review_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3/G5 PASS；G4工程委托 | 独立ACCEPT，162 passed/1 skipped；61reason，5829穷举例 | 已推送1255113并核验 | 2026-11-10 | 1255113bb22b87ffc6c51a3d8de0ab18cc5774f3 |
-| P1-B-R1 | 校验器可读性重构（行为不变） | p1br1_code_terra | codex/p0-governance | IN-REVIEW | G0/G1/G2/G3 PASS；G5 PENDING | 6044次差分与35独立边界一致，162 passed/1 skip | 当前增量尚未提交 | — | docs/work-packages/p1-b-r1.md |
+| P1-B-R1 | 校验器可读性重构（行为不变） | p1br1_code_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3/G5 PASS | 6044次差分与35独立边界一致，162 passed/1 skip | 已推送ead0c62并核验 | 2026-11-10 | ead0c62087e933748a824426f32c37676c4d230b |
 
 分支为共享集成分支，不表示每个专项都有独立工作树。验收、检查、提交及远端 SHA 必须由总设计师按实际执行结果补记。
 

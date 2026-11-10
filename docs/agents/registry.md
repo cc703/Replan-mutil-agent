@@ -1,6 +1,6 @@
 # 角色索引
 
-当前P1-B-R1：/root/p1br1_code_terra已实际spawn，gpt-6.1-terra/high/fork_turns=none，G1/G2/G3最终PASS。完整Claude消息76/计划/提示词在工作包p1-b-r1.md，root实际载荷在prompts/p1-dispatch-log.v001.md最前；读该清单恢复。独立/root/p1br1_review_terra已按同模型策略G3预审及正式审查，首轮结构REWORK已关闭，最终ACCEPT；同一实现/审查会话均已交付。所有Git/进度仍总设计师单写。
+当前P1-B-R1：/root/p1br1_code_terra已实际spawn，gpt-6.1-terra/high/fork_turns=none，G1/G2/G3/G5最终PASS，ead0c62已推送核验。完整Claude消息76/计划/提示词在工作包p1-b-r1.md，root实际载荷在prompts/p1-dispatch-log.v001.md最前；读该清单恢复。独立/root/p1br1_review_terra已按同模型策略G3预审及正式审查，首轮结构REWORK已关闭，最终ACCEPT；同一实现/审查会话均已交付。所有Git/进度仍总设计师单写。
 
 2026-11-10本轮P1-B G2/G3已完成，独立ACCEPT。实际会话/root/p1b_code_terra、/root/p1b_tests_terra、/root/p1b_review_terra均gpt-6.1-terra/high/fork_turns=none。作者写两个源码/mini/README/卡片/交接，测试独占两个测试文件，reviewer仅写handoffs/p1-b-review.md；完整提示词与实际派发在[p1-b工作包](../work-packages/p1-b.md)及[日志](prompts/p1-dispatch-log.v001.md)。[实施交接](handoffs/p1-b.md)/[独立审查](handoffs/p1-b-review.md)为恢复依据，不依赖会话常驻。G5已由总设计师完成，1255113推送核验一致；本轮结束按用户要求暂停，三个专项均已交付，未启动新包。实际回执见PROGRESS。
 
