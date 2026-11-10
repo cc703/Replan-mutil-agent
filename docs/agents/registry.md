@@ -1,6 +1,6 @@
 # 角色索引
 
-当前C1运行：/root/p1c1_storage_terra已spawn，gpt-6.1-terra/high/fork_turns=none，storage-steward实施角色，G1/G2/G3最终PASS，G5待同步。持久入口work-packages/p1-c1.md及prompts/p1-dispatch-log.v001.md最前；独占本卡六源码/四测试与最小用法文档，独立/root/p1c1_review_terra已按同模型策略spawn，已完成独立G3 ACCEPT；仅写handoffs/p1-c1-review.md。Git/进度仍root持有。
+当前C1运行：/root/p1c1_storage_terra已spawn，gpt-6.1-terra/high/fork_turns=none，storage-steward实施角色，G1/G2/G3最终PASS，G5已同步dba733d，正式运行示例通过；本轮已暂停。持久入口work-packages/p1-c1.md及prompts/p1-dispatch-log.v001.md最前；独占本卡六源码/四测试与最小用法文档，独立/root/p1c1_review_terra已按同模型策略spawn，已完成独立G3 ACCEPT；仅写handoffs/p1-c1-review.md。Git/进度仍root持有。
 
 当前P1-B-R1：/root/p1br1_code_terra已实际spawn，gpt-6.1-terra/high/fork_turns=none，G1/G2/G3/G5最终PASS，ead0c62已推送核验。完整Claude消息76/计划/提示词在工作包p1-b-r1.md，root实际载荷在prompts/p1-dispatch-log.v001.md最前；读该清单恢复。独立/root/p1br1_review_terra已按同模型策略G3预审及正式审查，首轮结构REWORK已关闭，最终ACCEPT；同一实现/审查会话均已交付。所有Git/进度仍总设计师单写。
 

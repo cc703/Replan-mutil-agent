@@ -2,7 +2,7 @@
 
 ## 当前续作入口（2026-11-10）
 
-当前C1已G2/G3完成，独立ACCEPT，250 passed/1原skip、40文件静态/来源/布局全部通过。六io模块与四测试已落盘；交接handoffs/p1-c1.md、p1-c1-review.md。完整计划初版→Δ→root G1在work-packages/p1-c1.md，实际Terra/high/fork none作者及reviewer用量中断后同模型恢复完成，无降级。G5待root提交同步及实际运行演示，随后按用户要求暂停，不开启C2/清理/前后端。以PROGRESS、真实Git与磁盘为准。
+当前C1已G2/G3完成，独立ACCEPT，250 passed/1原skip、40文件静态/来源/布局全部通过。六io模块与四测试已落盘；交接handoffs/p1-c1.md、p1-c1-review.md。完整计划初版→Δ→root G1在work-packages/p1-c1.md，实际Terra/high/fork none作者及reviewer用量中断后同模型恢复完成，无降级。G5已完成，dba733d已推送核验；干净提交上的真实c1_smoke运行completed、dirty=false且跨Run写拒绝。本轮按用户要求暂停，不开启C2/清理/前后端。以PROGRESS、真实Git与磁盘为准。
 
 用户已恢复开发，最新强调简单完整、目录清楚、文件可读；覆盖上一轮暂停。基线799ea56已同步，P1-B原业务交付1255113已ACCEPTED。当前实施P1-B-R1行为不变重构：工作包p1-b-r1.md含外部Claude76与root G1；实际/root/p1br1_code_terra，Terra/high/fork none，完整载荷在prompts/p1-dispatch-log.v001.md最前。先迁测试再拆源码，保持162通过/原1skip、61reason和5829oracle，API/报告/异常新旧差分一致。
 

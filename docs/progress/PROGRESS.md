@@ -1,12 +1,19 @@
 # 项目进度
 
-更新日期：2026-11-10（Asia/Shanghai）。当前C1 ArtifactStore与manifest已完成G2及独立G3 ACCEPT，250 passed/1既有系统skip，40源码静态与布局/导入/来源全部通过，待G5提交同步。本包结束后按用户要求暂停。P1仍缺实例生成与清理/归档工具，P2–P8未开始。
+更新日期：2026-11-10（Asia/Shanghai）。当前C1 ArtifactStore与manifest已完成G2及独立G3 ACCEPT，250 passed/1既有系统skip，40源码静态与布局/导入/来源全部通过，G5已完成，dba733d已普通推送并核验。本包结束后按用户要求暂停。P1仍缺实例生成与清理/归档工具，P2–P8未开始。
 
 当前授权：用户已恢复开发，覆盖上一轮“完成后暂停”；Claude无额度即停止条件保留。先整理523行单函数与1184行测试，再推进C1产物存储和C2实例生成，各包先有Claude计划与G1，完成后检查/审查/同步。
 
 用户当前要求：C1这一part完成G2/G3、提交同步后暂停并汇报；本轮不启动C2、清理工具或前后端。
 
-## 最新同步回执（P1-B-R1，2026-11-10）
+## 当前C1交付、运行与暂停回执（2026-11-10）
+
+- 正式提交dba733d5bdde997d7c9e8b8f47b0b080805f1695（feat(io): implement artifact run storage and manifests）已由cc703推送至codex/p0-governance并ls-remote核验同SHA，不改main、不强推。
+- 在此干净提交上使用默认真实Git来源、实际命令和配置运行示例：artifacts/runs/experiment/c1_smoke/20261110-072346_dba733d_verified；manifest为completed，git.dirty=false，代码SHA等于上述正式提交；raw.csv与plans/example.json存在并读回一致。重建Run后再写被RunClosedError拒绝，布局检查PASS。示例生成物只保留在忽略的artifacts，不入库。
+- C1本轮已完成，按用户要求暂停，不启动C2/清理归档/前后端。P1整体未完成；后续需用户恢复及下一包Claude计划。
+- 本回执引用已实际推送的源码提交，不自引用回执提交。
+
+## 上次同步回执（P1-B-R1，2026-11-10）
 
 ead0c62087e933748a824426f32c37676c4d230b（refactor(core): split validator into readable rule modules）已由cc703普通push至codex/p0-governance，ls-remote与本地HEAD一致，工作区干净。原记录中的P1-B暂停已被用户恢复开发覆盖。后续仍原顺序先C1存储，再C2生成；当前未批准阶段调整。163收集ID由总设计师实际复核：前后各163，缺失/额外/重复均0；完整check162 passed/1原skip，30文件ruff/mypy通过。
 
@@ -43,7 +50,7 @@ ead0c62087e933748a824426f32c37676c4d230b（refactor(core): split validator into 
 | P1-A | 全数据模型与 TimeAxis 源码 | p1a_code_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3 PASS；G5 PASS | 独立ACCEPT，62 passed/1 skipped，全部检查通过 | 已同步d37f2d6，ls-remote核验 | 2026-11-09 | ac0ba9f |
 | P1-B | V1–V11 独立业务校验器 | p1b_code_terra / p1b_tests_terra / p1b_review_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3/G5 PASS；G4工程委托 | 独立ACCEPT，162 passed/1 skipped；61reason，5829穷举例 | 已推送1255113并核验 | 2026-11-10 | 1255113bb22b87ffc6c51a3d8de0ab18cc5774f3 |
 | P1-B-R1 | 校验器可读性重构（行为不变） | p1br1_code_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3/G5 PASS | 6044次差分与35独立边界一致，162 passed/1 skip | 已推送ead0c62并核验 | 2026-11-10 | ead0c62087e933748a824426f32c37676c4d230b |
-| P1-C1 | ArtifactStore与manifest | p1c1_storage_terra | codex/p0-governance | IN-REVIEW | G0/G1/G2/G3 PASS；G5 PENDING | 独立ACCEPT，250 passed/1 skip，40文件静态通过 | 当前包待推送核验 | 2026-11-10 | 提交主题feat(io): implement artifact run storage and manifests |
+| P1-C1 | ArtifactStore与manifest | p1c1_storage_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3/G5 PASS | 独立ACCEPT，250 passed/1 skip，40文件静态通过 | 已推送dba733d并核验 | 2026-11-10 | dba733d5bdde997d7c9e8b8f47b0b080805f1695 |
 
 分支为共享集成分支，不表示每个专项都有独立工作树。验收、检查、提交及远端 SHA 必须由总设计师按实际执行结果补记。
 
