@@ -1,8 +1,8 @@
 # 项目进度
 
-更新日期：2026-11-10（Asia/Shanghai）。P1-B独立校验器已完成G2与独立G3 ACCEPT；162 passed/1既有系统skip，完整检查通过。GitHub已使用cc703推送P1-B提交1255113并核验SHA一致；G5 PASS。本轮结束，按用户要求暂停，不启动下一包；P1整体尚未完成。
+更新日期：2026-11-10（Asia/Shanghai）。用户已重新授权继续开发并强调简单完整、目录清晰、代码可读；当前P1-B-R1最终G3 ACCEPT，唯一结构返工已闭环，待G5提交同步。原P1-B已ACCEPTED，162 passed/1既有系统skip；799ea56已同步。P1整体尚未完成。
 
-用户最新要求：当前P1-B本轮完成后停止并汇报；完成G2/G3、进度更新与普通GitHub同步后暂停，不启动P1-C或P2。
+当前授权：用户已恢复开发，覆盖上一轮“完成后暂停”；Claude无额度即停止条件保留。先整理523行单函数与1184行测试，再推进C1产物存储和C2实例生成，各包先有Claude计划与G1，完成后检查/审查/同步。
 
 ## 本轮交付与停止回执（2026-11-10）
 
@@ -36,6 +36,7 @@
 | P1-0 | 人员资源与契约缺口提案 | p1_contract_terra | codex/p0-governance | ACCEPTED | G1/G2/G3 PASS；G5 PASS | 已审查推荐按用户新授权落实 | 已同步d37f2d6，ls-remote核验 | 2026-11-09 | 452b2be；授权更新见 ADR 0006 |
 | P1-A | 全数据模型与 TimeAxis 源码 | p1a_code_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3 PASS；G5 PASS | 独立ACCEPT，62 passed/1 skipped，全部检查通过 | 已同步d37f2d6，ls-remote核验 | 2026-11-09 | ac0ba9f |
 | P1-B | V1–V11 独立业务校验器 | p1b_code_terra / p1b_tests_terra / p1b_review_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3/G5 PASS；G4工程委托 | 独立ACCEPT，162 passed/1 skipped；61reason，5829穷举例 | 已推送1255113并核验 | 2026-11-10 | 1255113bb22b87ffc6c51a3d8de0ab18cc5774f3 |
+| P1-B-R1 | 校验器可读性重构（行为不变） | p1br1_code_terra | codex/p0-governance | IN-REVIEW | G0/G1/G2/G3 PASS；G5 PENDING | 6044次差分与35独立边界一致，162 passed/1 skip | 当前增量尚未提交 | — | docs/work-packages/p1-b-r1.md |
 
 分支为共享集成分支，不表示每个专项都有独立工作树。验收、检查、提交及远端 SHA 必须由总设计师按实际执行结果补记。
 
@@ -60,6 +61,8 @@
 
 ## 风险与阻塞
 
+2026-11-10最新覆盖：用户已恢复开发，上一轮暂停不是当前阻塞。Claude消息76已正常完整生成，P1-B-R1 G1 PASS。保持简单可读及原行为，新旧差分验证必须真实执行；发现旧缺陷另报，不混入本次重构。
+
 2026-11-10覆盖说明：下文额度耗尽及GitHub暂缓为历史检查点；当前Claude已正常回复、P1-B G1 PASS，GitHub已使用cc703推送核验。B1/双profile延期与其余架构约束仍有效。
 
 - 用户本轮明确：Claude没有额度就停止。P1-B消息70与72已完整取回，随后浏览器显示“You hit your 5-hour message limit”；因此停止后续复核与实施，仅保存本地检查点。消息72补齐上下文、DONE执行证据与RUNNING容量去重，尚未通过完整G1或派发专项。页面显示8:40 PM恢复，不设自动恢复，不升级；GitHub仍暂缓。
@@ -77,6 +80,10 @@
 - OSS-1 核实 OR-Tools v9.15、PyJobShop v0.0.9 的固定提交/源码/许可证文件及仓库树 NOTICE 范围，并核实五项依赖的版本与平台元数据。全部仅参考，复制与新增依赖为0；Python 3.11 Windows 动态安装联测 NOT-RUN，不能把元数据支持当运行验证。Hypothesis 的 MPL-2.0 未来实际引入前须用户 G4，PENDING；原规格要求未删除。详见 docs/planning/p1-oss-research.md。
 
 ## 本轮验证与审查证据
+
+- P1-B-R1最终G3 ACCEPT：纯区间算法提取返工已关闭；入口523→67行、validate函数507→46行；六实现模块最大execution190行，resources179、intervals105，其余不超过135。各源函数<=80，62行的证据检查按完整决策流程保留并说明。原34测试函数/参数化与163收集ID不减不重；61reason/5829oracle保留。root最终独立6042报告+2异常差分一致，reviewer另35边界一致；完整check162 passed/1既有skip与全部静态/来源/布局通过。未变业务规则、新依赖为0。
+
+- P1-B-R1 G3首轮REWORK：6044次完整报告/异常差分与35个额外边界均一致，162 passed/1原skip及全check通过；唯一结构发现为容量、日历与RUNNING扫描仍内嵌resources，未完全落实纯intervals职责。原专项按同一清单最小提取，不改行为，修复后需差分与定向复审，未提前验收或同步。
 
 - P1-B最终G2/G3：六类验证上下文、独立V1–V11与61reason、人工mini、两个测试文件已交付。独立reviewer ACCEPT，完整pytest162 passed、1原符号链接权限skip；关闭cacheprovider时另有既有cache_dir警告。layout/import/source/ruff/format/mypy（15文件）全部PASS。2049重叠+3780容量=5829确定性实例，12种需求/容量组合，独立暴力oracle核对参与集合/组件/输出上界/最大溢出段。源码/测试/审查均Terra/high/fork none，完整派发和交接已归档。原模型/轴/依赖/检查入口及来源未变，没有复制开源代码或新增依赖；仅参考既有OR-Tools/PyJobShop问题分解。
 

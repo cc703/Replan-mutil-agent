@@ -2,11 +2,9 @@
 
 ## 当前续作入口（2026-11-10）
 
-当前本轮P1-B已完成G2与独立G3 ACCEPT：V1–V11、六类上下文、mini、61reason及5829确定性穷举，完整162 passed/1既有skip。交接p1-b.md / p1-b-review.md，计划工作包p1-b.md含原Claude70/72、Δ-B2及G1/G2/G3。作者/测试/审查实际Terra/high/fork none；Git与进度仍总设计师单写。
+用户已恢复开发，最新强调简单完整、目录清楚、文件可读；覆盖上一轮暂停。基线799ea56已同步，P1-B原业务交付1255113已ACCEPTED。当前实施P1-B-R1行为不变重构：工作包p1-b-r1.md含外部Claude76与root G1；实际/root/p1br1_code_terra，Terra/high/fork none，完整载荷在prompts/p1-dispatch-log.v001.md最前。先迁测试再拆源码，保持162通过/原1skip、61reason和5829oracle，API/报告/异常新旧差分一致。
 
-GitHub已用cc703认证，P1-B正式提交1255113bb22b87ffc6c51a3d8de0ab18cc5774f3已推送至codex/p0-governance并核验远端同SHA，G5 PASS；main演示40cdafd保持不动，禁止强推。本轮已结束，按用户要求暂停；后续恢复以PROGRESS、Git状态与远端SHA为准。
-
-用户最新停止边界：本轮P1-B完成同步后停止并汇报，不自动启动P1-C/P2。后续恢复需用户新指令。下一步仍是P1剩余的实例生成与ArtifactStore，不把P1-B完成当P1–P8已完成。用户已委托工程细节，业务规则变更再问；B1/双profile仍DEFERRED。下次实施先取得对应Claude完整计划，若再次额度耗尽按用户要求停止。
+源码仅薄入口与validation下六实现模块；测试按规则族迁移，删除旧巨型test_validate.py为本包授权；models/axis/validation_context/依赖/锁/工具/mini/原文只读。当前G2/G3最终已PASS，独立ACCEPT，唯一纯区间职责返工闭环；G5待root提交同步。源入口67行，六模块最大190行；6044全量差分与35独立边界一致、162 passed/1原skip。实施/独立交接见handoffs/p1-b-r1.md与p1-b-r1-review.md。后续先C1 ArtifactStore与manifest，再C2生成器，需对应Claude完整计划；仍不跨P1。用户仅询问原顺序工期，尚未批准阶段调整，继续先C1/C2，不提前做网页。Claude若额度耗尽按用户条件停止，不升级或绕过。GitHub仅cc703/作者chm，普通push且SHA核验，保留main演示。
 
 ## 通用恢复步骤
 

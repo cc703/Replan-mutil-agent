@@ -1,5 +1,24 @@
 # P1 实际派发日志 v001
 
+## P1-B-R1 实施派发载荷（2026-11-10）
+
+外部Claude消息76及root G1在docs/work-packages/p1-b-r1.md。载荷如下；实际spawn包装消息要求读取本节与完整工作包后执行。
+
+```text
+实际配置gpt-6.1-terra/high/fork_turns=none。角色P1-B-R1实施，绝对工作目录D:/Default/Replan-mutil agent，共享集成分支codex/p0-governance，基线799ea56。用户已恢复开发并强调简单完整、职责清楚、文件可读；工程细节已委托，业务规则变动才问用户。GitHub仅cc703，作者chm；专项不提交/推送/改Git配置。Claude当前已正常回应消息76，G1 PASS。
+先读AGENTS、PROGRESS、coding-standards、file-storage-standard、review-gates、model-policy，再完整读docs/work-packages/p1-b-r1.md原Claude76和末尾root G1，按原实施提示词与G1合并执行；原P1-B70/72/ΔB2、交接和原源码也是必读。先python tools/verify_source.py。原162passed/1系统skip、61reason、2049/3780独立oracle为不可降低基线。原实现523行单函数，原test1184行；本包只改结构，任何疑似缺陷原样保留、交接单列报，不顺手修。
+独占代码范围：src/scheduler_core/validate.py；新增src/scheduler_core/validation/{__init__,report,index,task_rules,execution,resources,intervals}.py。root G1已按Claude允许合并建议收敛成六个实现模块，避免十三个小文件；入口只类型校验/索引/明确检查调用/报告，短函数，source每函数<=80行，60以上解释原因，不压缩排版/隐藏巨函数。模块名职责按G1；小型只读索引dataclass及收集器可用，无继承/mixin/插件/动态调度/万能utils，intervals不认识领域模型。不能擅加其他模块，必要扩大范围先报root。
+测试范围：删除旧tests/unit/test_validate.py并迁移到tests/unit/validation/*.py（含必要__init__.py与一个小型共享构造helper），禁止改test_validation_context.py等其它测试。所有原测试函数名/参数化ID/断言/61reason映射/oracle与实例数保留；仅AST导入扫描和跨模块inventory必要适配独立记录。先迁测试，原源码不动，记录收集name[param]清单及162通过/原skip后才拆实现。可以提取纯构造helper缩短oracle，不能将oracle依赖业务函数、搬走断言来糊弄长度；函数/模块实际可读。文件名全仓唯一。无通配导入/重复收集。依赖/锁/工具/原模型/axis/context/mini/原文均只读；无新功能。
+还可写README仅路径调整、docs/work-packages/p1-b-r1.md仅追加实施记录、docs/agents/handoffs/p1-b-r1.md。root正在合法修改AGENTS/规范/进度/CHANGELOG/registry/RESUME/派发log，不得回退或当作者越界。无源码目录/根目录脚本或日志，临时治理捕获仅artifacts/tmp；业务不依赖临时文件。
+完整validate公开签名、docstring、TypeError消息、report.model_dump_json字节和排序保持。差分必须实际做：git show 799ea56:src/scheduler_core/validate.py读取旧实现，内存exec为带__package__='scheduler_core'的模块，用spy在新测试各模块的validate绑定调用时同时跑新旧，比较完整report JSON与异常类型/消息；包含全部原用例和5829oracle输入。不得永久留旧实现副本或引Git作为产品依赖。AST扫描覆盖facade+全部新内部源码，无ortools/numpy/random、反向导入或环。
+不要反复机械每小步跑全部治理套件：原ClaudeB1的每步全量测试至少指整个业务测试集合，最终完整tools/check.py必跑；用实际结果证明每个迁移阶段安全。Python3.11命令uv run --python 3.11 --group dev python -m pytest tests -q -p no:cacheprovider，以及python tools/check.py、layout/source；不可缩检查范围/删skip/改配置求绿。严格mypy/ruff、无type:ignore/noqa新增。G2交接包含文件用途、收集清单对照、断言迁移差异、差分统计、各文件和函数行数（>60理由）、全部命令/输出、疑似缺陷与限制、模型。完成源码与测试再文档；不要在可继续时以“请再安排”终止，持续到完整G2，再等待独立G3返工。
+```
+
+实际spawn包装消息：
+```text
+你是P1-B-R1实施专项。实际模型gpt-6.1-terra/high/fork_turns=none；工作目录D:/Default/Replan-mutil agent，基线799ea56。完整自包含执行载荷在docs/agents/prompts/p1-dispatch-log.v001.md最前“P1-B-R1实施派发载荷”，完整外部Claude计划/实施提示词和root G1在docs/work-packages/p1-b-r1.md。必须先完整读取这两处及载荷列明的AGENTS/规范/来源，然后立即按指定清单实施，先迁测试后拆代码；保持行为和全部测试，持续至G2，无Git操作。代码/测试仅你一位作者，root合法改治理文档，独立reviewer后续只写审查报告。不要只返回计划或半成品；有真实范围/业务阻塞具体报root，其他工作继续。
+```
+
 ## P1-B 当前源码派发（2026-11-10）
 
 外部Claude消息70、72及Δ-B2、完整实施/审查提示词和G1合并在docs/work-packages/p1-b.md。实际spawn配置model=gpt-6.1-terra、reasoning_effort=high、fork_turns=none；运行/root/p1b_code_terra。以下为实际完整派发正文，引用文件构成必读执行上下文。
@@ -147,4 +166,41 @@ G2后验收uv run --python 3.11 --group dev python -m pytest tests -q -p no:cach
 
 ```text
 继续同一测试任务，不改范围：请立即补完你已列明缺失的CB3全部reason正反映射、Δ-B1 a-h、cap1单需求超容量、mini fixture黄金和篡改、确定性/输入不变性/坏引用等完整矩阵。原Claude计划/root派发已完整明确，无真实阻塞、无需再分配。不要在有可继续工作时以“请继续分配”结束；可里程碑汇报但坚持到完整自检和交付。所有测试文件仍由你独占，源码缺陷发作者和root，不改源码。你前述17passed仅中间态，不能替代要求。最终每个reason有实际正反测试名映射（可把映射常量写测试并自检覆盖全部reason，给作者文本汇入handoff），矩阵缺口逐项关闭后通知root最终完成。
+```
+
+## P1-B-R1 阶段A续派（2026-11-10）
+
+### R1 独立审查实际spawn正文
+
+```text
+你是P1-B-R1独立审查专项，gpt-6.1-terra/high/fork_turns=none。工作目录D:/Default/Replan-mutil agent，基线799ea56。先读AGENTS、coding-standards/file-storage-standard/review-gates、PROGRESS/model-policy、docs/work-packages/p1-b-r1.md完整外部Claude76的独立审查提示词及root G1（后者把13推荐模块合并为六实现模块）；按完整提示词执行。只允许写docs/agents/handoffs/p1-b-r1-review.md，其余只读，不看作者会话，无提交/推送/配置或新功能。用户恢复开发且要求简单完整、可读、避免巨型文件；Claude已正常回应，G1 PASS，GitHub已授权cc703/作者chm。
+当前作者/root/p1br1_code_terra阶段A仅迁测试，尚无G2；你先只读基线和迁移中的测试准备AST/参数化/收集清单审查，不在竞态中反复全量跑、不先ACCEPT。等root发A完成可核迁移不减不重；再等源码全部G2后最终G3。root合法改AGENTS/规范/PROGRESS/CHANGELOG/registry/RESUME/派发log不是作者越界。作者测试/源码职责清单在G1：旧巨型tests/unit/test_validate.py删除授权，迁到tests/unit/validation/*.py；src/scheduler_core/validate.py薄入口+validation/{__init__,report,index,task_rules,execution,resources,intervals}.py。其它模型/轴/context/依赖/锁/工具/mini/原文只读。
+最终审查必须真实完成：原162passed/1skip数量和叶子name[param]多重集合保留；61reason、2049/3780oracle及全部旧断言保留，只有路径扫描/inventory适配和纯构造helper提取允许必要变化，别把迁移当删测试。各新源码函数<=80行，60以上说明、短入口、六职责实现模块可读，无继承/mixin/插件/注册/动态分发/万能utils，无压缩凑数、隐蔽长函数或旧实现副本。AST导入覆盖全部内部文件、无环/反向依赖，无numpy/random/ortools。公开签名/docstring/异常/完整report JSON保持；发现旧缺陷只报，不顺手改规则。
+G2后按Claude独立差分要求：内存git show799ea56读旧模块（__package__='scheduler_core'），复核全部测试/5829oracle报告JSON逐字节和异常类型/消息；独立于作者的探针/方式，并另造至少20个边界实例，含RUNNING绑定cap4/未绑定、DONE提前与历史、free不同值、坏引用/环。脚本只内存，不落仓库；不能永久留旧实现。不虚称只比passed即行为相同。最终完整tools/check.py、pytest全套-Python3.11真实结果；对照源码/断言AST及collect去路径多重集。发现REWORK给文件行号/复现证据；全通过后写ACCEPT及覆盖/限制/模型，消息通知root。现在先准备只读审查，等G2信号再完成最终结论。
+```
+
+实施者首轮只完成基线与收集清单，因单回合上下文不足停止，未达到G2；仍用同一Terra/high专项，不改模型/范围、不降级。实际续派：
+
+```text
+继续同一专项，优先完成原计划A“仅迁移测试”，这是具体可完成的子步骤。无需重读未变的历史计划/规范；基线和授权你已核验。现在只按规则族搬tests/unit/test_validate.py到tests/unit/validation/，保留test函数名、参数化、断言，明确helper和inventory/AST扫描必要适配；已有全量基线162/1及collect在artifacts/tmp。先完成迁移、收集ID去路径比较无减无重、完整162passed/1skip，交这个真实里程碑后继续B，若上下文紧则报A完成root再续派，不要反复仅阅读。源码暂不动。你的模型与范围不变，不是外部Claude额度问题；root会持续协调至完整G2。
+```
+
+## P1-B-R1 阶段B–E与唯一G3返工续派
+
+同一Terra/high/fork none会话，范围不变。阶段B实际续派：
+
+```text
+阶段A已收到，继续原计划B–E直到G2。现在只需读当前validate.py及已保存G1清单，不重读历史背景。先提取intervals/report/index，再task_rules/execution/resources与薄facade；严格六个实现模块清单，保留TypeError消息/完整report JSON和所有规则，函数<=80，>60说明，不能只是移长函数。原测试163 ID保留验证已完成；后续原oracle97/93行若适用E门槛，请仅提取纯构造helper以缩短函数，断言/oracle逻辑保留，必要AST差异明确列出。源码拆分后全check、内存spy新旧差分（基线799ea56，所有旧测试含5829oracle）与行数表/交接。持续具体写实现，别每步仅请求续派；有真实阻塞报root，能够继续的独立模块继续。当前同一模型/范围，root和独立reviewer已记录A完成。
+```
+
+G3唯一结构返工实际续派：
+
+```text
+独立G3仅一项结构REWORK，见handoffs/p1-b-r1-review.md：resources.py仍内嵌容量事件扫、日历合并二分、RUNNING跨组扫线；原ClaudeB1明确纯扫描应在intervals，设备规则只调用。当前差分6044+35额外边界均一致，不要改任何行为。请做最小范围返工：把现有循环原样提取到已授权intervals.py，形成几个typed纯函数（例如overloaded_segments、merge_windows/overlapping_windows、cross_overlaps，具体命名简单即可），只收原始int/str/tuple/list并返回/迭代相交ID或区间，不认识Task/Device/Violation/collector；resources保留准备/需求/有效绑定等领域判断及report调用。person与device合并窗口可复用同一merge函数避免重复；不建新文件/类/框架，不扩大业务。源码函数仍<=80，不为行数压缩。其余已通过的测试迁移/API保持；完成后实际复跑完整差分和check，交接追加唯一R1 closure，保留首次G3记录，通知root。尽快完成这个明确收尾，不再额外重构。
+```
+
+独立复审实际续派：
+
+```text
+唯一结构REWORK作者已完成，请独立定向复审最终源码与记录：intervals.py105行，5个纯函数最大31行；resources179行最大49，容量/合并二分/跨组扫线已迁纯算法，领域判断/report留resources，person/device复用merge。作者最终6044差分+check162/1通过。核没有借移动改行为、最末树差分和35自造探针仍一致，再追加原报告closure+最终ACCEPT或具体REWORK。无需重审未变的测试迁移历史或重建所有文档；必要完整check和差分真实记录。root正跑独立末树差分，待你通过即提交同步，不继续扩大重构。
 ```
