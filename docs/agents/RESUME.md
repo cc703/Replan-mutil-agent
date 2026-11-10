@@ -4,7 +4,7 @@
 
 当前本轮P1-B已完成G2与独立G3 ACCEPT：V1–V11、六类上下文、mini、61reason及5829确定性穷举，完整162 passed/1既有skip。交接p1-b.md / p1-b-review.md，计划工作包p1-b.md含原Claude70/72、Δ-B2及G1/G2/G3。作者/测试/审查实际Terra/high/fork none；Git与进度仍总设计师单写。
 
-GitHub已用cc703认证并同步历史d37f2d6，本轮交付待最终G5回执；main演示40cdafd保持不动，禁止强推。当前以PROGRESS、Git状态与远端SHA为准。
+GitHub已用cc703认证，P1-B正式提交1255113bb22b87ffc6c51a3d8de0ab18cc5774f3已推送至codex/p0-governance并核验远端同SHA，G5 PASS；main演示40cdafd保持不动，禁止强推。本轮已结束，按用户要求暂停；后续恢复以PROGRESS、Git状态与远端SHA为准。
 
 用户最新停止边界：本轮P1-B完成同步后停止并汇报，不自动启动P1-C/P2。后续恢复需用户新指令。下一步仍是P1剩余的实例生成与ArtifactStore，不把P1-B完成当P1–P8已完成。用户已委托工程细节，业务规则变更再问；B1/双profile仍DEFERRED。下次实施先取得对应Claude完整计划，若再次额度耗尽按用户要求停止。
 

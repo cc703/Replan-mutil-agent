@@ -1,8 +1,15 @@
 # 项目进度
 
-更新日期：2026-11-10（Asia/Shanghai）。P1-B独立校验器已完成G2与独立G3 ACCEPT；162 passed/1既有系统skip，完整检查通过。GitHub已使用cc703同步历史至d37f2d6；本次P1-B交付待提交推送核验。用户要求本轮结束后停止，不启动下一包；P1整体尚未完成。
+更新日期：2026-11-10（Asia/Shanghai）。P1-B独立校验器已完成G2与独立G3 ACCEPT；162 passed/1既有系统skip，完整检查通过。GitHub已使用cc703推送P1-B提交1255113并核验SHA一致；G5 PASS。本轮结束，按用户要求暂停，不启动下一包；P1整体尚未完成。
 
 用户最新要求：当前P1-B本轮完成后停止并汇报；完成G2/G3、进度更新与普通GitHub同步后暂停，不启动P1-C或P2。
+
+## 本轮交付与停止回执（2026-11-10）
+
+- P1-B正式提交：1255113bb22b87ffc6c51a3d8de0ab18cc5774f3（feat(core): add independent schedule validation）。普通push至origin/codex/p0-governance成功，ls-remote与本地HEAD逐字一致。main仍40cdafd47c66d3dd075d16a81d004eee088b97ab，无覆盖或强推。
+- 总设计师最终完整检查162 passed/1既有skip，ruff/format/mypy15文件、layout/import/source PASS；14文件2447行新增/28行删除，显式暂存已审查清单，密钥常见模式未命中，未含环境/缓存/临时捕获。原Claude70/72捕获保护区与前一HEAD逐段一致。
+- 本轮已完成并按用户要求停止。P1剩余实例生成与ArtifactStore，P2–P8仍TODO；恢复须用户新指令与下一包Claude完整计划，不自动继续。
+- 本回执是后续进度提交，引用已实际同步的P1-B SHA，不自引用当前回执提交。
 
 ## GitHub 恢复同步与目录复核（2026-11-10）
 
@@ -28,7 +35,7 @@
 | OSS-1 | 类似开源项目与 P1 依赖核实 | p1_oss_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3 PASS；G5 PASS | R1修复后独立工程 ACCEPT；仅参考，不安装/改锁 | 已同步d37f2d6，ls-remote核验 | 2026-11-09 | f145a1a |
 | P1-0 | 人员资源与契约缺口提案 | p1_contract_terra | codex/p0-governance | ACCEPTED | G1/G2/G3 PASS；G5 PASS | 已审查推荐按用户新授权落实 | 已同步d37f2d6，ls-remote核验 | 2026-11-09 | 452b2be；授权更新见 ADR 0006 |
 | P1-A | 全数据模型与 TimeAxis 源码 | p1a_code_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3 PASS；G5 PASS | 独立ACCEPT，62 passed/1 skipped，全部检查通过 | 已同步d37f2d6，ls-remote核验 | 2026-11-09 | ac0ba9f |
-| P1-B | V1–V11 独立业务校验器 | p1b_code_terra / p1b_tests_terra / p1b_review_terra | codex/p0-governance | IN-REVIEW | G0/G1/G2/G3 PASS；G4工程委托；G5 PENDING | 独立ACCEPT，162 passed/1 skipped；61reason，5829穷举例 | 历史已同步，本包待推送核验 | 2026-11-10 | 提交主题feat(core): add independent schedule validation |
+| P1-B | V1–V11 独立业务校验器 | p1b_code_terra / p1b_tests_terra / p1b_review_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3/G5 PASS；G4工程委托 | 独立ACCEPT，162 passed/1 skipped；61reason，5829穷举例 | 已推送1255113并核验 | 2026-11-10 | 1255113bb22b87ffc6c51a3d8de0ab18cc5774f3 |
 
 分支为共享集成分支，不表示每个专项都有独立工作树。验收、检查、提交及远端 SHA 必须由总设计师按实际执行结果补记。
 
