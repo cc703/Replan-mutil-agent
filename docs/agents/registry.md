@@ -1,5 +1,7 @@
 # 角色索引
 
+2026-11-11最新：C2已G5同步，最新已核验HEAD08793cd0eac04f673c944cc495a08b195995c2ab，cc703认证、chm作者，main保持原SHA。下一包P1-C3清理/归档已取得Claude消息88完整计划与两份prompt，归档work-packages/p1-c3-claude-initial.md；root G1 REWORK（FAIL）：verify内部一致性与“任意sidecar字段修改均检出”的验收承诺不一致，需最小Δ澄清。Claude随后额度耗尽、提示14:40恢复；未再发送/升级，temp不接新规划。无C3源码专项或源码/依赖改动；不绕过G1。恢复先读p1-c3.md审查及待发请求，Claude修订→root G1→Terra/high/fork none实施与独立G3。超期running按既有存储规范只报告；不进入P2/前后端。
+
 2026-11-11 G5同步已完成：Git使用现有Windows代理后恢复连接，实际Git凭证经GitHub /user核验为cc703；作者chm。源码提交cab8873902c6fa9c1c8cd743abbaf434b54a2c46及状态提交9adedb28497aba36933aeb31c3891b7cf157b038已普通推送至origin/codex/p0-governance，ls-remote与本地HEAD逐字一致；main仍40cdafd47c66d3dd075d16a81d004eee088b97ab。无强推、无历史改写。C2为ACCEPTED，G0/G1/G2/G3/G5 PASS，G4许可已批准；最终工程证据721 passed/1既有skip、68文件静态通过。后续按原顺序请求Claude提供P1清理/归档包计划，经G1后派发，不进入P2或前后端。此前失败及中间状态均为历史。
 
 2026-11-11最终C2收尾：/root/c2_closeout已交付，新独立/root/c2_closeout_review最终ACCEPT，均Terra/high/fork none。Claude消息86→root G1→专项实施→独立复审已完成，temp不再新规划。root冻结回归锁后721+1/68静态全过，G5准备中；以实际Git同步回执为准。
