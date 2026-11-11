@@ -1,5 +1,7 @@
 # 项目进度
 
+G5实际回执（2026-11-11）：本地源码提交cab8873902c6fa9c1c8cd743abbaf434b54a2c46（chm）已完成，工程G3 ACCEPT及721+1/68静态证据不变。普通push至origin/codex/p0-governance失败：本机github.com:443不可达，未配置Git或HTTP代理；远端查询先Connection reset，随后push连接失败128。尚未取得提交后的远端SHA，保持IN-REVIEW/待同步；未强推、未改main、未使用其他账号。已请求用户恢复连接或提供Git专用代理；恢复后还需核实本机cc703认证再普通push核SHA。后续清理归档包尚未启动，合作模式已实际交回Claude。
+
 当前状态（2026-11-11）：Claude合作已恢复，C2收尾独立G3 ACCEPT；root冻结三组回归锁后最终完整check721 passed/1既有symlink权限skip、68文件ruff/format/mypy及来源/布局/导入全部通过。已修复数据入参修改，135样本修前后摘要及9跨hashseed一致；源码与测试冻结。G5正准备本地提交及cc703同步，尚未宣称远端已同步；P1仍缺清理/归档，后续由Claude另包规划，不进入P2/前后端。
 
 2026-11-11当前：按用户指令恢复Claude计划/提示词合作，temp不再接新规划，历史G1来源保留。已向原Claude会话交回C2决定/实际状态并请求收尾增量：assign_times修改数据入参仍未修，文档返工已补但G3未复审、G5未做。昨日717passed/1原skip为修正前完整证据；旧运行句柄不存在，按持久交接恢复，不提前验收。

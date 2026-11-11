@@ -2,6 +2,8 @@
 
 ## 当前续作入口（2026-11-10）
 
+2026-11-11 G5恢复点：本地C2源码cab8873902c6fa9c1c8cd743abbaf434b54a2c46已commit，chm作者；Claude已接回、temp退出新规划，G3 ACCEPT/721+1/68静态已通过。普通push失败（github.com:443直连超时，无Git/环境代理），用户连接信息请求待答；不重复开发或改写提交。连接恢复后只用cc703认证（本机尚缺该凭证），普通push现有codex/p0-governance并ls-remote核SHA，成功后再标ACCEPTED和请求Claude下一清理归档包。不得把本地提交或连接插件账号当已同步。
+
 2026-11-11最新：Claude已接回，C2收尾独立G3 ACCEPT，三组回归锁root已冻结；最终完整check721passed/1原symlink skip、68file全静态与来源/布局/导入通过。当前G5准备提交/同步，cc703本机CLI凭证尚缺（GCM仅其他账号，未使用），不要把插件cc703身份当本机push已成功；实际Git为准。未启动清理/归档或P2，新包继续Claude。下方为各阶段历史恢复记录。
 
 2026-11-11最新覆盖：用户要求“继续，回到与claude执行合作的模式”。已重新打开原Claude会话并提交temp v001/v002决定与C2收尾交接，temp停止新规划。本机实际旧子智能体句柄已缺失（list_agents仅root），不得假定昨日最后一次followup已执行。磁盘assign_times仍原地修改tasks/persons；需Claude收尾增量→rootG1→同模型新实施/独立复审恢复。已有717+1全check是修正前证据，G3 REWORK文档已补但未复审；本包未提交推送。
