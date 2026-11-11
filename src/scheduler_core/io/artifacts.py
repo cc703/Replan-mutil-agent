@@ -11,12 +11,15 @@ import sys
 from collections.abc import Callable, Mapping, Sequence
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Literal, cast
+from typing import TYPE_CHECKING, Literal, cast
 
 from .errors import ArtifactError, RunClosedError, UnsafePathError
 from .manifest import GitInfo, Manifest, read_manifest
 from .paths import _is_link, atomic_write, check_chain, inside, mkdir_chain, relative_path
 from .provenance import config_bytes, git_info
+
+if TYPE_CHECKING:
+    from .cache_area import CacheArea
 
 
 Scalar = str | int | float | bool | None
@@ -66,6 +69,17 @@ class ArtifactStore:
         self.root.mkdir(parents=True, exist_ok=True)
         check_chain(self.root)
         self.clock = clock or _clock
+
+    def cache(self, namespace: Literal["instances"]) -> "CacheArea":
+        """Bind the ``instances`` namespace beneath this store without creating it.
+
+        Returns a CacheArea; other namespaces raise ValueError. Its get and put
+        methods check paths when used, and put publishes read-only files without
+        replacing an existing entry. This method does not modify the store root.
+        """
+        from .cache_area import CacheArea
+
+        return CacheArea(self.root, namespace)
 
     def new_run(
         self,

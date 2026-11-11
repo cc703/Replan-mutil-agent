@@ -91,3 +91,25 @@ run.finish(status="completed", outputs=["raw.csv", "plans/inst1_m.json"])
 ```
 
 `config=None` 保存空配置及其真实哈希；`clock`、`metadata`、`inputs` 和显式 `git` 为调用方提供的工程扩展。调用方负责命令、配置与元数据脱敏以及显式 git 证据真实性。终态文件设置只读；Windows 只读属性不是目录 ACL，不防并发替换或手工改权限。失败的 finish 可能已将部分文件设为只读，需要修改时应新建运行。
+
+### 实例生成与缓存
+
+在仓库根目录设置上文的 `$env:PYTHONPATH="src"` 后，以下 Python 代码加载 YAML 并创建或复用缓存：
+
+```python
+from pathlib import Path
+from scheduler_core.io import ArtifactStore
+from scheduler_core.io.generator_config import load_generator_config
+from scheduler_core.instance_cache import InstanceCache
+
+config = load_generator_config(Path("experiments/configs/generator/default.yaml"))
+result = InstanceCache(ArtifactStore("artifacts")).get_or_generate(
+    "S", 0.8, 0.5, 0, params=config.params, verify_regeneration=True
+)
+print(result.key, result.directory, result.reused, result.regeneration_verified)
+instance = result.instance
+```
+
+纯函数 `generate_instance("S", 0.8, 0.5, 0, params=config.params)` 直接返回内存中的实例，不读写文件；缓存接口返回含实例、路径和复用状态的 `CacheResult`，并可能写入缓存。实例时间采用整数槽，默认每槽 5 分钟；两者均不生成正式计划。`verify_regeneration=True` 会重新生成并比较规范字节。
+
+缓存 SHA-256 用于发现意外损坏，不能证明数据未遭篡改；若数据和元数据的哈希被一起修改，普通复用不会证明其来源。重新生成比较依赖相同生成器版本与 NumPy 版本。缓存发布采用平台 no-replace 原语并拒绝已知链接；不声称能防止恶意并发替换路径。

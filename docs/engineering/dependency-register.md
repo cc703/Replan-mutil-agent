@@ -34,3 +34,15 @@ WP-C 已记录治理检查通过，最终验收及同步以项目进度为准。
 版本和关系以 `uv.lock` 为准；直接依赖在 `pyproject.toml`。MIT 分发时须保留版权和许可声明，PSF-2.0 分发时须保留许可及版权声明，修改时还须按许可说明变更；具体适用义务须以完整许可文本和实际分发形式复核。安装元数据均列有 LICENSE；本次未逐项检查完整发行包、第三方捆绑许可或 NOTICE 内容，不声称已完成发行审计。分发前须检查实际 wheel/源码包及其 NOTICE 和附带许可。P1-A 常规工程引入已按工作包 G1 授权；无新增付费服务或用户业务规则裁决。独立 G3 审查待完成。
 
 P1-C1 ArtifactStore 使用 Python 标准库及已登记 Pydantic；无新增依赖。
+
+## P1-C2 生成器依赖
+
+2026-11-10 核对官方 PyPI 固定版本元数据、Windows CPython 3.11 wheel 及随包许可。版本固定在 `pyproject.toml` / `uv.lock`，均已安装；无新增传递依赖。候选按当前功能需要选择，标准库随机数无法遵循既定 PCG64 子流契约，标准库不含 YAML 解析器。安全漏洞扫描和长期维护状态未核验，发行日期与官方发行文件提供维护证据。
+
+| 包 | 用途及官方来源 | 许可及分发注意事项 |
+|---|---|---|
+| numpy 2.4.6 | 直接运行依赖，PCG64 和独立子流；[PyPI](https://pypi.org/project/numpy/2.4.6/)、[生成器文档](https://numpy.org/doc/2.4/reference/random/generator.html) | [Windows wheel](https://files.pythonhosted.org/packages/c5/31/7fc6239c12bce7e931463251cca4426c465e1876ba3cc785402ef4dd8f4e/numpy-2.4.6-cp311-cp311-win_amd64.whl) 的 LICENSE 包含 NumPy BSD、OpenBLAS BSD-3-Clause、LAPACK BSD-3-Clause-Open-MPI 及静态 GCC runtime GPL-3.0-or-later WITH GCC-exception-3.1，另含组件许可；见 P1-C2 交接。2026-11-10 用户批准作为开发/运行依赖，未来二进制打包分发前另审，不将 wheel 入库。 |
+| PyYAML 6.0.3 | 直接运行依赖，安全读取参数；[PyPI](https://pypi.org/project/PyYAML/6.0.3/) | wheel LICENSE 为 MIT，分发保留版权与许可通知。 |
+| types-PyYAML 6.0.12.20261103 | 直接开发依赖，PyYAML 类型桩；[PyPI](https://pypi.org/project/types-PyYAML/6.0.12.20261103/) | wheel LICENSE 为 Apache-2.0；分发时履行许可及适用的 NOTICE 义务。 |
+
+所用固定 wheel 与校验值、运行探针及未测事项见 `docs/agents/handoffs/p1-c2.md`。已用 mypy 1.15.0 对小型 NumPy/PyYAML 类型探针验证；完整项目检查以 G2 实际结果为准。

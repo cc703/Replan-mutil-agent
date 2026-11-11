@@ -1,0 +1,1 @@
+"""Pure instance generation components."""

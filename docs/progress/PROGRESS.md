@@ -1,10 +1,26 @@
 # 项目进度
 
-更新日期：2026-11-10（Asia/Shanghai）。当前C1 ArtifactStore与manifest已完成G2及独立G3 ACCEPT，250 passed/1既有系统skip，40源码静态与布局/导入/来源全部通过，G5已完成，dba733d已普通推送并核验。本包结束后按用户要求暂停。P1仍缺实例生成与清理/归档工具，P2–P8未开始。
+当前状态（2026-11-11）：Claude合作已恢复，C2收尾独立G3 ACCEPT；root冻结三组回归锁后最终完整check721 passed/1既有symlink权限skip、68文件ruff/format/mypy及来源/布局/导入全部通过。已修复数据入参修改，135样本修前后摘要及9跨hashseed一致；源码与测试冻结。G5正准备本地提交及cc703同步，尚未宣称远端已同步；P1仍缺清理/归档，后续由Claude另包规划，不进入P2/前后端。
 
-当前授权：用户已恢复开发，覆盖上一轮“完成后暂停”；Claude无额度即停止条件保留。先整理523行单函数与1184行测试，再推进C1产物存储和C2实例生成，各包先有Claude计划与G1，完成后检查/审查/同步。
+2026-11-11当前：按用户指令恢复Claude计划/提示词合作，temp不再接新规划，历史G1来源保留。已向原Claude会话交回C2决定/实际状态并请求收尾增量：assign_times修改数据入参仍未修，文档返工已补但G3未复审、G5未做。昨日717passed/1原skip为修正前完整证据；旧运行句柄不存在，按持久交接恢复，不提前验收。
 
-用户当前要求：C1这一part完成G2/G3、提交同步后暂停并汇报；本轮不启动C2、清理工具或前后端。
+Claude合作已实际接回：消息86完整计划/实施与复审提示词已归档，root G1 PASS；新/root/c2_closeout（Terra/high/fork none）实施局部数据副本修正，完成后独立复审。135样本修前canonical摘要已采集供差分，公开generate接口及随机抽取/输出不变。收尾G2/G3/G5仍待完成。
+
+最新授权：用户明确创建temp临时代替Claude计划/提示词，恢复额度后交回，G0–G5流程不变。temp（Terra/high/fork none）已交付v001，旧额度阻塞由此临时解除。
+
+最新执行：temp计划v001与实施/独立审查提示词已归档，root G1 PASS，开始派发C2专项（Terra/high/fork none）。先依赖与平台API核实再编码，保持250+1基线；G2/G3/G5尚未完成。临时计划来源例外仅替代Claude规划，不替代独立审查。
+
+C2联合G2已PASS：root最终完整check 717 passed / 1既有symlink skip，67文件ruff/format/mypy、来源/布局/导入全部通过。IO与生成切片均交接，源码稳定，当前进入IN-REVIEW；G3独立审查待执行，G5待完成，未称同步。
+
+C2独立G3首轮REWORK仅公开API契约文档不足；独立135实例/180DAG/10007浮点缓存与Win安全探针、官方依赖/锁核验及完整检查均通过，未发现其他实质返工。已交两原专项只补docstrings/用法后定向复审，不改变行为或既有断言，仍IN-REVIEW、G5待执行。
+
+本包许可G4已裁决：用户批准NumPy2.4.6官方Windows wheel作为开发/运行依赖安装锁定，记录完整附带许可，未来二进制打包分发另审（ADR0007）。专项已通知继续；不得将根BSD冒充全部发行许可，不更改项目LICENSE。
+
+更新日期：2026-11-10（Asia/Shanghai）。C1已G2/G3/G5同步；当前P1-C2 IN-PROGRESS，root G1已通过，实际/root/p1c2_implementation正在G2前置验证与实施。恢复基线检查250 passed/1既有系统skip、40文件静态及来源/布局/导入通过，不等于新C2测试已通过。P1剩余实例生成与清理/归档，P2–P8未开始。
+
+当前授权：恢复开发覆盖C1后暂停；最新temp例外覆盖Claude额度停线，仅临时替换计划来源。每包计划/G1、实施自检、独立G3与同步不变，不跨P1或提前前后端。
+
+恢复证据：基线0d5b394与远端一致、工作区原本干净。Claude消息82初版与84完整Δ已归档，后因额度耗尽停在G1；temp v001按新授权补齐并通过root G1，历史过程见[C2卡片](../work-packages/p1-c2.md)。NumPy许可G4已解决，当前尚未G2/G3验收、未提交或同步本包。清理归档在C2后另包。
 
 ## 当前C1交付、运行与暂停回执（2026-11-10）
 
@@ -51,6 +67,7 @@ ead0c62087e933748a824426f32c37676c4d230b（refactor(core): split validator into 
 | P1-B | V1–V11 独立业务校验器 | p1b_code_terra / p1b_tests_terra / p1b_review_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3/G5 PASS；G4工程委托 | 独立ACCEPT，162 passed/1 skipped；61reason，5829穷举例 | 已推送1255113并核验 | 2026-11-10 | 1255113bb22b87ffc6c51a3d8de0ab18cc5774f3 |
 | P1-B-R1 | 校验器可读性重构（行为不变） | p1br1_code_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3/G5 PASS | 6044次差分与35独立边界一致，162 passed/1 skip | 已推送ead0c62并核验 | 2026-11-10 | ead0c62087e933748a824426f32c37676c4d230b |
 | P1-C1 | ArtifactStore与manifest | p1c1_storage_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3/G5 PASS | 独立ACCEPT，250 passed/1 skip，40文件静态通过 | 已推送dba733d并核验 | 2026-11-10 | dba733d5bdde997d7c9e8b8f47b0b080805f1695 |
+| P1-C2 | 生成器、配置与实例缓存 | c2_closeout / c2_closeout_review；原实施交接保留 | codex/p0-governance | IN-REVIEW | G0/G1/G2/G3 PASS；G4许可已批准；G5 PENDING | 独立ACCEPT，最终721 passed/1原skip，68文件全静态通过 | 待提交同步 | 2026-11-11 | docs/work-packages/p1-c2.md |
 
 分支为共享集成分支，不表示每个专项都有独立工作树。验收、检查、提交及远端 SHA 必须由总设计师按实际执行结果补记。
 
@@ -58,7 +75,7 @@ ead0c62087e933748a824426f32c37676c4d230b（refactor(core): split validator into 
 
 | 阶段 | 目标 | 状态 |
 | --- | --- | --- |
-| P1 | 数据契约、校验与产出物基础设施 | IN-PROGRESS（模型/TimeAxis/校验器已工程验收；ArtifactStore已工程验收；实例生成与清理/归档待实现） |
+| P1 | 数据契约、校验与产出物基础设施 | IN-PROGRESS（模型/TimeAxis/校验器与ArtifactStore已验收；实例生成器G2通过待独立G3；清理/归档未实现） |
 | P2 | 初始调度 | TODO |
 | P3 | 仿真器 | TODO |
 | P4 | 重规划 | TODO |

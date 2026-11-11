@@ -1,5 +1,23 @@
 # 角色索引
 
+2026-11-11最终C2收尾：/root/c2_closeout已交付，新独立/root/c2_closeout_review最终ACCEPT，均Terra/high/fork none。Claude消息86→root G1→专项实施→独立复审已完成，temp不再新规划。root冻结回归锁后721+1/68静态全过，G5准备中；以实际Git同步回执为准。
+
+2026-11-11最新：用户要求恢复Claude合作；已向原会话提交temp决定与C2真实状态交接，Claude接回planner/prompt-engineer，temp退出新规划。旧四个专项运行句柄当前均不存在，不能假定继续运行；文件交接为恢复依据。C2尚待assign_times数据入参不变性修正、G3复审及G5。
+
+Claude消息86已明确接回并给出完整收尾计划，归档work-packages/p1-c2-claude-closeout.md，root G1 PASS；实际/root/c2_closeout已spawn（Terra/high/fork none），仅写该计划四文件，G2进行中。独立复审将用未参与实现的新专项，不能假称昨日reviewer仍在运行。
+
+收尾实现G2已交付718passed/1原skip，实际新/root/c2_closeout_review（Terra/high/fork none）已spawn，只写p1-c2-review.md追加复审，按Claude消息86完整G3执行，原review矩阵不机械重跑；G3尚未结论。
+
+最新用户已授权temp临时代替Claude计划/提示词：已实际spawn `/root/temp`，gpt-6.1-terra/high/fork_turns=none，角色[temp-planner](temp-planner.md)，完整载荷[p1-c2-temp-dispatch.v001](prompts/p1-c2-temp-dispatch.v001.md)。仅写temp计划与自身交接；root审G1后才派发实施。Claude恢复后交回，不影响在途固定版本。
+
+C2实施：root G1 PASS后已实际spawn `/root/p1c2_implementation`，Terra/high/fork none；完整派发[p1-c2-implementation-dispatch.v001](prompts/p1-c2-implementation-dispatch.v001.md)，主prompt/计划版本固定v001。独占计划限定的新源码/测试/YAML与依赖/锁及自身交接；先核依赖和平台API再编码。G2进行中，独立review尚未派发；root单写集成记录与Git。
+
+C2已切分互斥实施：原作者收敛为IO/配置/依赖/README/IO治理测试；新/root/p1c2_generation（Terra/high/fork none）经原作者确认停止后接管generation所有源码与生成测试。实际完整载荷[p1-c2-generation-dispatch.v001](prompts/p1-c2-generation-dispatch.v001.md)，交接p1-c2-generation.md。总包仍同一G1，不跨阶段。NumPy G4已用户批准（ADR0007）。
+
+C2联合G2由root实测717passed/1原skip及67文件全静态/来源/布局通过；实现已稳定。实际独立/root/p1c2_review已spawn（Terra/high/fork none），只写handoffs/p1-c2-review.md，完整载荷[p1-c2-review-dispatch.v001](prompts/p1-c2-review-dispatch.v001.md)。G3进行中、G5未开始，不提前验收。
+
+P1-C2：用户已恢复开发，外部Claude原会话消息82完整初版与84完整Δ已归档（页面Sonnet 5.5 Medium）。G1 PENDING，尚有卡片末四项一致性待补齐；Claude额度耗尽、提示20:50恢复，已停依赖实施。实施及独立审查专项均未派发；后续仍严格Terra/high/fork none。入口 docs/work-packages/p1-c2.md；root 持有进度与Git，当前仅未提交规划文档。
+
 当前C1运行：/root/p1c1_storage_terra已spawn，gpt-6.1-terra/high/fork_turns=none，storage-steward实施角色，G1/G2/G3最终PASS，G5已同步dba733d，正式运行示例通过；本轮已暂停。持久入口work-packages/p1-c1.md及prompts/p1-dispatch-log.v001.md最前；独占本卡六源码/四测试与最小用法文档，独立/root/p1c1_review_terra已按同模型策略spawn，已完成独立G3 ACCEPT；仅写handoffs/p1-c1-review.md。Git/进度仍root持有。
 
 当前P1-B-R1：/root/p1br1_code_terra已实际spawn，gpt-6.1-terra/high/fork_turns=none，G1/G2/G3/G5最终PASS，ead0c62已推送核验。完整Claude消息76/计划/提示词在工作包p1-b-r1.md，root实际载荷在prompts/p1-dispatch-log.v001.md最前；读该清单恢复。独立/root/p1br1_review_terra已按同模型策略G3预审及正式审查，首轮结构REWORK已关闭，最终ACCEPT；同一实现/审查会话均已交付。所有Git/进度仍总设计师单写。

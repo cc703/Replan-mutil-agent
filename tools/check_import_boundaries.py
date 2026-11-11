@@ -45,6 +45,8 @@ def check(root: Path) -> list[dict[str, str]]:
                         modules = [node.module or ""]
                 for module in modules:
                     top = module.split(".")[0]
+                    if relative == "src/scheduler_core/io/generator_config.py" and top == "yaml":
+                        continue
                     if top not in allowed | sys.stdlib_module_names:
                         errors.append(
                             {

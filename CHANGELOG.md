@@ -6,9 +6,15 @@
 
 ### Changed
 
+- 2026-11-11按用户指令恢复Claude计划/提示词合作，temp历史决定和来源保留；Claude提供C2不修改数据入参的收尾增量，经root G1后恢复专项实施，待独立复审。
+
+- 按用户明确授权启用temp临时计划/提示词角色，Claude额度恢复后交回；保持G0–G5和Terra/high/fork none策略，完整归档Claude与temp方案及实际派发。NumPy官方Windows wheel的运行依赖使用经用户G4批准，二进制分发另审。
+
 - P1-B-R1按职责整理校验器：523行入口缩至67行，六个实现模块与按规则族迁移的测试；原公共接口、报告/异常和全部用例保持。6044次完整新旧差分及35独立边界一致，唯一结构REWORK关闭后G3 ACCEPT；162 passed/1既有skip。
 
 ### Added
+
+- C2纯实例生成器、不可变参数与YAML配置、固定PCG64子流、规范序列化及独立完整性检查；原定S/M/L规模、DAG/人员/容量/日历与期限因素。ArtifactStore新增通用不可覆盖缓存区，顶层实例缓存绑定完整参数哈希并支持重生成核验；Windows真实竞争/junction与失败清理验证。Claude收尾消除任务与人员输入修改，135样本输出差分一致；独立G3 ACCEPT，回归锁纳入后721 passed/1原skip、68文件全静态通过。Linux发布未动态验证。
 
 - C1 ArtifactStore/Run与严格manifest、运行来源/原字节配置哈希、路径及链接守卫、原子终态和只读关闭；四个测试文件新增88项，全量250通过/1原skip，独立G3 ACCEPT，无新增依赖。
 

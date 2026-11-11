@@ -2,6 +2,26 @@
 
 ## 当前续作入口（2026-11-10）
 
+2026-11-11最新：Claude已接回，C2收尾独立G3 ACCEPT，三组回归锁root已冻结；最终完整check721passed/1原symlink skip、68file全静态与来源/布局/导入通过。当前G5准备提交/同步，cc703本机CLI凭证尚缺（GCM仅其他账号，未使用），不要把插件cc703身份当本机push已成功；实际Git为准。未启动清理/归档或P2，新包继续Claude。下方为各阶段历史恢复记录。
+
+2026-11-11最新覆盖：用户要求“继续，回到与claude执行合作的模式”。已重新打开原Claude会话并提交temp v001/v002决定与C2收尾交接，temp停止新规划。本机实际旧子智能体句柄已缺失（list_agents仅root），不得假定昨日最后一次followup已执行。磁盘assign_times仍原地修改tasks/persons；需Claude收尾增量→rootG1→同模型新实施/独立复审恢复。已有717+1全check是修正前证据，G3 REWORK文档已补但未复审；本包未提交推送。
+
+当前执行：已获Claude消息86、root G1通过（work-packages/p1-c2-claude-closeout.md）；实际/root/c2_closeout Terra/high/fork none正在修指定四文件，别重复spawn或覆盖。完成后新独立G3复审，原大矩阵证据保留只做必要回归。temp已退出，后续规划继续Claude。
+
+最新执行：收尾已G2完成，718passed/1原skip、67file静态，9hash相同，root135样本差分一致。实际/root/c2_closeout_review已spawn并正在独立复审，禁止并行改被审源码。仅其review交接最终结论可作为G3证据；G5未提交推送。
+
+最新用户覆盖额度停线条件：已明确授权创建temp代Claude完成计划与提示词，流程不变，额度恢复后再交回Claude。已spawn/root/temp，Terra/high/fork none；仅写p1-c2-temp-plan.v001.md及handoffs/temp-planner.md，root负责G1审查。看temp-planner.md与prompts/p1-c2-temp-dispatch.v001.md。原文/Claude历史计划不改，实施尚未开始。
+
+当前执行已推进：temp v001经root G1 PASS，实际/root/p1c2_implementation（Terra/high/fork none）已启动G2；完整范围和实际载荷见prompts/p1-c2-implementation-dispatch.v001.md及主prompt。恢复先检查专项真实状态与其磁盘交接，不重复spawn；当前仅本实施者写源码/依赖/测试，root不覆盖。独立G3仍待派发，不能将中间通过数当完成。
+
+当前G2已并行切分，旧“仅一个实施者”是切分前历史：IO/配置/依赖方/root/p1c2_implementation，生成器源码及生成测试方/root/p1c2_generation，均Terra/high/fork none；原作者已确认停写generation，四草稿由生成方接管。双方交接分别p1-c2.md与p1-c2-generation.md，完整派发见prompts对应日志。用户NumPy许可G4已解决（ADR0007）；真实依赖安装/API及mypy小探针已过，完整业务G2尚未完成。
+
+C2 G1 v002已通过：为保留既有C1存储依赖断言，业务缓存编排改为顶层scheduler_core.instance_cache，删除未发布旧IO路径、无兼容wrapper。原IO作者按temp v002与root实际prompts/p1-c2-location-dispatch.v002.md迁移；原prompt历史不改。生成199定向通过但G1所需反例覆盖仍补齐，不可把它们转嫁G3或提前验收。
+
+当前联合G2已最终PASS：root完整check717passed/1既有skip、67文件全静态与来源/布局/导入通过。生成与IO两作者已交接稳定；独立/root/p1c2_review（Terra/high/fork none）已实际spawn，完整派发prompts/p1-c2-review-dispatch.v001.md，只写review交接。恢复先核真实专项状态，不重复spawn、不擅自改被审代码；G3尚未结论、G5未做。
+
+最新用户已恢复开发，覆盖下方历史 C1 暂停。当前 P1-C2 规划中：恢复基线 0d5b394 本地远端一致；完整检查 250 passed/1 原 skip、40 文件静态与来源/布局/导入通过。原Claude会话消息82完整初版与84完整Δ已归档（work-packages/p1-c2-claude-initial.md、p1-c2-claude-delta.md），G1 PENDING，四项一致性见p1-c2.md末。Claude额度已用尽，页面提示20:50恢复；按既有条件停依赖实施，无升级/新消息。专项未派发、无源码/依赖改动，仅root未提交规划文档。恢复先读卡片→初版→Δ→G1发现，再向Claude请求最小补齐。浏览器曾读取超时，公开tabs.get+playwright.domSnapshot可读；超时先观察避免重复发送。会话已markHandoff。
+
 当前C1已G2/G3完成，独立ACCEPT，250 passed/1原skip、40文件静态/来源/布局全部通过。六io模块与四测试已落盘；交接handoffs/p1-c1.md、p1-c1-review.md。完整计划初版→Δ→root G1在work-packages/p1-c1.md，实际Terra/high/fork none作者及reviewer用量中断后同模型恢复完成，无降级。G5已完成，dba733d已推送核验；干净提交上的真实c1_smoke运行completed、dirty=false且跨Run写拒绝。本轮按用户要求暂停，不开启C2/清理/前后端。以PROGRESS、真实Git与磁盘为准。
 
 用户已恢复开发，最新强调简单完整、目录清楚、文件可读；覆盖上一轮暂停。基线799ea56已同步，P1-B原业务交付1255113已ACCEPTED。当前实施P1-B-R1行为不变重构：工作包p1-b-r1.md含外部Claude76与root G1；实际/root/p1br1_code_terra，Terra/high/fork none，完整载荷在prompts/p1-dispatch-log.v001.md最前。先迁测试再拆源码，保持162通过/原1skip、61reason和5829oracle，API/报告/异常新旧差分一致。

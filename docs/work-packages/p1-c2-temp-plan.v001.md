@@ -1,0 +1,25 @@
+# P1-C2 temp 计划 v001（待 G1）
+
+来源：用户授权 temp 暂代 Claude；不是 Claude 批准。必读本卡、`p1-c2.md`、`p1-c2-claude-initial.md` 全文再读 `p1-c2-claude-delta.md` 全文；以下覆盖两者冲突处，其他条款完整保留。G1 由总设计师裁决后才派发，发现无法满足的约束即停止报告，不自行扩大范围。原始设计先运行 `python tools/verify_source.py` 并读 spec 41、139、212、470–471、553 和 design 413、423、1131–1137。规模 S 20/5/6、M 60/10/15、L 150/20/35；生成非正式计划，不求解，不进入 P2 或前后端。保留初版及 Δ 中有意义测试，禁止新增 skip/xfail/Hypothesis，禁止删减现有断言。
+
+## 补正契约
+
+1. 输入合法性沿初版及 Δ；浮点先验证再转 IEEE 754 Python float，归一 -0.0 为 +0.0。缓存令牌使用 IEEE 754 binary64 大端字节的 16 位小写十六进制，使用 struct 逆转换；包括最小正次正规数及 1e-21，按域合法性不因缓存拒绝；不同 float 不同令牌，+0/-0 同令牌。key 格式为 `<small|medium|large>_u<16位>_t<16位>_s<seed>`，非默认参数附 `_p<52位>`；最长 large5+_u2+16+_t2+16+_s2+19+_p2+52=116，低于 120，默认参数不加后缀；核对组合 key 满足现有相对路径规则，使用完整参数 SHA-256 的小写无填充 base32（52 字符）而非 8 位前缀，meta 保留原 64 位十六进制；超限应先证明不可能。参数哈希使用参数 JSON 的 UTF-8 规范编码：键排序、无空白、有限数、固定版本；编码方法与缓存版本绑定，完整哈希写 meta 和 key，入参与 YAML 加载等价时一致。
+2. `C(H)==0` 一律视为不满足，绝不构造 Fraction(W,0)。从 hi=1 倍增，若下一值超过 H_MAX 先精确测试 H_MAX，再确实不满足才报 ValueError；满足后在已知不满足的 lo（初始 0）与满足 hi 之间二分，得到最小 H_u，H=max(H_u,CP)。测试 H_MAX 刚好满足、C=0、多日封闭、H_u 与 H_u-1、超限边界。Fraction(float) 精确表示二进制值；层数使用该定义，测试 0.6 等恰近整数的实际二进制结果，不将十进制直觉误当 oracle。
+3. 缓存不得用普通 `os.rename` 声称不覆盖。独立 `io/cache_publish.py` 仅负责通过 ctypes 标准库封装 Windows/Linux 的原子 no-replace 目录发布，其他平台明确失败关闭；先核实原语和 Python 3.11 具体调用，并在本机实际动态探测，Windows `MoveFileExW` 无替换标志、Linux `renameat2(RENAME_NOREPLACE)`；不可用或文件系统不支持时明确失败、清理自身 stage，不降级成有覆盖风险的 rename。仅目标存在的特定系统错误映射 FileExistsError；其他错误保留原因并传播。存在的普通文件、空/非空目录、符号链接和 Windows junction 均绝不覆盖；链接首先报 UnsafePathError。成功发布的并发另一方仅在确认目标存在后读取并完整校验。检验多进程竞争、错误注入、源/目标不变、stage 清理。防链接检查沿用现有 paths 的能力，明确不宣称对恶意并发替换路径具备 TOCTOU 防护；不改变 C1 paths 原有行为；实际验证平台及未验证平台的限制如实记录，不宣称未测支持。若原语无法安全实现，停止报告而非弱化保证。
+4. `GeneratorParams` 不暴露可变嵌套映射：将 S/M/L 类型数存为不可变冻结结构，加载 YAML 映射时严格转换；不得存留调用者映射引用；序列化规范字段仍为原 mapping。测试原输入修改、取值修改、模型复制后的隔离。完整性检查严格每台 compatible device 存在且 capacity ≥ demand；任务 compatible 列表非空、去重；blocked、setups、precedences、persons 各自可为空但非空时引用与唯一性正确。人员 ID 唯一，技能字符串合法，任务所需技能由至少一名人员完整持有；requires_person 且无技能时至少一人；各窗口及所有时间字段严格整数、非负、视野内，数值拒绝非有限；关系引用、重复边、自环及环均拒绝。注意契约模型可能预先拒绝部分错误，测试仍应覆盖边界。
+5. root 已作为原设计内工程细化审定；日历按展示时区 Asia/Shanghai 的当地每日 20:00–次日 08:00 构造，转换成 UTC 整数槽。锚点 2026-01-05T00:00:00Z 为上海 08:00，故该锚点第一个 CLOSED 是 [144,288)，不是原初版的 [0,96)；后续每日同样重复并在 H 裁剪。区分设备 CLOSED 与人员缺勤、MAINT；验算跨天和边界。UTC 存储及 Asia/Shanghai 展示遵守工程规范。默认与 YAML 的漂移守卫保留；配置 hash 是原 YAML 字节哈希，与 params 语义 hash 不混用。
+
+## 实施派发提示词（自包含恢复入口)
+
+实际派发的完整持久化副本见 `docs/agents/prompts/p1-c2-implementation.v001.md`。
+
+你是 P1-C2 专项实施 agent，`gpt-6.1-terra`、`high`、`fork_turns=none`；工作目录 `D:/Default/Replan-mutil agent`。读根 AGENTS、进度、RESUME、coding-standards、file-storage-standard、open-source-policy、dependency-register、review-gates，验证原文，再依次读本卡引用的初版、Δ、本 temp 计划，并查看现有 models、axis、io、独立校验器与导入检查器。按初版全部实施提示词、Δ 全部增量及以上补正执行，冲突以本文件为准；不得冒称 Claude 审核。真实复核 numpy、PyYAML、types-PyYAML 的官方版本、API、许可证、Python 3.11 Windows wheel 和现有 mypy 兼容；候选分别 2.4.6、6.0.3、6.0.12.20261103，非已确认结论。stub 与当前 mypy 不兼容可选经核实的较早固定 stub，不升级 mypy；实读发行许可证并登记。先完成核验再编码。
+
+精确写入：`src/scheduler_core/generate.py`；`src/scheduler_core/generation/{__init__,params,rng,resources,workflow,dag,timing,canonical,integrity}.py`；`src/scheduler_core/io/{instance_cache,cache_area,cache_publish,generator_config}.py`；`experiments/configs/generator/default.yaml`；`tests/unit/generation/{__init__,generation_oracle,test_generate_inputs,test_generate_structure,test_generate_factors,test_generate_determinism,test_generate_canonical,test_generate_dag}.py`；`tests/unit/io/test_instance_cache.py`、`tests/unit/io/test_generator_config.py`、`tests/unit/io/test_cache_area.py`、`tests/unit/io/test_cache_publish.py`；`pyproject.toml`（仅上述依赖）、`uv.lock`、`docs/engineering/dependency-register.md`（仅上述依赖记录）、`README.md`（用法及信任边界）、`docs/agents/handoffs/p1-c2.md`。条件允许 `src/scheduler_core/io/artifacts.py` 仅增加 cache 入口，`io/paths.py` 仅最小必要安全辅助；`tools/check_import_boundaries.py` 仅允许精确模块 `scheduler_core.io.generator_config` 导入 yaml，同时新增 `tests/governance/test_import_boundaries_yaml.py` 证明其他核心/模拟模块仍拒绝。不新增 `tests/unit/io/__init__.py`，避免与标准库 io 冲突；generation 的 init 及范围内辅助 fixture 可用。实际边界检查为全包 CORE_ALLOWED，不能全局添加 yaml。不得更改其他文件、原文、layout、models、axis、已有断言、进度或工作包卡片；布局拒绝时报告 root。所有写盘通过 ArtifactStore，测试使用 tmp_path；不提交、不推送、不改 Git 配置。
+
+实现并验收原版和 Δ 各项，补充本文件的全域浮点、C=0/上限、原子发布与并发失败、深层不可变、每台设备容量、空列表、上海时区和语义参数 hash 正反例。生成器纯函数、NumPy PCG64 独立子流、YAML 外置，复现和跨进程规范字节稳定；不引入新业务。运行 `uv run --python 3.11 --group dev python tools/check.py` 及针对性测试，提供命令、结果、固定依赖官方来源、平台能力、限制与 SHA 证据；实际 baseline 250 passed/1 既有 symlink skip，新增 skip 禁止。若碰到不支持的原语、依赖许可问题或不明确业务语义，停止相关实施并向 root 报告。G3 前不写黄金常量。
+
+## 独立 G3 派发提示词
+
+你是独立审查 agent（同规定模型和推理设置，fork none），不参与实现；按上述恢复入口独立阅读原设计、初版、Δ 和本 temp 文件，先核验原文与 git diff，核对范围和许可/API 证据。唯一允许写 `docs/agents/handoffs/p1-c2-review.md`，不得更改实现或测试，不提交推送。执行初版和 Δ 的完整 G3 清单，并重点独立探针：1e-21、最小次正规数与负零 binary64 令牌往返/唯一性；零容量与 H_MAX 临界值；支持平台 no-replace 的并发和文件/空目录/链接/错误码及清理，列明未测试平台；参数深层不可变与 hash；逐台容量、空列表、人员技能、严格整数与非有限值；上海时区 CLOSED 实际边界及整数槽；YAML 唯一导入模块；多 hashseed 重现。独立 oracle 验证 DAG、人员、时间与规模；检查生成不使用求解、不生成正式计划。运行完整检查和必要的定向测试，独立计算初版 Δ 指定三组回归哈希且跨 PYTHONHASHSEED 比较。以 ACCEPT、REWORK 或 ESCALATE 给结论，逐条列实际命令/结果、证据、未测试限制、严重度及文件行号；不能仅凭实现交接声称通过。最终 G1/G3 与黄金哈希冻结、进度及 Git 均由 root 负责。

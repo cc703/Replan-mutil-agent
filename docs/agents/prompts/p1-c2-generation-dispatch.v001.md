@@ -1,0 +1,14 @@
+# P1-C2 生成切片实际派发 v001
+
+实际/root/p1c2_generation；gpt-6.1-terra/high/fork_turns=none，2026-11-10。同包G1限定范围内互斥切分，IO作者已确认停止generation，无未落盘改动；以下为实际spawn正文。
+
+```text
+角色P1-C2生成器专项，gpt-6.1-terra/high/fork_turns=none，绝对工作目录D:/Default/Replan-mutil agent。用户授权temp暂代Claude，AGENTS已登记；本包root G1 PASS见docs/work-packages/p1-c2.md，仍同一个C2包，仅并行切分互斥文件、不改变功能范围。代码基线0d5b394，既有250passed/1symlink skip，40static全部过。另一个Terra作者/root/p1c2_implementation负责IO、配置/依赖/锁/README/IO治理测试，已明确停止generation并同意你接管其四个落盘草稿generation/__init__.py/params.py/rng.py/timing.py，无未落盘改动。可以审查修改或替换这四草稿，其余旧核心不动。
+完整必读：AGENTS、PROGRESS/RESUME、工程coding/file-storage/open-source/dependency-register/review-gates、模型策略；docs/agents/prompts/p1-c2-implementation.v001.md全文，以及docs/work-packages/p1-c2-claude-initial.md全文→p1-c2-claude-delta.md全文→p1-c2-temp-plan.v001.md全文→p1-c2.md顶部rootG1，后者优先，运行verify_source并核对相关S41/139/212/470-471/553及D413/423/1131-1137原文。不能只用此摘要替代完整方案。
+你独占且仅写：src/scheduler_core/generate.py；src/scheduler_core/generation/{__init__,params,rng,resources,workflow,dag,timing,canonical,integrity}.py；tests/unit/generation/{__init__,generation_oracle,test_generate_inputs,test_generate_structure,test_generate_factors,test_generate_determinism,test_generate_canonical,test_generate_dag}.py；docs/agents/handoffs/p1-c2-generation.md（root授权本并行切片交接）。不改IO/配置/依赖/lock/register/README/tools/已有tests/源原文/AGENTS/进度/卡片/prompt/Git，root单写集成记录。不要新增未列模块，超范围先报。
+你必须完整交付上述generator功能与有意义测试，不是仅计划或初稿。纯generate_instance原4参数+可选params；S20/5/6 M60/10/15 L150/20/35，DAG弱连通/层深/跨组引用，设备多容量/compat逐台capacity>=demand、setup、人员技能AND/可无技能显式需求、日历/缺勤、时窗/期限、PCG64独立子流、全域参数严检、params深层不可变、稳定canonical及integrity。锚点2026-01-05T00Z=上海08:00、当地20-08 CLOSED首[144,288)；Fraction(float)精确层数/利用率/时间计算，C=0搜索/HMAX临界、slot严格integer，所有初版/Δ/temp验收不能省；不求解/不生成正式Plan、不P2/前后端，不改既有业务语义。所有生成留内存/测试tmp_path，不绕ArtifactStore落盘；IO另作者集成。
+接口需尽早协调给/root/p1c2_implementation：from generation.params import GeneratorParams（model_dump(mode='json')规范映射，原草稿TypeCounts/SCALES/Scale可保留或与你变更同步）；canonical.instance_to_bytes(inst)->bytes和instance_from_bytes(bytes)->Instance；integrity.check_generated_profile(inst,scale)，generate_instance(scale,u,t,seed,*,params=None)。生成器别用IO，不用全局random；保证输入/params无修改，校验器可用于跨检查不能复用作为独立oracle。
+NumPy2.4.6/PyYAML6.0.3/types-PyYAML6.0.12.20261103已经另一作者实际安装锁定，mypy1.15小probe通过。NumPy Windows发行包GPL3+GCC runtime例外已用户G4明确“批准按建议使用，继续开发”，对象仅开发运行依赖，完整许可记录、未来二进制分发另审，见ADR0007。不重复问许可，不自己变依赖。公开NumPy API仍按已装版本验证用法。Linux平台未实测由IO方披露不关生成器。
+基线assert不减、新skip/xfail禁止、Hypothesis不引入、golden常量不写。源码150-300/函数20-60参考，职责清楚不写长文件压缩凑数。独立oracle标准库不import生成模块；覆盖3scale×u×t×seed、深度矩阵、跨PYTHONHASHSEED、多因素隔离、非法参数/canonical/integrity和空列表等完整计划验收。先完整实现再有意义测试与mypy/ruff并修复，你自己负责限定文件，不无限重复全量检查；IO仍变化时用定向tests与自己模块static，集成全check由root/IO完成。
+进展用send_message；在没有真实外部阻塞时持续编码测试，不在单模块初稿后final结束。完成限定全部源码与测试、G2交接含文件用途/真实命令结果/未测/限制/实际模型/三组hash与行数表后再DONE。独立G3另派，不能自行验收整体/commit/push/切分支/改Git。
+```

@@ -1,0 +1,13 @@
+# P1-C2 独立 G3 实际派发 v001
+
+2026-11-10，实际/root/p1c2_review；model=gpt-6.1-terra，reasoning_effort=high，fork_turns=none。联合G2通过后派发；以下为实际spawn正文。
+
+```text
+你是P1-C2独立G3审查者，gpt-6.1-terra/high/fork_turns=none，未参与本包任何实现/规划（不要读取作者会话）。工作目录D:/Default/Replan-mutil agent，基线0d5b394，codex/p0-governance，root刚联合G2 PASS：完整check退出0，717passed/1既有symlink权限skip，67file ruff/format/mypy/source/layout/import全过。实现作者已停止写入。user显式授权temp暂代Claude，AGENTS例外已持久化；不能以Claude额度阻塞本轮。NumPy发行许可G4已用户批准，ADR0007（仅开发/运行依赖、未来二进制分发另审），不反复询问已解决许可。仅本P1-C2，P2/前后端未做。
+完整只读输入：AGENTS、PROGRESS、RESUME、model-policy/reviewer角色与工程coding/file-storage/open-source/dependency-register/review-gates；docs/work-packages/p1-c2.md顶部G1v002与联合G2；p1-c2-claude-initial.md完整G3提示词/契约→p1-c2-claude-delta.md完整增量→p1-c2-temp-plan.v001.md完整G3/补正→p1-c2-temp-plan.v002.md完整G3位置增量，后者优先；两作者交接docs/agents/handoffs/p1-c2.md、p1-c2-generation.md；真实diff与相关原文spec41/139/212/470-471/553、design413/423/1131-1137，先verify_source。执行以上完整独立审查要求，不用本摘要代替读取。
+唯一写入docs/agents/handoffs/p1-c2-review.md；源码/测试/主prompt/进度/Git只读，不修改被审文件、不代作者补测试。读Only探针用内存和系统临时目录，pytest带-p no:cacheprovider；必要完整tools/check.py可设置PYTEST_ADDOPTS=-p no:cacheprovider（既有cache_dir警告如实披露）与静态cache在系统temp；不新增skip/不改配置。不checkout/commit/push/Git配置。
+最终范围：generate.py+generation10模块与generation tests8文件；顶层scheduler_core/instance_cache.py业务编排（v2移位置，未发布旧io/instance_cache.py已删除不留wrapper）；io/cache_area/cache_publish/generator_config、ArtifactStore.cache新增入口；默认experiments/configs/generator/default.yaml；IO四测试和精准YAML导入例外治理测试；三个依赖/lock/登记和README。原models/axis/validator/旧tests/原文/layout_rules只读未改；root合法改AGENTS/角色/门禁/进度/CHANGELOG/新ADR/temp与派发历史不是实现越界。不要把历史旧路径视为当前错误。
+独立验证源码正确性/不变规则/测试有效性/完整范围。生成矩阵S20/5/6 M60/10/15 L150/20/35，DAG弱连通最长层深/跨组，精确Fraction nominal W/C与最小H/CP clamp、tau期限公式/上海当地20-08首[144,288)、全部实体引用/人员技能AND/容量setup窗口，类型/NaN/Inf/极端合法参数/深层immutability，固定PCG64索引与因素隔离；自写oracle不复用测试generation_oracle，不靠green tests证正确，不求解不正式Plan。canonical跨进程/集合稳定/JSON各不规范与mutated实例反例，尽量以合法实例单一篡改做反例（无效空schema不能证明目标reject原因）。IO严格YAML全部反例/原字节hash，cachebinary64全域/负零/最长key116/完整params语义hash/损坏一致性与重生成边界；boolflag严格类型是root已发现修复项请复查。CacheArea真实Win no-replace/并发、空非空目标/文件/junction路径链/失败清理与重试/不覆盖，源码无隐蔽导入绕过C1断言，Linux未动态验证不可称通过，TOCTOU不虚报。许可/官方API/实际版本与mypy证据独立复核，NumPy捆绑GCC runtime例外须披露保留已授权范围不泛化纯BSD。
+按原G3要求运行3scale×3u×3tau×5seed独立扫描、DAG ratio/seed矩阵、参数/规则边界；实际自己计算S(.8,.5,0)、M(.6,.25,1)、L(.95,.75,2)三组canonicalSHA并跨PYTHONHASHSEED0/1/2024核对，写交接供root在ACCEPT后freeze regression（你别写goldenfile）。必要完整check+定向探针都真实执行，rootG2仅证据不替代独立验证。代码清晰函数/文件行数参考不是硬凑，检查无巨型函数/测试/框架、公共API完整type/docstring、无删除弱化测试。
+最后给ACCEPT/REWORK/ESCALATE、每发现严重度/文件行/复现证据/建议、覆盖命令实际输出、未测平台/限制、实际模型与新哈希。若REWORK把全部已知问题一次报root与交接，不改代码；root协调原作者修复后同会话复审。不要在预读或单个探针后结束；持续完成全部独立审查再最终结论。
+```

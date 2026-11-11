@@ -1,0 +1,30 @@
+schema_version: 1
+config_version: c2-1
+params:
+  dag_depth_ratio: 0.6
+  extra_edge_prob: 0.15
+  lag_min_max: 2
+  duration_min: 3
+  duration_max: 18
+  device_type_count: {S: 3, M: 4, L: 5}
+  cap_gt1_fraction: 0.2
+  demand2_prob: 0.15
+  multi_type_prob: 0.2
+  setup_prob: 0.3
+  setup_max: 3
+  closed_calendar_fraction: 0.4
+  maint_fraction: 0.3
+  maint_min: 6
+  maint_max: 24
+  release_span: 0.5
+  deadline_slack_span: 3.0
+  hard_deadline_fraction: 0.0
+  persons_per_device: 0.6
+  skill_count: 3
+  min_skill_holders: 2
+  skill_task_prob: 0.4
+  two_skill_prob: 0.2
+  person_no_skill_prob: 0.1
+  person_absence_prob: 0.3
+  absence_min: 24
+  absence_max: 144
