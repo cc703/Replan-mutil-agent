@@ -1,5 +1,7 @@
 # 跨会话恢复清单
 
+2026-11-11 G5同步已完成：Git使用现有Windows代理后恢复连接，实际Git凭证经GitHub /user核验为cc703；作者chm。源码提交cab8873902c6fa9c1c8cd743abbaf434b54a2c46及状态提交9adedb28497aba36933aeb31c3891b7cf157b038已普通推送至origin/codex/p0-governance，ls-remote与本地HEAD逐字一致；main仍40cdafd47c66d3dd075d16a81d004eee088b97ab。无强推、无历史改写。C2为ACCEPTED，G0/G1/G2/G3/G5 PASS，G4许可已批准；最终工程证据721 passed/1既有skip、68文件静态通过。后续按原顺序请求Claude提供P1清理/归档包计划，经G1后派发，不进入P2或前后端。此前失败及中间状态均为历史。
+
 ## 当前续作入口（2026-11-10）
 
 2026-11-11 G5恢复点：本地C2源码cab8873902c6fa9c1c8cd743abbaf434b54a2c46已commit，chm作者；Claude已接回、temp退出新规划，G3 ACCEPT/721+1/68静态已通过。普通push失败（github.com:443直连超时，无Git/环境代理），用户连接信息请求待答；不重复开发或改写提交。连接恢复后只用cc703认证（本机尚缺该凭证），普通push现有codex/p0-governance并ls-remote核SHA，成功后再标ACCEPTED和请求Claude下一清理归档包。不得把本地提交或连接插件账号当已同步。

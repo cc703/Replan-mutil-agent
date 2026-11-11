@@ -1,5 +1,7 @@
 # 角色索引
 
+2026-11-11 G5同步已完成：Git使用现有Windows代理后恢复连接，实际Git凭证经GitHub /user核验为cc703；作者chm。源码提交cab8873902c6fa9c1c8cd743abbaf434b54a2c46及状态提交9adedb28497aba36933aeb31c3891b7cf157b038已普通推送至origin/codex/p0-governance，ls-remote与本地HEAD逐字一致；main仍40cdafd47c66d3dd075d16a81d004eee088b97ab。无强推、无历史改写。C2为ACCEPTED，G0/G1/G2/G3/G5 PASS，G4许可已批准；最终工程证据721 passed/1既有skip、68文件静态通过。后续按原顺序请求Claude提供P1清理/归档包计划，经G1后派发，不进入P2或前后端。此前失败及中间状态均为历史。
+
 2026-11-11最终C2收尾：/root/c2_closeout已交付，新独立/root/c2_closeout_review最终ACCEPT，均Terra/high/fork none。Claude消息86→root G1→专项实施→独立复审已完成，temp不再新规划。root冻结回归锁后721+1/68静态全过，G5准备中；以实际Git同步回执为准。
 
 2026-11-11最新：用户要求恢复Claude合作；已向原会话提交temp决定与C2真实状态交接，Claude接回planner/prompt-engineer，temp退出新规划。旧四个专项运行句柄当前均不存在，不能假定继续运行；文件交接为恢复依据。C2尚待assign_times数据入参不变性修正、G3复审及G5。

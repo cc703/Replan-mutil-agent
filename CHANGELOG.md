@@ -6,6 +6,8 @@
 
 ### Changed
 
+- C2已完成G5：通过现有系统代理恢复Git连接，核验cc703认证，普通推送9adedb2并验证远端SHA，main保持原提交；工程验收与同步均完成，后续仍先由Claude规划P1清理/归档。
+
 - 2026-11-11按用户指令恢复Claude计划/提示词合作，temp历史决定和来源保留；Claude提供C2不修改数据入参的收尾增量，经root G1后恢复专项实施，待独立复审。
 
 - 按用户明确授权启用temp临时计划/提示词角色，Claude额度恢复后交回；保持G0–G5和Terra/high/fork none策略，完整归档Claude与temp方案及实际派发。NumPy官方Windows wheel的运行依赖使用经用户G4批准，二进制分发另审。

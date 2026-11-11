@@ -1,5 +1,7 @@
 # 项目进度
 
+2026-11-11 G5同步已完成：Git使用现有Windows代理后恢复连接，实际Git凭证经GitHub /user核验为cc703；作者chm。源码提交cab8873902c6fa9c1c8cd743abbaf434b54a2c46及状态提交9adedb28497aba36933aeb31c3891b7cf157b038已普通推送至origin/codex/p0-governance，ls-remote与本地HEAD逐字一致；main仍40cdafd47c66d3dd075d16a81d004eee088b97ab。无强推、无历史改写。C2为ACCEPTED，G0/G1/G2/G3/G5 PASS，G4许可已批准；最终工程证据721 passed/1既有skip、68文件静态通过。后续按原顺序请求Claude提供P1清理/归档包计划，经G1后派发，不进入P2或前后端。此前失败及中间状态均为历史。
+
 G5实际回执（2026-11-11）：本地源码提交cab8873902c6fa9c1c8cd743abbaf434b54a2c46（chm）已完成，工程G3 ACCEPT及721+1/68静态证据不变。普通push至origin/codex/p0-governance失败：本机github.com:443不可达，未配置Git或HTTP代理；远端查询先Connection reset，随后push连接失败128。尚未取得提交后的远端SHA，保持IN-REVIEW/待同步；未强推、未改main、未使用其他账号。已请求用户恢复连接或提供Git专用代理；恢复后还需核实本机cc703认证再普通push核SHA。后续清理归档包尚未启动，合作模式已实际交回Claude。
 
 当前状态（2026-11-11）：Claude合作已恢复，C2收尾独立G3 ACCEPT；root冻结三组回归锁后最终完整check721 passed/1既有symlink权限skip、68文件ruff/format/mypy及来源/布局/导入全部通过。已修复数据入参修改，135样本修前后摘要及9跨hashseed一致；源码与测试冻结。G5正准备本地提交及cc703同步，尚未宣称远端已同步；P1仍缺清理/归档，后续由Claude另包规划，不进入P2/前后端。
@@ -69,7 +71,7 @@ ead0c62087e933748a824426f32c37676c4d230b（refactor(core): split validator into 
 | P1-B | V1–V11 独立业务校验器 | p1b_code_terra / p1b_tests_terra / p1b_review_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3/G5 PASS；G4工程委托 | 独立ACCEPT，162 passed/1 skipped；61reason，5829穷举例 | 已推送1255113并核验 | 2026-11-10 | 1255113bb22b87ffc6c51a3d8de0ab18cc5774f3 |
 | P1-B-R1 | 校验器可读性重构（行为不变） | p1br1_code_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3/G5 PASS | 6044次差分与35独立边界一致，162 passed/1 skip | 已推送ead0c62并核验 | 2026-11-10 | ead0c62087e933748a824426f32c37676c4d230b |
 | P1-C1 | ArtifactStore与manifest | p1c1_storage_terra | codex/p0-governance | ACCEPTED | G0/G1/G2/G3/G5 PASS | 独立ACCEPT，250 passed/1 skip，40文件静态通过 | 已推送dba733d并核验 | 2026-11-10 | dba733d5bdde997d7c9e8b8f47b0b080805f1695 |
-| P1-C2 | 生成器、配置与实例缓存 | c2_closeout / c2_closeout_review；原实施交接保留 | codex/p0-governance | IN-REVIEW | G0/G1/G2/G3 PASS；G4许可已批准；G5 PENDING | 独立ACCEPT，最终721 passed/1原skip，68文件全静态通过 | 待提交同步 | 2026-11-11 | docs/work-packages/p1-c2.md |
+| P1-C2 | 生成器、配置与实例缓存 | c2_closeout / c2_closeout_review；原实施交接保留 | codex/p0-governance | ACCEPTED | G0/G1/G2/G3/G5 PASS；G4许可已批准 | 独立ACCEPT，最终721 passed/1原skip，68文件全静态通过 | 已推送9adedb2并核验 | 2026-11-11 | cab8873902c6fa9c1c8cd743abbaf434b54a2c46 |
 
 分支为共享集成分支，不表示每个专项都有独立工作树。验收、检查、提交及远端 SHA 必须由总设计师按实际执行结果补记。
 
@@ -77,7 +79,7 @@ ead0c62087e933748a824426f32c37676c4d230b（refactor(core): split validator into 
 
 | 阶段 | 目标 | 状态 |
 | --- | --- | --- |
-| P1 | 数据契约、校验与产出物基础设施 | IN-PROGRESS（模型/TimeAxis/校验器与ArtifactStore已验收；实例生成器G2通过待独立G3；清理/归档未实现） |
+| P1 | 数据契约、校验与产出物基础设施 | IN-PROGRESS（模型/TimeAxis/校验器、ArtifactStore与实例生成器已验收并同步；清理/归档未实现） |
 | P2 | 初始调度 | TODO |
 | P3 | 仿真器 | TODO |
 | P4 | 重规划 | TODO |
