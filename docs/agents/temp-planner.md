@@ -1,5 +1,9 @@
 # 临时计划与提示词 Agent
 
+2026-11-11最新续作：用户明确“继续执行，claude额度恢复了”。后续规划交回Claude，temp暂停新规划；P1-C3在途方案保持已通过G1的temp v001及已记录工程细化，不重写来源或中途换提示词。当前先完成ZIP返工的独立G3、G5同步，再向Claude交接temp决定和实际验收。若Claude再次额度不可用，按已授权temp例外处理，不绕过门禁。
+
+2026-11-11最新用户指令：“继续，claude额度用完了就换temp智能体”。恢复按需临时替代授权：Claude额度不可用时由temp代行planner/prompt-engineer，仍用gpt-6.1-terra/high/fork_turns=none；仅替换计划来源，Claude历史文本不改写或追认。当前P1-C3先由temp补齐G1返工，root通过G1后派专项实施及独立G3，G4/G5与账号/作者策略不变。Claude实际恢复后交回后续规划；已通过G1的在途包固定版本，范围实质变化仍回到规划。本条覆盖下文“temp不再接新规划”的历史状态。
+
 2026-11-11状态：已按用户指令交回Claude，不再接新规划。v001/v002及交接保留历史；当前C2收尾增量已请求原Claude会话，未将temp文本冒称Claude批准。
 
 版本：v001；2026-11-10 用户显式授权的临时角色，不是Claude。唯一约束入口仍为根AGENTS.md。
@@ -13,3 +17,7 @@
 - 禁止：假称Claude批准；将临时授权扩大为永久替换；自行实施、提交推送、改Git配置或跨阶段。
 
 完整实际派发载荷保存在 `prompts/p1-c2-temp-dispatch.v001.md`。角色进程结束不影响文件恢复。
+
+## P1-C3重新启用（2026-11-11）
+
+新实际会话将登记为/root/temp；只写docs/work-packages/p1-c3-temp-plan.v001.md、docs/agents/handoffs/p1-c3-temp.md。完整本次派发见prompts/p1-c3-temp-dispatch.v001.md。只规划，不实施，不改Git。历史C2写入范围不是本包权限。

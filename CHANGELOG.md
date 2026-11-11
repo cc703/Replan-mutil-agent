@@ -18,6 +18,8 @@
 
 ### Added
 
+- P1-C3：ArtifactStore既有根维护入口、安全树快照、保守引用保护与年龄清理，默认dry-run、显式apply；completed运行确定性ZIP与严格sidecar，不覆盖、保留源运行，独立只读verify。畸形ZIP异常返工关闭，独立G3 ACCEPT；840 passed/1既有skip，90文件静态通过。归档发布仅Windows验证支持，不承诺防篡改或恶意并发安全。
+
 - C2纯实例生成器、不可变参数与YAML配置、固定PCG64子流、规范序列化及独立完整性检查；原定S/M/L规模、DAG/人员/容量/日历与期限因素。ArtifactStore新增通用不可覆盖缓存区，顶层实例缓存绑定完整参数哈希并支持重生成核验；Windows真实竞争/junction与失败清理验证。Claude收尾消除任务与人员输入修改，135样本输出差分一致；独立G3 ACCEPT，回归锁纳入后721 passed/1原skip、68文件全静态通过。Linux发布未动态验证。
 
 - C1 ArtifactStore/Run与严格manifest、运行来源/原字节配置哈希、路径及链接守卫、原子终态和只读关闭；四个测试文件新增88项，全量250通过/1原skip，独立G3 ACCEPT，无新增依赖。

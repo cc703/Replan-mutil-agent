@@ -1,5 +1,21 @@
 # 跨会话恢复清单
 
+2026-11-11 C3工程最终验收：独立G3补审ACCEPT，修后完整check840 passed/1既有symlink权限skip，90文件ruff/format/mypy及来源/布局/导入PASS；root核对修后SHA与保护范围、治理测试34+1通过。ZIP异常返工已关闭，严格sidecar、路径/引用/部分删除/发布回滚/CLI独立探针通过；socket以模式替身覆盖并披露。Claude消息90已实际接回后续规划，temp退出新规划，在途C3来源不改。当前准备chm提交与cc703普通同步，G5尚未完成，不宣称已同步。
+
+2026-11-11最新续作：用户明确“继续执行，claude额度恢复了”。后续规划交回Claude，temp暂停新规划；P1-C3在途方案保持已通过G1的temp v001及已记录工程细化，不重写来源或中途换提示词。当前先完成ZIP返工的独立G3、G5同步，再向Claude交接temp决定和实际验收。若Claude再次额度不可用，按已授权temp例外处理，不绕过门禁。
+
+2026-11-11 C3独立G3首个确认REWORK：真实ZIP local/central压缩方法99且sidecar哈希自洽时，verify未捕获NotImplementedError，CLI返回1+traceback而非拒绝3。reviewer已固定现场；仅放行归档作者最小修archive_verify及必要既定测试/自身交接，其他源码仍冻结。reviewer暂缓该变动文件，继续稳定模块审查；修后独立复测及联合检查，G3/G5未通过。完整派发及证据见两方handoff。
+
+2026-11-11 C3联合G2 PASS：root完整check836 passed/1既有symlink权限skip，90文件ruff/format/mypy及来源/布局/导入全部通过；两作者已停写。原C1/C2/模型/校验器/生成器和旧测试断言未改，新增维护入口/清理/归档及测试。README归档说明root已集成。准备新独立G3（Terra/high/fork none），G3结论/G5未完成，不提前验收。
+
+2026-11-11并行切分：共享scan_tree/TreeSnapshot接口已固定（见实际派发）；/root/p1c3_cleanup继续共享/清理实现，尚有未完成入口，不能当G2通过。已实际spawn/root/p1c3_archive（Terra/high/fork none），只写archive系列四源码、归档CLI/测试及自身handoff；完整载荷prompts/p1-c3-archive-dispatch.v001.md。共享仍cleanup单写，归档说明root后续集成；两者不得覆盖对方。联合G2/独立G3/G5未完成。
+
+2026-11-11实际实施已启动：/root/p1c3_cleanup已通过spawn参数gpt-6.1-terra/high/fork none派发，完整载荷prompts/p1-c3-cleanup-dispatch.v001.md。独占共享入口/安全快照/清理相关白名单；先交公共API，再派归档作者，不并行写shared。root持有进度/卡片/Git；temp v001已冻结，不参与实现或独立G3。G2进行中，不能把C2基线当C3通过。
+
+2026-11-11 P1-C3：temp v001已完整交付，root G1 PASS，冻结文件与SHA见卡片。原verify任意元数据修改检出承诺已修正为严格格式与内部一致性；新ArtifactStore维护入口、引用保护、只读dry-run和发布失败规则明确。开始先派cleanup专项，共享API稳定后派归档专项；所有Codex专项Terra/high/fork none。G2/G3/G5未完成，仍P1，无真实产物apply。
+
+2026-11-11续作：用户明确“继续，claude额度用完了就换temp智能体”，已恢复按需temp授权。实际/root/temp通过followup重新启动（原句柄仍存在；不是新建同名会话），沿用Terra/high/fork none；完整本次载荷prompts/p1-c3-temp-dispatch.v001.md。只写C3 temp计划与自身交接，补齐Claude消息88及root G1 REWORK。G1仍未通过，无C3源码写入授权；root不绕过门禁。基线43b19a4已远端核验、原工作区干净、main未变，来源全文/分批复核PASS。后续temp完整方案→root G1→专项G2→独立G3→root G5，仍不跨P1。
+
 2026-11-11最新：C2已G5同步，最新已核验HEAD08793cd0eac04f673c944cc495a08b195995c2ab，cc703认证、chm作者，main保持原SHA。下一包P1-C3清理/归档已取得Claude消息88完整计划与两份prompt，归档work-packages/p1-c3-claude-initial.md；root G1 REWORK（FAIL）：verify内部一致性与“任意sidecar字段修改均检出”的验收承诺不一致，需最小Δ澄清。Claude随后额度耗尽、提示14:40恢复；未再发送/升级，temp不接新规划。无C3源码专项或源码/依赖改动；不绕过G1。恢复先读p1-c3.md审查及待发请求，Claude修订→root G1→Terra/high/fork none实施与独立G3。超期running按既有存储规范只报告；不进入P2/前后端。
 
 2026-11-11 G5同步已完成：Git使用现有Windows代理后恢复连接，实际Git凭证经GitHub /user核验为cc703；作者chm。源码提交cab8873902c6fa9c1c8cd743abbaf434b54a2c46及状态提交9adedb28497aba36933aeb31c3891b7cf157b038已普通推送至origin/codex/p0-governance，ls-remote与本地HEAD逐字一致；main仍40cdafd47c66d3dd075d16a81d004eee088b97ab。无强推、无历史改写。C2为ACCEPTED，G0/G1/G2/G3/G5 PASS，G4许可已批准；最终工程证据721 passed/1既有skip、68文件静态通过。后续按原顺序请求Claude提供P1清理/归档包计划，经G1后派发，不进入P2或前后端。此前失败及中间状态均为历史。

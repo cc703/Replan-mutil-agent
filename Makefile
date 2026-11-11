@@ -6,4 +6,4 @@ check-layout:
 test-governance:
 	uv run --python 3.11 --group dev python -m pytest -q
 clean-tmp:
-	uv run --python 3.11 --group dev python tools/check.py --list-tmp
+	uv run --python 3.11 --group dev python tools/clean_artifacts.py --kind tmp --older-than 7d

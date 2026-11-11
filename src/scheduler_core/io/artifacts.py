@@ -20,6 +20,7 @@ from .provenance import config_bytes, git_info
 
 if TYPE_CHECKING:
     from .cache_area import CacheArea
+    from .maintenance import Maintenance
 
 
 Scalar = str | int | float | bool | None
@@ -69,6 +70,38 @@ class ArtifactStore:
         self.root.mkdir(parents=True, exist_ok=True)
         check_chain(self.root)
         self.clock = clock or _clock
+
+    @classmethod
+    def open_existing(
+        cls, root: str | Path, *, clock: Callable[[], datetime] | None = None
+    ) -> "ArtifactStore":
+        """Bind an existing non-project directory without creating anything.
+
+        Reject filesystem roots, links in the original path and project markers
+        with UnsafePathError. The optional clock must return an aware datetime.
+        """
+        original = Path(root)
+        check_chain(original)
+        absolute = Path(os.path.abspath(original))
+        check_chain(absolute)
+        if absolute == Path(absolute.anchor) or not absolute.is_dir():
+            raise UnsafePathError("maintenance root must be an existing non-root directory")
+        if os.path.lexists(absolute / ".git") or os.path.lexists(absolute / "pyproject.toml"):
+            raise UnsafePathError("maintenance root is a project directory")
+        instance = cls.__new__(cls)
+        instance.root = absolute
+        instance.clock = clock or _clock
+        return instance
+
+    def maintenance(self) -> "Maintenance":
+        """Return a maintenance interface without writing to the filesystem.
+
+        Its planning methods validate the existing root before use; apply methods
+        require explicit invocation and revalidate their input plans.
+        """
+        from .maintenance import Maintenance
+
+        return Maintenance(self)
 
     def cache(self, namespace: Literal["instances"]) -> "CacheArea":
         """Bind the ``instances`` namespace beneath this store without creating it.

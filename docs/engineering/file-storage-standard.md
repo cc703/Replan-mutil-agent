@@ -154,3 +154,14 @@ P0 验证入口：`python tools/check.py`。当前工具检查 Git 视角文件�
 通过 `ArtifactStore.new_run` 创建运行，用 `run.path` 获取安全路径或 `run.write_json` 写入 JSON，输出存在后用 `run.finish` 发布终态。`read_manifest` 验证目录身份、配置哈希和输出。可传入配置、时间、输入、元数据与 Git 证据；调用方负责脱敏与显式证据真实性。Windows 只读属性不等于 ACL 或防并发篡改，finish 失败可能使部分输出已只读，修改需新建运行。
 
 运行目录拒绝共享硬链接；请先复制文件，再将副本放入运行目录。
+
+### 清理操作
+
+`tools/clean_artifacts.py --kind tmp` 默认为 7 天检查，`--kind failed-runs` 默认 14 天；仅显式 `--apply` 执行删除。结果索引使用完整运行 ID 或完整 `artifacts/runs/<kind>/<name>` 路径登记；不识别缩写、大小写变体或口头描述。名称级路径使用保守子串匹配，可能保护更多运行。索引不明确、不可读或非法时拒绝删除。只读文件可由维护程序删除，不能作为防篡改措施；不保证抵御恶意并发文件系统变更。
+
+
+### 清理与归档工具边界（P1-C3）
+
+`ArtifactStore.open_existing` 绑定既有安全根，`maintenance()` 提供只读计划、显式清理、归档和核验；两个 CLI 默认 dry-run 且不创建缺失目录。failed-runs 按 failed/partial 的 ended_at 判断，最少14天；running 永不自动删除，只报告超期。tmp 按条目及后代最新修改时间判断，边界相等不清理。INDEX 缺失报告无登记引用，不可读或规范路径截断歧义拒绝删除；登记应含完整 run_id 或规范名称级路径，名称前缀可导致保守多保护。apply 重读引用并重验候选，失败报告剩余路径，不清理完成运行和已有归档。
+
+`tools/archive_run.py` 默认 dry-run，显式 --apply 仅压缩 completed，保留源运行且拒绝覆盖 ZIP 或 sidecar；--verify 无解压、无需源运行，只检查严格格式、内容及内嵌来源的一致性。合法侧文件元数据或自洽改写可能通过，无外部可信锚时不提供防篡改保证。归档上限16层/100000普通文件，扫描提前拒绝超限；ZIP/sidecar双文件发布不是单一事务，失败可能保留部分结果并需人工检查。Windows 普通文件 no-replace 已动态验证；其他平台的归档发布明确拒绝，不宣称 Linux 已验证。所有实际删除/归档须由操作者显式选择，本包验收仅操作临时构造数据。
