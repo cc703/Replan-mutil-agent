@@ -1,5 +1,7 @@
 # 角色索引
 
+2026-11-11 G5完成：P1-C3源码50e3ac91f714db8eb110db48ee7157b5f67eaac4（chm）已由实际认证cc703普通推送至origin/codex/p0-governance，ls-remote逐字核验一致，main仍40cdafd47c66d3dd075d16a81d004eee088b97ab；无强推或改写历史。独立G3最终ACCEPT、840 passed/1原skip、90文件全静态与来源/布局/导入通过。C3为ACCEPTED；P1各工程包全部完成并同步，阶段验收ACCEPTED，P2–P8仍TODO。Claude消息90已接回后续规划，temp决定与历史来源保留，B1/solver延期决策不变。此回执引用已实际同步源码，不自引用当前提交。
+
 2026-11-11 C3工程最终验收：独立G3补审ACCEPT，修后完整check840 passed/1既有symlink权限skip，90文件ruff/format/mypy及来源/布局/导入PASS；root核对修后SHA与保护范围、治理测试34+1通过。ZIP异常返工已关闭，严格sidecar、路径/引用/部分删除/发布回滚/CLI独立探针通过；socket以模式替身覆盖并披露。Claude消息90已实际接回后续规划，temp退出新规划，在途C3来源不改。当前准备chm提交与cc703普通同步，G5尚未完成，不宣称已同步。
 
 2026-11-11最新续作：用户明确“继续执行，claude额度恢复了”。后续规划交回Claude，temp暂停新规划；P1-C3在途方案保持已通过G1的temp v001及已记录工程细化，不重写来源或中途换提示词。当前先完成ZIP返工的独立G3、G5同步，再向Claude交接temp决定和实际验收。若Claude再次额度不可用，按已授权temp例外处理，不绕过门禁。
