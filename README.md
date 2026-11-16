@@ -2,7 +2,7 @@
 
 本科毕业设计项目：把自然语言需求解析、约束求解、独立校验和用户确认连接起来，以仿真验证动态调度与重规划。
 
-当前为 **P1 基础源码阶段**：数据模型、时间轴、独立业务校验器、实例生成器、ArtifactStore、清理与归档工具已实现。求解器、仿真器和应用尚未实现；工程验收及远端同步状态以项目进度为准。
+当前进入 **P2 初始调度**。已有数据模型、时间轴、独立校验器、实例生成器和 ArtifactStore。初始排程使用 OR-Tools CP-SAT，验收与同步状态见[项目进度](docs/progress/PROGRESS.md)。
 
 ## 开始阅读
 
@@ -32,7 +32,7 @@
 | tools/ | 可复用治理检查与维护工具 |
 | tests/ | 治理测试与业务单元测试 |
 | artifacts/ | 本地生成物；仅 README.md 入库 |
-| src/scheduler_core/ | 数据模型、精确 UTC 时间轴、独立 V1–V11 校验器与验证上下文 |
+| src/scheduler_core/ | 数据模型、UTC 时间轴、CP-SAT 初始调度、独立 V1–V11 校验器与验证上下文 |
 | apps/ | 后续阶段的 Spring Boot 与 Vue 应用 |
 | experiments/ | 后续实验代码、配置与实验性基线 |
 | data/ | 允许入库且来源明确的输入数据 |
@@ -43,6 +43,22 @@
 
 用户裁决重大设计问题；Claude 在每个实施工作包前出计划和提示词；Codex 总设计师审查、派发、集成、验收并同步 GitHub。专项智能体仅在各自文件范围内实施。角色定义保存在仓库，运行实例随任务创建，不意味着后台永久运行。
 
+
+## 运行初始排程
+
+在仓库根目录的 PowerShell 中执行 `$env:PYTHONPATH="src"`，用 `uv run --locked --python 3.11 python` 进入解释器。下面的例子只优化完工时间，黄金实例的最优解为 10 槽。
+
+```python
+from pathlib import Path
+from scheduler_core.models import Instance
+from scheduler_core.solve_initial import solve_initial_detailed
+
+inst = Instance.model_validate_json(Path("data/fixtures/mini.json").read_bytes())
+result = solve_initial_detailed(inst, objective_weights={"imbalance": 0})
+print(result.status, result.plan.metrics.makespan if result.plan else None)
+```
+
+默认目标同时考虑完工时间和同类设备负载差。只有通过独立校验的排程才会返回。限时内找到可行解但尚未证明最优时，状态为 `FEASIBLE`。限时内尚无结论时，状态为 `UNKNOWN`。
 
 ## 独立计划校验
 

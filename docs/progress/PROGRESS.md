@@ -1,5 +1,7 @@
 # 项目进度
 
+2026-11-16 P2-1 工程验收通过，待推送验收标记。初始调度面向 PENDING 任务，正式结果通过独立校验器。859 个测试通过，1 个既有权限跳过项，95 个文件静态检查通过。下一包 P2-2 搜索策略与等价设备剪枝。[工作包及验收](../work-packages/p2-1.md)
+
 2026-11-11 G5完成：P1-C3源码50e3ac91f714db8eb110db48ee7157b5f67eaac4（chm）已由实际认证cc703普通推送至origin/codex/p0-governance，ls-remote逐字核验一致，main仍40cdafd47c66d3dd075d16a81d004eee088b97ab；无强推或改写历史。独立G3最终ACCEPT、840 passed/1原skip、90文件全静态与来源/布局/导入通过。C3为ACCEPTED；P1各工程包全部完成并同步，阶段验收ACCEPTED，P2–P8仍TODO。Claude消息90已接回后续规划，temp决定与历史来源保留，B1/solver延期决策不变。此回执引用已实际同步源码，不自引用当前提交。
 
 2026-11-11 C3工程最终验收：独立G3补审ACCEPT，修后完整check840 passed/1既有symlink权限skip，90文件ruff/format/mypy及来源/布局/导入PASS；root核对修后SHA与保护范围、治理测试34+1通过。ZIP异常返工已关闭，严格sidecar、路径/引用/部分删除/发布回滚/CLI独立探针通过；socket以模式替身覆盖并披露。Claude消息90已实际接回后续规划，temp退出新规划，在途C3来源不改。当前准备chm提交与cc703普通同步，G5尚未完成，不宣称已同步。
@@ -101,7 +103,7 @@ ead0c62087e933748a824426f32c37676c4d230b（refactor(core): split validator into 
 | 阶段 | 目标 | 状态 |
 | --- | --- | --- |
 | P1 | 数据契约、校验与产出物基础设施 | ACCEPTED（模型/TimeAxis、独立校验器、生成器、ArtifactStore及清理/归档均验收同步） |
-| P2 | 初始调度 | TODO |
+| P2 | 初始调度 | IN-PROGRESS（P2-1 工程验收通过，下一包 P2-2） |
 | P3 | 仿真器 | TODO |
 | P4 | 重规划 | TODO |
 | P5 | 诊断、松弛和候选 | TODO |

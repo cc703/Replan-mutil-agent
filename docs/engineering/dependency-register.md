@@ -46,3 +46,11 @@ P1-C1 ArtifactStore 使用 Python 标准库及已登记 Pydantic；无新增依�
 | types-PyYAML 6.0.12.20261103 | 直接开发依赖，PyYAML 类型桩；[PyPI](https://pypi.org/project/types-PyYAML/6.0.12.20261103/) | wheel LICENSE 为 Apache-2.0；分发时履行许可及适用的 NOTICE 义务。 |
 
 所用固定 wheel 与校验值、运行探针及未测事项见 `docs/agents/handoffs/p1-c2.md`。已用 mypy 1.15.0 对小型 NumPy/PyYAML 类型探针验证；完整项目检查以 G2 实际结果为准。
+
+## P2-1 OR-Tools 开发环境
+
+2026-11-11：用户授权本机开发、测试和运行，二进制对外打包分发前另审，不提交 wheel。`ortools==9.15.6755` 已锁定和安装；[PyPI 固定版本及 wheel](https://pypi.org/project/ortools/9.15.6755/)，[对应源码 Apache-2.0](https://github.com/google/or-tools/blob/v9.15/LICENSE)，[依赖构建配置](https://github.com/google/or-tools/blob/v9.15/cmake/dependencies/CMakeLists.txt)。CP-SAT 为既定方案，标准库不提供该求解器；不新增服务。发布文件与官方源码为维护证据，未作漏洞审计。Apache 分发须提供许可、保留适用版权及 NOTICE、修改文件须注明变更，专利条款亦须审查。
+
+Windows cp311 wheel SHA256 `781fb09d6c9f46015291f706bd7c7e0815db1bec6e92c74716342fb7ea2d0532`，实际包含 abseil、bz2、highs、protobuf、scip、utf8 validity、re2、zlib 等 DLL；wheel 仅发现顶层 LICENSE，未完整核实静态链接与全部捆绑组件版本和许可，不能把根许可覆盖所有组件。源码构建配置的候选版本不能证明该 wheel 的实际构成，bzip2 引用 master。发行前须完成实际 wheel 全组件、许可及 NOTICE 审查。用户此次批准仅覆盖本地使用。
+
+锁定传递依赖的已安装元数据：absl-py 2.5.1 Apache-2.0；immutabledict 4.3.1 MIT；pandas 3.1.1 BSD-3-Clause（wheel 另列多项第三方许可）；protobuf 6.33.6 BSD-3-Clause；python-dateutil 4.0.0 BSD-3-Clause；tzdata 2026.6 Apache-2.0；已有 typing-extensions 4.16.0 PSF-2.0、numpy 2.4.6。版本来源 `uv.lock`，官方固定版本元数据可通过 `https://pypi.org/pypi/<包名>/<版本>/json` 核查；此为包元数据而非完整分发审计。MIT/BSD 再分发需保留版权、许可及免责声明，PSF 与 Apache 按各文本履行；实际 wheel 的附带许可、NOTICE 与二进制义务仍须发行前逐项核查。锁定保留既有版本；安全扫描未执行。
