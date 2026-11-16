@@ -1,9 +1,11 @@
 """Build and solve the initial CP-SAT model."""
 
 from dataclasses import dataclass
+import time
 from typing import Any
 from ortools.sat.python import cp_model
 from scheduler_core.models import Assignment, Instance
+from .search import _merge
 from .weights import LIMIT, scale_weights
 
 
@@ -17,18 +19,6 @@ class RawResult:
     gap: float | None
     wall_seconds: float
     reasons: tuple[str, ...]
-
-
-def _merge(windows: list[tuple[int, int]], horizon: int) -> list[tuple[int, int]]:
-    merged: list[tuple[int, int]] = []
-    for start, end in sorted(
-        (max(0, s), min(horizon, e)) for s, e in windows if s < horizon and e > 0
-    ):
-        if merged and start <= merged[-1][1]:
-            merged[-1] = (merged[-1][0], max(end, merged[-1][1]))
-        else:
-            merged.append((start, end))
-    return merged
 
 
 def _add_objective(
@@ -166,6 +156,9 @@ def run_model(
     num_workers: int,
     seed: int,
     objective_weights: dict[str, float] | None,
+    *,
+    use_search: bool = True,
+    use_strategy: bool | None = None,
 ) -> RawResult:
     """Solve a prevalidated pending instance, returning raw status and assignments."""
     h = inst.axis.horizon_slots
@@ -179,8 +172,23 @@ def run_model(
     model, starts, ends, selected, people, cmax, imbalance = _build_model(
         inst, h, load_bound, cm, ci
     )
+    search_start = time.perf_counter()
+    if use_search:
+        from .search import add_hint, add_symmetry_breaking, ordered_task_ids
+
+        ordered_ids = ordered_task_ids(inst)
+        add_symmetry_breaking(model, inst, selected, ordered_ids)
+        if use_strategy:
+            model.add_decision_strategy(
+                [starts[tid] for tid in ordered_ids],
+                cp_model.CHOOSE_FIRST,
+                cp_model.SELECT_MIN_VALUE,
+            )
+        add_hint(model, inst, ordered_ids, starts, selected, people, time_limit_s)
     solver = cp_model.CpSolver()
-    solver.parameters.max_time_in_seconds = time_limit_s
+    solver.parameters.max_time_in_seconds = max(
+        0.0, time_limit_s - (time.perf_counter() - search_start)
+    )
     solver.parameters.num_search_workers = num_workers
     solver.parameters.random_seed = seed
     status = solver.solve(model)

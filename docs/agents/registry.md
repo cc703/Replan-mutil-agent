@@ -1,5 +1,7 @@
 # 角色索引
 
+P2-2 规划交回侧栏 Claude，p22_search、p22_hint、p22_tests 实施，p22_g3 独立审查。[P2-2 计划及派发](../work-packages/p2-2-claude-plan.v001.md)
+
 P2-1 由 temp 补全计划，p2_model、p2_api、p2_tests 分工实施，p2_g3 独立审查；版本、写入范围及模型见[P2-1 卡](../work-packages/p2-1.md)。
 
 2026-11-11 G5完成：P1-C3源码50e3ac91f714db8eb110db48ee7157b5f67eaac4（chm）已由实际认证cc703普通推送至origin/codex/p0-governance，ls-remote逐字核验一致，main仍40cdafd47c66d3dd075d16a81d004eee088b97ab；无强推或改写历史。独立G3最终ACCEPT、840 passed/1原skip、90文件全静态与来源/布局/导入通过。C3为ACCEPTED；P1各工程包全部完成并同步，阶段验收ACCEPTED，P2–P8仍TODO。Claude消息90已接回后续规划，temp决定与历史来源保留，B1/solver延期决策不变。此回执引用已实际同步源码，不自引用当前提交。

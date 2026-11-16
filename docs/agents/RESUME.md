@@ -1,6 +1,6 @@
 # 跨会话恢复清单
 
-2026-11-16 P2-1 已通过独立工程审查。当前状态、下一包及同步记录见[项目进度](../progress/PROGRESS.md)与[P2-1 卡](../work-packages/p2-1.md)。
+2026-11-16 P2-1 验收标签 p2-1-accepted；P2-2 的独立审查与修复后验证已通过。下一阶段为 P3 仿真。见[项目进度](../progress/PROGRESS.md)和[P2-2 验收](handoffs/p2-2-review.md)。
 
 2026-11-11 G5完成：P1-C3源码50e3ac91f714db8eb110db48ee7157b5f67eaac4（chm）已由实际认证cc703普通推送至origin/codex/p0-governance，ls-remote逐字核验一致，main仍40cdafd47c66d3dd075d16a81d004eee088b97ab；无强推或改写历史。独立G3最终ACCEPT、840 passed/1原skip、90文件全静态与来源/布局/导入通过。C3为ACCEPTED；P1各工程包全部完成并同步，阶段验收ACCEPTED，P2–P8仍TODO。Claude消息90已接回后续规划，temp决定与历史来源保留，B1/solver延期决策不变。此回执引用已实际同步源码，不自引用当前提交。
 
