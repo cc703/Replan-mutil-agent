@@ -196,3 +196,91 @@ def test_snapshot_record_base_mismatch() -> None:
     assert reasons(report, "V8", "FROZEN_DEVICE_CHANGED") == [["a"]]
     rec.device_id = "d"
     assert validate(inst, plan, base=base, context=ctx).passed
+
+
+def test_not_started_evidence_freeze_and_invalid_matrix() -> None:
+    from scheduler_core.validation_context import (
+        ExecutionSnapshot,
+        NotStartedEvidence,
+        ValidationContext,
+    )
+
+    inst = instance()
+    inst.now = 10
+    inst.tasks = [inst.tasks[0]]
+    base = Plan(
+        id="base", assignments={"a": Assignment(task_id="a", device_id="d", start=2, end=6)}
+    )
+    plan = Plan(
+        id="new",
+        parent_id="base",
+        assignments={"a": Assignment(task_id="a", device_id="d", start=10, end=14)},
+    )
+    evidence = NotStartedEvidence(
+        task_id="a",
+        base_plan_id="base",
+        planned_device_id="d",
+        planned_start=2,
+        planned_end=6,
+        planned_person_id=None,
+        blocked_at=9,
+        observed_at=9,
+        event_id="event",
+    )
+    ctx = ValidationContext(
+        snapshot=ExecutionSnapshot(plan_id="base", as_of=10, base_as_of=5), not_started=[evidence]
+    )
+    assert validate(inst, plan, base=base, free={"a"}, context=ctx).passed
+    assert not validate(inst, plan, base=base, free={"a"}).passed
+    for field, value in (
+        ("task_id", "missing"),
+        ("base_plan_id", "wrong"),
+        ("planned_device_id", "wrong"),
+        ("planned_start", 3),
+        ("planned_end", 7),
+        ("planned_person_id", "p"),
+        ("blocked_at", 11),
+        ("observed_at", 4),
+        ("event_id", ""),
+    ):
+        ctx.not_started = [evidence.model_copy(update={field: value})]
+        report = validate(inst, plan, base=base, free={"a"}, context=ctx)
+        assert not report.passed
+        assert any("reason=NOT_STARTED_EVIDENCE_INVALID;" in v.detail for v in report.violations)
+    ctx.not_started = [evidence, evidence]
+    assert not validate(inst, plan, base=base, context=ctx).passed
+    ctx.not_started = [evidence]
+    for snapshot in (
+        None,
+        ExecutionSnapshot(plan_id="wrong", as_of=10, base_as_of=5),
+        ExecutionSnapshot(plan_id="base", as_of=9, base_as_of=5),
+        ExecutionSnapshot(plan_id="base", as_of=10),
+    ):
+        ctx.snapshot = snapshot
+        assert not validate(inst, plan, base=base, context=ctx).passed
+    from scheduler_core.validation_context import ExecutionRecord
+
+    ctx.snapshot = ExecutionSnapshot(
+        plan_id="base",
+        as_of=10,
+        base_as_of=5,
+        records=[
+            ExecutionRecord(
+                task_id="a",
+                status="RUNNING",
+                device_id="d",
+                start=2,
+                planned_end=6,
+                remaining_estimate=1,
+                event_id="run",
+            )
+        ],
+    )
+    assert reasons(
+        validate(inst, plan, base=base, context=ctx), "V10", "NOT_STARTED_EVIDENCE_INVALID"
+    ) == [["a"]]
+    ctx.snapshot.records = []
+    inst.tasks[0].status = "RUNNING"
+    assert reasons(
+        validate(inst, plan, base=base, context=ctx), "V10", "NOT_STARTED_EVIDENCE_INVALID"
+    ) == [["a"]]

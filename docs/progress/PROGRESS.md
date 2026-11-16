@@ -1,5 +1,9 @@
 # 项目进度
 
+2026-11-16 P3 工程验收通过，993 passed、1 个既有 symlink skip、138 文件静态检查通过；独立审查及两项验收范围限制见 [P3 工作包](../work-packages/p3.md)。下一阶段 P4 重规划。
+
+2026-11-16 P2 已同步，集成分支及阶段标签 `p2-accepted` 均核验为 `4abc9ff572132df437c3f1d5abb8912a6f035d2e`，远端 main 仍为 `40cdafd`。Claude 已给出 P3 完整计划，root 通过 G1，开始实施仿真基础类型、事件队列与扰动模型。[P3 规则与分工](../work-packages/p3.md)
+
 2026-11-16 P2-1 已同步，远端集成分支及标签 `p2-1-accepted` 的目标提交均核验为 `129a79bb0d0526890547bfc88071e67c675aef8e`。P2-2 和 P2 阶段工程验收通过。独立审查首次发现 Windows 时钟精度问题，修复后 G3 ACCEPT；876 passed、1 个原有权限 skip、98 个文件静态检查通过。P2 阶段标签为 p2-accepted。[P2-1 验收](../work-packages/p2-1.md) · [P2-2 实测](../agents/handoffs/p2-2.md)
 
 2026-11-11 G5完成：P1-C3源码50e3ac91f714db8eb110db48ee7157b5f67eaac4（chm）已由实际认证cc703普通推送至origin/codex/p0-governance，ls-remote逐字核验一致，main仍40cdafd47c66d3dd075d16a81d004eee088b97ab；无强推或改写历史。独立G3最终ACCEPT、840 passed/1原skip、90文件全静态与来源/布局/导入通过。C3为ACCEPTED；P1各工程包全部完成并同步，阶段验收ACCEPTED，P2–P8仍TODO。Claude消息90已接回后续规划，temp决定与历史来源保留，B1/solver延期决策不变。此回执引用已实际同步源码，不自引用当前提交。
@@ -104,7 +108,7 @@ ead0c62087e933748a824426f32c37676c4d230b（refactor(core): split validator into 
 | --- | --- | --- |
 | P1 | 数据契约、校验与产出物基础设施 | ACCEPTED（模型/TimeAxis、独立校验器、生成器、ArtifactStore及清理/归档均验收同步） |
 | P2 | 初始调度 | ACCEPTED（P2-1、P2-2 工程验收完成） |
-| P3 | 仿真器 | TODO |
+| P3 | 仿真器 | ACCEPTED（见工作包中的验证范围及性能限制） |
 | P4 | 重规划 | TODO |
 | P5 | 诊断、松弛和候选 | TODO |
 | P6 | 业务 Agent | TODO |

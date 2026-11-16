@@ -120,8 +120,23 @@ class RunningBlockBinding(_Evidence):
         return self
 
 
+class NotStartedEvidence(_Evidence):
+    """Caller-supplied observation that a baseline assignment did not start."""
+
+    task_id: Identifier
+    base_plan_id: Identifier
+    planned_device_id: Identifier
+    planned_start: Slot
+    planned_end: Slot
+    planned_person_id: Identifier | None
+    blocked_at: Slot
+    observed_at: Slot
+    event_id: Identifier
+
+
 class ValidationContext(_Evidence):
     snapshot: ExecutionSnapshot | None = None
     end_changes: list[FrozenEndChange] = Field(default_factory=list)
     deadline_authorizations: list[DeadlineAuthorization] = Field(default_factory=list)
     running_block_bindings: list[RunningBlockBinding] = Field(default_factory=list)
+    not_started: list[NotStartedEvidence] = Field(default_factory=list)
