@@ -1,6 +1,6 @@
 # 跨会话恢复清单
 
-2026-11-17 P4 已工程验收，G3 ACCEPT，1023 passed/1 既有 skip，152 文件静态通过；待 root 提交普通推送及核 SHA，不重复开发。见 [P4 工作包](../work-packages/p4.md)、[独立审查](handoffs/p4-review.md)。
+2026-11-17 P4 已工程验收，G3 ACCEPT，1023 passed/1 既有 skip，152 文件静态通过；G5 已完成，源码 `0996e66a965fa0871172862521059e1a060ddee9` 以 chm 提交、cc703 普通推送并核远端一致，main 保持40cdafd。下一阶段 P5，先取新计划/G1；不重复开发 P4。见 [P4 工作包](../work-packages/p4.md)、[独立审查](handoffs/p4-review.md)。
 
 2026-11-16 P3 验收及限制见 [P3 工作包](../work-packages/p3.md)，下一阶段 P4。
 

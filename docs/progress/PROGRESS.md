@@ -1,6 +1,6 @@
 # 项目进度
 
-2026-11-17 P4 工程验收通过，G3 ACCEPT（四项返工已独立关闭）；统一检查 1023 passed、1 个既有 symlink skip、152 文件静态检查及来源/布局/导入通过。当前 IN-REVIEW/待 G5 同步，未进入 P5。计划来源 temp v001，用户已选紧急完成时间求和；[P4 工作包](../work-packages/p4.md)。
+2026-11-17 P4 工程验收通过，G3 ACCEPT（四项返工已独立关闭）；统一检查 1023 passed、1 个既有 symlink skip、152 文件静态检查及来源/布局/导入通过。G5 已核验源码提交 `0996e66a965fa0871172862521059e1a060ddee9` 与远端集成分支一致（cc703 普通推送，作者 chm），main 仍 `40cdafd`；P4 ACCEPTED，未进入 P5。计划来源 temp v001，用户已选紧急完成时间求和；[P4 工作包](../work-packages/p4.md)。
 
 2026-11-16 P3 工程验收通过，993 passed、1 个既有 symlink skip、138 文件静态检查通过；独立审查及两项验收范围限制见 [P3 工作包](../work-packages/p3.md)。下一阶段 P4 重规划。
 
@@ -111,7 +111,7 @@ ead0c62087e933748a824426f32c37676c4d230b（refactor(core): split validator into 
 | P1 | 数据契约、校验与产出物基础设施 | ACCEPTED（模型/TimeAxis、独立校验器、生成器、ArtifactStore及清理/归档均验收同步） |
 | P2 | 初始调度 | ACCEPTED（P2-1、P2-2 工程验收完成） |
 | P3 | 仿真器 | ACCEPTED（见工作包中的验证范围及性能限制） |
-| P4 | 重规划 | IN-REVIEW（工程验收通过，待 G5 同步） |
+| P4 | 重规划 | ACCEPTED（G3 通过，G5 远端 SHA 已核验） |
 | P5 | 诊断、松弛和候选 | TODO |
 | P6 | 业务 Agent | TODO |
 | P7 | 后端和前端 | TODO |
