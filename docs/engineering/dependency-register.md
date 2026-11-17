@@ -54,3 +54,13 @@ P1-C1 ArtifactStore 使用 Python 标准库及已登记 Pydantic；无新增依�
 Windows cp311 wheel SHA256 `781fb09d6c9f46015291f706bd7c7e0815db1bec6e92c74716342fb7ea2d0532`，实际包含 abseil、bz2、highs、protobuf、scip、utf8 validity、re2、zlib 等 DLL；wheel 仅发现顶层 LICENSE，未完整核实静态链接与全部捆绑组件版本和许可，不能把根许可覆盖所有组件。源码构建配置的候选版本不能证明该 wheel 的实际构成，bzip2 引用 master。发行前须完成实际 wheel 全组件、许可及 NOTICE 审查。用户此次批准仅覆盖本地使用。
 
 锁定传递依赖的已安装元数据：absl-py 2.5.1 Apache-2.0；immutabledict 4.3.1 MIT；pandas 3.1.1 BSD-3-Clause（wheel 另列多项第三方许可）；protobuf 6.33.6 BSD-3-Clause；python-dateutil 4.0.0 BSD-3-Clause；tzdata 2026.6 Apache-2.0；已有 typing-extensions 4.16.0 PSF-2.0、numpy 2.4.6。版本来源 `uv.lock`，官方固定版本元数据可通过 `https://pypi.org/pypi/<包名>/<版本>/json` 核查；此为包元数据而非完整分发审计。MIT/BSD 再分发需保留版权、许可及免责声明，PSF 与 Apache 按各文本履行；实际 wheel 的附带许可、NOTICE 与二进制义务仍须发行前逐项核查。锁定保留既有版本；安全扫描未执行。
+
+## P6 LangGraph
+
+2026-11-17 引入直接依赖 [langgraph 1.0.10](https://pypi.org/project/langgraph/1.0.10/)（MIT，版本固定于 `pyproject.toml` 和 `uv.lock`），用于可恢复的人工确认图；标准库不提供既定 LangGraph 图/中断能力。[官方中断文档](https://docs.langchain.com/oss/python/langgraph/interrupts) 与已安装版本的 `StateGraph.compile`、`interrupt`、`Command` 和 `InMemorySaver` 签名已核对。固定发行包提供维护证据；未做漏洞或完整发行审计。
+
+2026-11-17 用户批准仅本机开发、测试和运行，未来对外打包分发前另审；不修改第三方代码，不将 wheel 或二进制入库。链路包括 langgraph → langgraph-sdk → orjson、httpx → certifi。已安装元数据标识 orjson 3.13.0 为 `MPL-2.0 AND (Apache-2.0 OR MIT)`，certifi 2026.10.23 为 MPL-2.0。MPL 与其他许可的实际分发义务须依交付形式、完整许可及附带 NOTICE 另审，不能以本地使用批准替代发行审查。
+
+其余本次新增包的已安装版本与许可字段：langgraph-checkpoint 4.3.2、langgraph-prebuilt 1.0.13、langgraph-sdk 0.3.15、langchain-core 1.8.1、langchain-protocol 0.0.21、langsmith 0.14.17、anyio 4.16.0、charset-normalizer 3.5.2、h11 0.16.0、truststore 0.10.5、urllib3 2.8.0 为 MIT；httpx2 2.16.2、httpcore2 2.16.2、uuid-utils 0.19.0、zstandard 0.25.0、jsonpatch 1.47、jsonpointer 3.12、httpcore 1.0.9、httpx 0.28.1、idna 3.20、websockets 17.4 为 BSD-3-Clause；xxhash 4.1.0 为 BSD-2-Clause；requests 2.34.2、requests-toolbelt 1.0.0、distro 1.9.0、tenacity 9.2.1 为 Apache-2.0；ormsgpack 1.13.1 为 Apache-2.0 OR MIT；sniffio 1.3.1 为 MIT OR Apache-2.0。可通过 `https://pypi.org/pypi/<名称>/<版本>/json` 查询官方固定版本元数据，实际发行前仍须逐包核验完整许可、捆绑内容和通知。
+
+2026-11-17 对照 DeepSeek 官方 [Chat Completions](https://api-docs.deepseek.com/api/create-chat-completion/)、[模型列表](https://api-docs.deepseek.com/api/list-models/) 和 [思考模式](https://api-docs.deepseek.com/guides/thinking_mode/)：接口分别为 POST `/chat/completions`、GET `/models`；非思考使用 `thinking.type=disabled`。配置 ID 为 `deepseek-flash`，仅作为配置读取；在线启动须实际列模型精确匹配，无法连接或缺失时停止，不调用付费模型作本次验证。离线传输替身和真实 API 不等价，线上服务能力与计费未在本次调用验证。

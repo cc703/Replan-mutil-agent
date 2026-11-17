@@ -1,0 +1,6 @@
+llm:
+  model: deepseek-flash
+  base_url: https://api.deepseek.com
+  timeout_seconds: 30
+  max_tokens: 1024
+  retries: 2

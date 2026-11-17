@@ -1,5 +1,7 @@
 # 跨会话恢复清单
 
+2026-11-17 P6 工程通过、G5待同步：Claude UI连接不可用，temp Astra规划，实施/独立审查Terra，G3 ACCEPT、root统一检查1107 passed/1既有skip及199静态/来源/布局/导入通过（mypy测试导入修后单独复跑PASS）。合同/完整prompt/许可裁决/限制见 [P6卡](../work-packages/p6.md)，双方handoff可恢复。下一步root chm提交、cc703普通push并核远端SHA后再记ACCEPTED与p6-accepted；不要重做P6或重复全检查，不进入P7。
+
 2026-11-17 P5 G3 ACCEPT，统一检查1072 passed/1既有skip、171静态通过，G5已核验源码 `a0802552dadc83e4d77d5b3324fa43f1eff0aeb3`（cc703普通推送、chm作者），main保持40cdafd；P5已完成。后续P6先取新计划/G1，不重复实施P5。见 [P5 工作包](../work-packages/p5.md) 及 [独立审查](handoffs/p5-review.md)。
 
 2026-11-17 P4 已工程验收，G3 ACCEPT，1023 passed/1 既有 skip，152 文件静态通过；G5 已完成，源码 `0996e66a965fa0871172862521059e1a060ddee9` 以 chm 提交、cc703 普通推送并核远端一致，main 保持40cdafd。下一阶段 P5，先取新计划/G1；不重复开发 P4。见 [P4 工作包](../work-packages/p4.md)、[独立审查](handoffs/p4-review.md)。

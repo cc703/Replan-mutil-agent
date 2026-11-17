@@ -144,3 +144,16 @@ instance = result.instance
 ### 冲突诊断与假设松弛
 
 `diagnose_detailed(instance, base, free, context=context)` 返回可行、冲突核、背景不可行或未知状态；初排可将 `base` 与 `free` 设为 `None`。`suggest_relaxations_detailed(instance, base, free, core, context=context)` 给出仅供审阅的可协商截止期假设方案。方案不会自动生效，也不替代应用内确认。
+
+### Agent 离线演示与管线检查
+
+在 PowerShell 中设置 `$env:PYTHONPATH='src'`，然后执行：
+
+```powershell
+uv run --locked --python 3.11 python -m agent demo --offline
+uv run --locked --python 3.11 python -m agent eval --offline
+```
+
+自由输入入口为 `python -m agent chat --offline`（手工提供录制模型响应）或 `python -m agent chat --online`（从环境读取 `DEEPSEEK_API_KEY`，先校验配置模型）。同样通过上述 uv 命令运行；写操作仍需独立的 L1/L2 确认。PowerShell 管道出现中文乱码时可先设置 `$env:PYTHONUTF8='1'`。
+
+演示使用合成实例和录制响应，分别要求确认约束变更及正式计划。评测是七类合成管线 smoke，不衡量 DeepSeek 准确率或代替 D7 人工研究评测。结果和脱敏 trace 由 ArtifactStore 写入 `artifacts/`。状态和 LangGraph 检查点仅保存在进程内，重启后不可恢复；线上适配需配置环境变量并先通过模型列表核验，默认离线演示不访问网络。

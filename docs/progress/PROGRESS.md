@@ -1,5 +1,7 @@
 # 项目进度
 
+2026-11-17 P6 工程验收通过，G5 待同步（IN-REVIEW）：temp Astra v001 规划、Terra 实施及唯一独立 G3 ACCEPT；用户批准 MPL 传递依赖仅本机使用、分发另审。root 一次统一检查得到1107 passed、1既有symlink skip，199文件Ruff/格式及来源/布局/导入PASS；仅测试裸导入导致全仓mypy失败，修正3处导入后root单独复跑同参数mypy，199文件PASS，Agent35 passed。未重复P5全检查或整套统一检查。见 [P6工作包](../work-packages/p6.md)、[实施](../agents/handoffs/p6-implementation.md)、[独立审查](../agents/handoffs/p6-review.md)。未实调付费模型、未做跨进程恢复或正式D7研究评测；运行中回滚事实以模拟可信状态覆盖，公开演进路径未完整验证。未进入P7。
+
 2026-11-17 P5 工程验收通过：独立 G3 ACCEPT（四项返工已关闭）；统一检查1072 passed、1既有symlink skip，171文件静态及来源/布局/导入PASS。G5已核验源码 `a0802552dadc83e4d77d5b3324fa43f1eff0aeb3` 与远端集成分支一致（cc703普通推送、作者chm），main仍40cdafd；P5 ACCEPTED，未进入P6。Claude102计划、temp工程Δ及用户weight×延后槽数裁决见 [P5 工作包](../work-packages/p5.md)。
 
 2026-11-17 P4 工程验收通过，G3 ACCEPT（四项返工已独立关闭）；统一检查 1023 passed、1 个既有 symlink skip、152 文件静态检查及来源/布局/导入通过。G5 已核验源码提交 `0996e66a965fa0871172862521059e1a060ddee9` 与远端集成分支一致（cc703 普通推送，作者 chm），main 仍 `40cdafd`；P4 ACCEPTED，未进入 P5。计划来源 temp v001，用户已选紧急完成时间求和；[P4 工作包](../work-packages/p4.md)。
@@ -115,7 +117,7 @@ ead0c62087e933748a824426f32c37676c4d230b（refactor(core): split validator into 
 | P3 | 仿真器 | ACCEPTED（见工作包中的验证范围及性能限制） |
 | P4 | 重规划 | ACCEPTED（G3 通过，G5 远端 SHA 已核验） |
 | P5 | 诊断、松弛和候选 | ACCEPTED（G3通过，G5远端SHA已核验） |
-| P6 | 业务 Agent | TODO |
+| P6 | 业务 Agent | IN-REVIEW（G3通过，G5待同步） |
 | P7 | 后端和前端 | TODO |
 | P8 | 实验框架 | TODO |
 

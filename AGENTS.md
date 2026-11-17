@@ -1,5 +1,7 @@
 # 项目智能体约束
 
+2026-11-17 用户模型策略更新：Claude 不可用时，temp 规划使用 `gpt-6-astra/high/fork_turns=none`，覆盖下文 temp 的旧 Terra 要求；实施及独立审查继续 `gpt-6.1-terra/high/fork_turns=none`。模型不可用须报告，不自行替换。P6 仅按原 CP-SAT 设计推进，不引入 Kaiwu/QUBO 或多求解器。
+
 2026-11-11最新续作：用户明确“继续执行，claude额度恢复了”。后续规划交回Claude，temp暂停新规划；P1-C3在途方案保持已通过G1的temp v001及已记录工程细化，不重写来源或中途换提示词。当前先完成ZIP返工的独立G3、G5同步，再向Claude交接temp决定和实际验收。若Claude再次额度不可用，按已授权temp例外处理，不绕过门禁。
 
 2026-11-11最新用户指令：“继续，claude额度用完了就换temp智能体”。恢复按需临时替代授权：Claude额度不可用时由temp代行planner/prompt-engineer，仍用gpt-6.1-terra/high/fork_turns=none；仅替换计划来源，Claude历史文本不改写或追认。当前P1-C3先由temp补齐G1返工，root通过G1后派专项实施及独立G3，G4/G5与账号/作者策略不变。Claude实际恢复后交回后续规划；已通过G1的在途包固定版本，范围实质变化仍回到规划。本条覆盖下文“temp不再接新规划”的历史状态。
