@@ -1,6 +1,6 @@
 # 项目进度
 
-P6 路由补丁G3 ACCEPT，G5待同步：严格Pydantic已覆盖在线及图路由，额外字段/错误类型/未知动作拒绝，未知回滚目标澄清，合法回滚仍L2。root复验Agent44 passed、全仓同参mypy199文件及改动Ruff/格式PASS；未重复整套check。原公开ab18cc6/p6-accepted保留，后继普通同步后以p6-accepted-r1为完整验收标签。未进入P7。
+P6 最终ACCEPTED，路由补丁G3/G5 PASS，源码 `eefd1bbcddc367a6921ace3a83a9b8a595985f7e` 已核远端一致（cc703/chm）：严格Pydantic已覆盖在线及图路由，额外字段/错误类型/未知动作拒绝，未知回滚目标澄清，合法回滚仍L2。root复验Agent44 passed、全仓同参mypy199文件及改动Ruff/格式PASS；未重复整套check。原公开ab18cc6/p6-accepted保留，以本回执同步后创建的p6-accepted-r1为完整验收标签。未进入P7。
 
 2026-11-17 P6 ACCEPTED，G5 已核验源码 `6c8be6694e7c23d96fb04d22891a390b2952593b`（cc703普通推送、作者chm），远端main仍40cdafd：temp Astra v001 规划、Terra 实施及唯一独立 G3 ACCEPT；用户批准 MPL 传递依赖仅本机使用、分发另审。root 一次统一检查得到1107 passed、1既有symlink skip，199文件Ruff/格式及来源/布局/导入PASS；仅测试裸导入导致全仓mypy失败，修正3处导入后root单独复跑同参数mypy，199文件PASS，Agent35 passed。未重复P5全检查或整套统一检查。见 [P6工作包](../work-packages/p6.md)、[实施](../agents/handoffs/p6-implementation.md)、[独立审查](../agents/handoffs/p6-review.md)。未实调付费模型、未做跨进程恢复或正式D7研究评测；运行中回滚事实以模拟可信状态覆盖，公开演进路径未完整验证。未进入P7。
 

@@ -1,6 +1,6 @@
 # 跨会话恢复清单
 
-P6 路由严格Pydantic收尾补丁已过原G3，root44 Agent测试/全仓mypy199/变动静态通过，G5待同步。原p6-accepted保留不改写，完成同步后使用p6-accepted-r1。见P6卡与审查末节；本轮不进入P7。
+P6 最终ACCEPTED：路由严格Pydantic补丁已过原G3，root44 Agent测试/全仓mypy199/变动静态通过；源码 `eefd1bbcddc367a6921ace3a83a9b8a595985f7e` 已cc703/chm普通同步并核远端一致，main仍40cdafd。原p6-accepted保留不改写，本验收回执同步后创建并核验p6-accepted-r1。见P6卡与审查末节；本轮不进入P7。
 
 2026-11-17 P6 ACCEPTED、G5已核验源码 `6c8be6694e7c23d96fb04d22891a390b2952593b`（cc703/chm），main保持40cdafd：Claude UI连接不可用，temp Astra规划，实施/独立审查Terra，G3 ACCEPT、root统一检查1107 passed/1既有skip及199静态/来源/布局/导入通过（mypy测试导入修后单独复跑PASS）。合同/完整prompt/许可裁决/限制见 [P6卡](../work-packages/p6.md)，双方handoff可恢复。验收回执同步后创建并核验p6-accepted标签。后续若继续，先向Claude交接实际验收并取P7新计划/G1；本轮未进入P7，不重做P6或重复全检查。
 
