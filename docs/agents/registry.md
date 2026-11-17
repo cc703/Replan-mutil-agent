@@ -1,5 +1,7 @@
 # 角色索引
 
+2026-11-17 P4：temp /root/temp_p4 规划，/root/p4_implementation 实施，/root/p4_review 独立 G3 ACCEPT；均 gpt-6.1-terra/high/fork_turns=none。完整提示词、G1、用户目标裁决与验收见 [P4 工作包](../work-packages/p4.md)。
+
 P2-2 规划交回侧栏 Claude，p22_search、p22_hint、p22_tests 实施，p22_g3 独立审查。[P2-2 计划及派发](../work-packages/p2-2-claude-plan.v001.md)
 
 P2-1 由 temp 补全计划，p2_model、p2_api、p2_tests 分工实施，p2_g3 独立审查；版本、写入范围及模型见[P2-1 卡](../work-packages/p2-1.md)。

@@ -1,5 +1,7 @@
 # 跨会话恢复清单
 
+2026-11-17 P4 已工程验收，G3 ACCEPT，1023 passed/1 既有 skip，152 文件静态通过；待 root 提交普通推送及核 SHA，不重复开发。见 [P4 工作包](../work-packages/p4.md)、[独立审查](handoffs/p4-review.md)。
+
 2026-11-16 P3 验收及限制见 [P3 工作包](../work-packages/p3.md)，下一阶段 P4。
 
 2026-11-16 P2-1 验收标签 p2-1-accepted；P2-2 的独立审查与修复后验证已通过。下一阶段为 P3 仿真。见[项目进度](../progress/PROGRESS.md)和[P2-2 验收](handoffs/p2-2-review.md)。
