@@ -41,3 +41,7 @@ PowerShell `$env:PYTHONPATH='src;tests/unit/agent'` 配合 `uv run --locked --py
 ## G5 导入修正核查
 
 静态核查 `test_llm.py:10`、`test_graph.py:12`、`test_explain.py:4` 均使用 `from tests.unit.agent.test_store import make_world`；G3 ACCEPT 不变。三个测试文件尚未跟踪，Git 无修改前快照可供独立逐行比较，故“仅改导入、断言未改”依据作者交接，未独立证明。root 报告全仓 mypy 199 文件通过；此处未重复运行。
+
+## 路由 Pydantic 补丁复核：ACCEPT
+
+对照已公开基线的实际 diff，`RouteSuggestion` 使用 strict、extra-forbid 的 Pydantic 模型限制 action 和 target；在线路由与注入式图路由均验证，未知/缺少回滚目标转人工选择。独立 PowerShell 探针通过 `PYTHONPATH=src` 和 `uv run --locked --python 3.11 python -` 观察：伪造 confirmed、数字 target、非法 action 均拒绝，伪传输在线路由返回 `RuntimeError: route response invalid`；有效回滚建议暂停于 L2_ROLLBACK，伪造令牌 PermissionError 且 revision 保持 0；未知目标暂停于 ROLLBACK_TARGET 且 revision 保持 0。未重复全仓检查或付费请求；先前 G3 ACCEPT 保持。

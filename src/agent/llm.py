@@ -17,6 +17,7 @@ import yaml
 from .explain import Claim, ClaimResponse, Fact
 from .trace import Trace
 from .store import WorldStore
+from .routing import RouteSuggestion
 
 Transport = Callable[[str, dict[str, str], bytes | None, float], bytes]
 
@@ -256,15 +257,8 @@ def online_router(client: DeepSeek) -> Callable[[str], dict[str, str]]:
             data = json.loads(
                 result["choices"][0]["message"]["tool_calls"][0]["function"]["arguments"]
             )
-            if (
-                not isinstance(data, dict)
-                or set(data) - {"action", "target"}
-                or data.get("action") not in {"change", "query", "rollback"}
-            ):
-                raise ValueError("invalid route")
-            if "target" in data and not isinstance(data["target"], str):
-                raise ValueError("invalid target")
-            return cast(dict[str, str], data)
+            suggestion = RouteSuggestion.model_validate(data)
+            return suggestion.model_dump(exclude_unset=True)
         except (KeyError, IndexError, TypeError, ValueError):
             raise RuntimeError("route response invalid") from None
 

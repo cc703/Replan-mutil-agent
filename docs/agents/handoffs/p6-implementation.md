@@ -39,3 +39,7 @@
 - 评测按单句内匹配再汇总，防止跨句抵消；时间字段独立规范化 UTC，跨时区同一时刻匹配。新增跨句交换负例和等价时区正例。
 
 本轮最终定向 `pytest -q tests/unit/agent`：35 passed；mypy 28 文件、Ruff check/format 全通过。离线 demo 与 eval 均退出 0；eval 三次为 8/8 项的固定响应管线检查，非模型准确率。未调用付费服务、未运行全仓检查；待原独立 G3 复验。
+
+## 路由严格校验补丁（待独立复验）
+
+在已同步 `ab18cc6` 后，路由模型输出统一经严格 Pydantic `RouteSuggestion` 校验，拒绝额外字段、错误目标类型和未知动作；缺失或未知回滚目标进入澄清，实际回滚仍需 L2。改动限于 `routing.py`、`llm.py`、`view_nodes.py` 及对应测试。定向 agent 测试 44 passed；全仓同参数 `mypy --explicit-package-bases tools tests src` 199 文件通过；变动 Python 文件 Ruff 检查与格式检查通过。未运行全仓 check、未调用付费模型、未改 Git 或标签。

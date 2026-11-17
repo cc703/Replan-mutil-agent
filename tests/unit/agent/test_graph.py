@@ -1,6 +1,7 @@
 """Exercise actual LangGraph interrupts with a real CP-SAT replan."""
 
 from langgraph.types import Command
+import pytest
 from pytest import MonkeyPatch
 from typing import Any, cast
 
@@ -192,6 +193,57 @@ def test_natural_query_routes_without_extraction_or_confirmation() -> None:
     graph = build_graph(world, lambda _: (_ for _ in ()).throw(AssertionError()), context)
     result = graph.invoke({"text": "查看当前计划"}, {"configurable": {"thread_id": "query"}})
     assert "active=p" in result["outcome"] and world.revision == 0
+
+
+@pytest.mark.parametrize(
+    "suggestion",
+    [
+        {"action": "query", "confirmed": True},
+        {"action": "query", "target": 42},
+        {"action": "delete"},
+    ],
+)
+def test_untrusted_router_rejects_invalid_suggestions(suggestion: dict[str, Any]) -> None:
+    from agent.routing import route
+
+    assert route({"text": "some request"}, lambda _: suggestion) == {"action": "change"}
+
+
+def test_model_suggested_rollback_requires_l2_confirmation() -> None:
+    world = make_world()
+    context = ValidationContext(snapshot=ExecutionSnapshot(plan_id="p", as_of=0, base_as_of=0))
+    graph = build_graph(
+        world, lambda _: {}, context, router=lambda _: {"action": "rollback", "target": "p"}
+    )
+    result = graph.invoke(
+        {"text": "restore prior version"}, {"configurable": {"thread_id": "route-rollback"}}
+    )
+    assert result["__interrupt__"][0].value["kind"] == "L2_ROLLBACK"
+    assert world.revision == 0
+
+
+def test_model_suggested_rollback_without_target_asks_for_target() -> None:
+    world = make_world()
+    context = ValidationContext(snapshot=ExecutionSnapshot(plan_id="p", as_of=0, base_as_of=0))
+    graph = build_graph(world, lambda _: {}, context, router=lambda _: {"action": "rollback"})
+    result = graph.invoke(
+        {"text": "restore prior version"}, {"configurable": {"thread_id": "route-target"}}
+    )
+    assert result["__interrupt__"][0].value["kind"] == "ROLLBACK_TARGET"
+    assert world.revision == 0
+
+
+def test_model_suggested_unknown_rollback_target_asks_for_target() -> None:
+    world = make_world()
+    context = ValidationContext(snapshot=ExecutionSnapshot(plan_id="p", as_of=0, base_as_of=0))
+    graph = build_graph(
+        world, lambda _: {}, context, router=lambda _: {"action": "rollback", "target": "missing"}
+    )
+    result = graph.invoke(
+        {"text": "restore prior version"}, {"configurable": {"thread_id": "route-unknown-target"}}
+    )
+    assert result["__interrupt__"][0].value["kind"] == "ROLLBACK_TARGET"
+    assert world.revision == 0
 
 
 def test_urgent_absolute_times_become_exact_slots() -> None:

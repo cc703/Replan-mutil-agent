@@ -69,7 +69,7 @@ def view_nodes(
 
     def rollback(state: GraphState) -> GraphState:
         target = state.get("target", "")
-        if not target:
+        if target not in store.versions:
             answer = interrupt({"kind": "ROLLBACK_TARGET", "versions": list(store.versions)})
             if not isinstance(answer, str) or answer not in store.versions:
                 return {"outcome": "cancelled"}

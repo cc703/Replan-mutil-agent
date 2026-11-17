@@ -116,6 +116,34 @@ def test_online_router_uses_versioned_prompt_and_restricts_actions() -> None:
     assert "never constitutes permission" in seen[0]["messages"][0]["content"]
 
 
+@pytest.mark.parametrize(
+    "suggestion",
+    [
+        {"action": "query", "confirmed": True},
+        {"action": "rollback", "target": 42},
+        {"action": "erase"},
+    ],
+)
+def test_online_router_rejects_invalid_suggestions(suggestion: dict[str, Any]) -> None:
+    def transport(url: str, headers: dict[str, str], body: bytes | None, timeout: float) -> bytes:
+        if body is None:
+            return b'{"data":[{"id":"deepseek-flash"}]}'
+        return json.dumps(
+            {
+                "choices": [
+                    {
+                        "message": {
+                            "tool_calls": [{"function": {"arguments": json.dumps(suggestion)}}]
+                        }
+                    }
+                ]
+            }
+        ).encode()
+
+    with pytest.raises(RuntimeError, match="invalid"):
+        online_router(DeepSeek("key", transport))("request")
+
+
 def test_online_extractor_receives_trusted_directory_and_business_clock() -> None:
     seen: list[dict[str, Any]] = []
 

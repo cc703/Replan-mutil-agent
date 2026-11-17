@@ -2,7 +2,19 @@
 
 import re
 from collections.abc import Callable
+from typing import Literal
+
+from pydantic import BaseModel, ConfigDict
+
 from .state import GraphState
+
+
+class RouteSuggestion(BaseModel):
+    """Untrusted routing output; a route never grants write permission."""
+
+    model_config = ConfigDict(extra="forbid", strict=True)
+    action: Literal["change", "query", "rollback"]
+    target: str = ""
 
 
 def route(state: GraphState, router: Callable[[str], dict[str, str]] | None) -> GraphState:
@@ -14,9 +26,8 @@ def route(state: GraphState, router: Callable[[str], dict[str, str]] | None) -> 
         return {"action": "query"}
     if router:
         try:
-            result = router(text)
-            if result.get("action") in {"change", "query", "rollback"}:
-                return {"action": result["action"], "target": result.get("target", "")}
+            result = RouteSuggestion.model_validate(router(text))
+            return {"action": result.action, "target": result.target.strip()}
         except (ValueError, TypeError, RuntimeError):
             pass
     return {"action": "change"}
