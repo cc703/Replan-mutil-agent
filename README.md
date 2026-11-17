@@ -140,3 +140,7 @@ instance = result.instance
 `uv run --python 3.11 --group dev python tools/archive_run.py --run RUN_ID` 默认只列计划，可用 `--kind KIND --name NAME` 消除重名、`--root artifacts` 指定根目录、`--format json` 输出结构化结果。显式 `--apply` 将 completed 运行归档为 ZIP 和 sidecar，源运行保留；论文定稿前不对真实运行执行归档。任一目标已存在均拒绝覆盖。
 
 `--verify` 只读核对归档内容、内嵌 manifest 与 sidecar，不依赖源运行仍存在，不解压。它只证明内部一致，合法归档时间、空目录记录或整套自洽重写可能通过，不能证明原始来源未变。发布目前验证并支持 Windows，其他平台明确拒绝。ZIP 与 sidecar 分两次发布；失败或崩溃可能留下不完整归档，复跑不会覆盖，需人工检查。路径检查不抵抗恶意并发替换，Windows 只读属性也不是防篡改保证。
+
+### 冲突诊断与假设松弛
+
+`diagnose_detailed(instance, base, free, context=context)` 返回可行、冲突核、背景不可行或未知状态；初排可将 `base` 与 `free` 设为 `None`。`suggest_relaxations_detailed(instance, base, free, core, context=context)` 给出仅供审阅的可协商截止期假设方案。方案不会自动生效，也不替代应用内确认。

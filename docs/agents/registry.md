@@ -1,5 +1,7 @@
 # 角色索引
 
+2026-11-17 P5：原Claude102规划、temp_p5_g1工程Δ；p5_core核心、p5_implementation候选互斥实施；p5_review唯一独立G3 ACCEPT。Codex专项均gpt-6.1-terra/high/fork_turns=none。合同/prompt/G1与范围见 [P5 工作包](../work-packages/p5.md)。
+
 2026-11-17 P4：temp /root/temp_p4 规划，/root/p4_implementation 实施，/root/p4_review 独立 G3 ACCEPT；均 gpt-6.1-terra/high/fork_turns=none。完整提示词、G1、用户目标裁决与验收见 [P4 工作包](../work-packages/p4.md)。
 
 P2-2 规划交回侧栏 Claude，p22_search、p22_hint、p22_tests 实施，p22_g3 独立审查。[P2-2 计划及派发](../work-packages/p2-2-claude-plan.v001.md)

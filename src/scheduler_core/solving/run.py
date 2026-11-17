@@ -72,6 +72,11 @@ def _build_model(
     load_bound: int,
     cm: int,
     ci: int,
+    *,
+    enabled_groups: set[str] | None = None,
+    assumption_literals: dict[str, cp_model.IntVar] | None = None,
+    relax_deltas: dict[str, cp_model.IntVar] | None = None,
+    relax_limits: dict[str, int] | None = None,
 ) -> tuple[
     cp_model.CpModel,
     dict[str, cp_model.IntVar],
@@ -82,6 +87,13 @@ def _build_model(
     cp_model.IntVar,
 ]:
     model = cp_model.CpModel()
+    if relax_deltas is not None and relax_limits is not None:
+        for tid, limit in relax_limits.items():
+            relax_deltas[tid] = model.new_int_var(0, limit, f"relax:{tid}")
+
+    def enabled(group: str) -> bool:
+        return enabled_groups is None or group in enabled_groups
+
     starts = {t.id: model.new_int_var(0, h, f"start:{t.id}") for t in inst.tasks}
     ends = {t.id: model.new_int_var(0, h, f"end:{t.id}") for t in inst.tasks}
     devices = {d.id: d for d in inst.devices}
@@ -95,8 +107,14 @@ def _build_model(
         start, end = starts[t.id], ends[t.id]
         model.add(end == start + t.duration)
         model.add(start >= max(t.release, inst.now))
-        if t.deadline is not None:
-            model.add(end <= t.deadline)
+        if t.deadline is not None and enabled(f"deadline:{t.id}"):
+            delta = (relax_deltas or {}).get(t.id, 0)
+            constraint = model.add(end <= t.deadline + delta)
+            if assumption_literals is not None:
+                literal = model.new_bool_var(f"assume:deadline:{t.id}")
+                assumption_literals[f"deadline:{t.id}"] = literal
+                constraint.only_enforce_if(literal)
+                model.add_assumption(literal)
         choices = []
         for did in dict.fromkeys(t.compatible_devices):
             d = devices[did]
@@ -128,24 +146,43 @@ def _build_model(
                 )
             model.add_exactly_one(choices)
     for edge in inst.precedences:
+        if not enabled(f"precedence:{edge.pred}>{edge.succ}"):
+            continue
         model.add(starts[edge.succ] >= ends[edge.pred] + edge.lag_min)
         if edge.lag_max is not None:
             model.add(starts[edge.succ] <= ends[edge.pred] + edge.lag_max)
     for d in inst.devices:
-        windows = _merge([(w.start, w.end) for w in inst.blocked if w.device_id == d.id], h)
+        windows = _merge(
+            [
+                (w.start, w.end)
+                for w in inst.blocked
+                if w.device_id == d.id
+                and enabled(f"window:{w.device_id}:{w.start}:{w.end}:{w.kind}")
+            ],
+            h,
+        )
         for ws, we in windows:
             di[d.id].append(model.new_fixed_size_interval_var(ws, we - ws, f"blocked:{d.id}:{ws}"))
             demands[d.id].append(d.capacity)
-        if d.capacity == 1:
-            model.add_no_overlap(di[d.id])
-        else:
-            model.add_cumulative(di[d.id], demands[d.id], d.capacity)
+        if enabled(f"capacity:{d.id}"):
+            if d.capacity == 1:
+                model.add_no_overlap(di[d.id])
+            else:
+                model.add_cumulative(di[d.id], demands[d.id], d.capacity)
     for p in inst.persons:
-        for ws, we in _merge([(w.start, w.end) for w in p.blocked], h):
+        for ws, we in _merge(
+            [
+                (w.start, w.end)
+                for w in p.blocked
+                if enabled(f"person_window:{p.id}:{w.start}:{w.end}")
+            ],
+            h,
+        ):
             pi[p.id].append(
                 model.new_fixed_size_interval_var(ws, we - ws, f"person_block:{p.id}:{ws}")
             )
-        model.add_no_overlap(pi[p.id])
+        if enabled(f"person:{p.id}"):
+            model.add_no_overlap(pi[p.id])
     cmax, imbalance = _add_objective(model, inst, ends, selected, h, load_bound, cm, ci)
     return model, starts, ends, selected, people, cmax, imbalance
 
