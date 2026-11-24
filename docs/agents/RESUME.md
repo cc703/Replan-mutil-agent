@@ -1,5 +1,9 @@
 # 跨会话恢复清单
 
+2026-11-24 P7 实施已启动。用户要求“按照claude建议，继续执行，完成P7开发”，已按 Claude 本地闭环范围及未决作业阻塞条款完成 [G1](../work-packages/p7.md)。实际 `/root/p7_implementation` 使用 gpt-6.2-sol/low/fork_turns=none，执行 [Claude 契约与提示词](prompts/p7-claude-plan.v001.md)和 G1 细化。先查实际会话与磁盘交接，不重复派发；完成后独立 G3、root 最终统一与端到端检查、普通推送并核 SHA。P8 待后续。
+
+2026-11-24 P7 准备：本地 HEAD、远端集成分支、两端 `p6-accepted-r1` 的提交目标均为 `5a423d28943a6b2dde43ba02ed50441b426af407`，远端 main 为 `40cdafd47c66d3dd075d16a81d004eee088b97ab`，原始来源校验通过。用户指定 Claude 定制，temp 按 `gpt-6.2-sol/low/fork_turns=none` 启动后已暂停，未产出方案。用户在右侧原会话发送[交接请求](prompts/p7-claude-request.v001.md)，root 已读取并归档 [Claude 方案 v001](prompts/p7-claude-plan.v001.md)。[P7 卡](../work-packages/p7.md)记录 G1 核对与需要用户裁决的交付范围及队列行为。实施尚未派发，P8 待后续。
+
 P6 最终ACCEPTED：路由严格Pydantic补丁已过原G3，root44 Agent测试/全仓mypy199/变动静态通过；源码 `eefd1bbcddc367a6921ace3a83a9b8a595985f7e` 已cc703/chm普通同步并核远端一致，main仍40cdafd。原p6-accepted保留不改写，本验收回执同步后创建并核验p6-accepted-r1。见P6卡与审查末节；本轮不进入P7。
 
 2026-11-17 P6 ACCEPTED、G5已核验源码 `6c8be6694e7c23d96fb04d22891a390b2952593b`（cc703/chm），main保持40cdafd：Claude UI连接不可用，temp Astra规划，实施/独立审查Terra，G3 ACCEPT、root统一检查1107 passed/1既有skip及199静态/来源/布局/导入通过（mypy测试导入修后单独复跑PASS）。合同/完整prompt/许可裁决/限制见 [P6卡](../work-packages/p6.md)，双方handoff可恢复。验收回执同步后创建并核验p6-accepted标签。后续若继续，先向Claude交接实际验收并取P7新计划/G1；本轮未进入P7，不重做P6或重复全检查。

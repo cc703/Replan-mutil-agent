@@ -1,0 +1,51 @@
+import { readFileSync } from 'node:fs'
+import { expect, test } from '@playwright/test'
+
+const instance = readFileSync(new URL('../../contracts/examples/instance.json', import.meta.url), 'utf8')
+
+test('E1 导入、初始计划提交、停机重规划和正式版本更新', async ({ page }) => {
+  page.on('pageerror', error => { throw error })
+  await page.goto('/import')
+  await page.getByLabel('实验室名称').fill('E1 浏览器 ' + Date.now())
+  await page.getByLabel('实例 JSON').fill(instance)
+  await page.getByRole('button', { name: '导入实例' }).click()
+  await expect(page).toHaveURL(/workbench$/)
+  await page.getByRole('button', { name: '生成初始计划' }).click()
+
+  async function commit(replanned = false) {
+    await expect(page.getByRole('heading', { name: '已通过独立校验的候选' })).toBeVisible({ timeout: 25_000 })
+    await page.getByRole('radio', { name: /^选择 / }).first().check()
+    await page.getByRole('button', { name: '预览提交（L2）' }).click()
+    const dialog = page.getByRole('dialog', { name: 'L2 操作确认' })
+    await expect(dialog.getByText('确认内容')).toBeVisible()
+    await expect(dialog.getByText('独立校验通过。', { exact: true })).toBeVisible()
+    await expect(dialog.getByText('f3 急件结束槽之和', { exact: true })).toBeVisible()
+    if (replanned) await expect(dialog.getByRole('cell', { name: 'task-a', exact: true })).toBeVisible()
+    await dialog.getByRole('button', { name: '确认 L2' }).click()
+    await dialog.getByRole('button', { name: '提交正式计划' }).click()
+    await expect(dialog).toBeHidden()
+  }
+
+  await commit()
+  await expect(page.getByRole('heading', { name: '当前正式计划 · v1' })).toBeVisible()
+  await page.getByLabel('设备', { exact: true }).selectOption('device-a')
+  await page.getByLabel('停机开始（北京时间）').fill('2026-11-24T08:00')
+  await page.getByLabel('停机结束（北京时间）').fill('2026-11-24T08:20')
+  await page.getByRole('button', { name: '预览事件（L1）' }).click()
+  const event = page.getByRole('dialog', { name: 'L1 操作确认' })
+  await expect(event.getByText('确认内容')).toBeVisible()
+  await event.getByRole('button', { name: '确认 L1' }).click()
+  await event.getByRole('button', { name: '注入事件' }).click()
+  await expect(event).toBeHidden()
+  await expect(page.getByRole('heading', { name: '未决重规划结果' })).toBeVisible({ timeout: 25_000 })
+  await page.getByRole('radio', { name: /^选择 / }).first().check()
+  await expect(page.getByRole('heading', { name: /^任务差异/ })).toBeVisible()
+  await expect(page.locator('.timeline .vis-item.old').first()).toBeVisible()
+  await expect(page.locator('.timeline .vis-item.fault').first()).toBeVisible()
+  await commit()
+  await expect(page.getByRole('heading', { name: '当前正式计划 · v2' })).toBeVisible()
+  await expect(page.getByRole('cell', { name: '已纳入计划' })).toBeVisible()
+  await page.getByRole('link', { name: '版本与审计' }).click()
+  await expect(page.getByRole('row').filter({ hasText: '当前版本' })).toContainText('v2')
+  await expect(page.getByRole('heading', { name: '决策日志' })).toBeVisible()
+})

@@ -1,0 +1,15 @@
+{
+  "passed": false,
+  "plan_sha256_ok": true,
+  "violations": [
+    {
+      "code": "V6",
+      "detail": "reason=CALENDAR_BLOCKED; end=4; start=0;",
+      "device_id": "device-a",
+      "reason": "CALENDAR_BLOCKED",
+      "task_ids": [
+        "task-a"
+      ]
+    }
+  ]
+}

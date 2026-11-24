@@ -1,0 +1,84 @@
+{
+  "candidates": [],
+  "conflict": null,
+  "impact": {
+    "affected": [
+      "task-a"
+    ],
+    "frozen": [],
+    "reasons": {
+      "task-a": "outage:device-a"
+    },
+    "unaffected": []
+  },
+  "instance_post": {
+    "axis": {
+      "horizon_slots": 36,
+      "slot_minutes": 5,
+      "t0": "2026-11-24T00:00:00Z"
+    },
+    "blocked": [
+      {
+        "device_id": "device-a",
+        "end": 15,
+        "kind": "FAULT",
+        "start": 0
+      },
+      {
+        "device_id": "device-b",
+        "end": 15,
+        "kind": "FAULT",
+        "start": 0
+      }
+    ],
+    "devices": [
+      {
+        "capabilities": [],
+        "capacity": 1,
+        "id": "device-a",
+        "type": "bench"
+      },
+      {
+        "capabilities": [],
+        "capacity": 1,
+        "id": "device-b",
+        "type": "bench"
+      }
+    ],
+    "now": 0,
+    "persons": [],
+    "precedences": [],
+    "setups": [],
+    "tasks": [
+      {
+        "compatible_devices": [
+          "device-a",
+          "device-b"
+        ],
+        "deadline": 14,
+        "deadline_level": "NEGOTIABLE",
+        "demand": 1,
+        "duration": 3,
+        "experiment_id": "e1",
+        "id": "task-a",
+        "preemptible": false,
+        "release": 0,
+        "required_skills": [],
+        "requires_person": false,
+        "status": "PENDING",
+        "type": "test",
+        "weight": 2.0
+      }
+    ]
+  },
+  "instance_post_sha256": "1fb7d0a4b8c0897fd921fd3c855823791e51df72a6e404ef6a55541c4febfd8d",
+  "relaxations": [],
+  "result_status": "TIMEOUT",
+  "solver": {
+    "budget_s": 1e-12,
+    "level_reached": null,
+    "ortools_version": "9.15.6755",
+    "wall_seconds": 0.0018178001046180725
+  },
+  "warnings": []
+}

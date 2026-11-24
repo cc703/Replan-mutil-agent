@@ -1,3 +1,7 @@
+# 2026-11-24 P7 用户覆盖
+
+本轮所有 Codex 子智能体统一 model=gpt-6.2-sol、reasoning_effort=low、fork_turns=none（含temp规划、实施、独立审查）。不可用报告，不自行替换。外部Claude优先，不受该配置约束。历史工作包记录保留原实际模型与来源。
+
 # 模型策略
 
 2026-11-17 用户明确更新：从本轮起，仅 temp planner/prompt-engineer 改用 `gpt-6-astra`、`reasoning_effort=high`、`fork_turns=none`，覆盖以下历史 temp Terra 要求；其他实施及独立审查仍 Terra/high/fork none。Claude 优先，不可用才启用 temp；模型不可用报告，不降级。历史计划来源不改写。

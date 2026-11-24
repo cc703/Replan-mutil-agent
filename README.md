@@ -157,3 +157,23 @@ uv run --locked --python 3.11 python -m agent eval --offline
 自由输入入口为 `python -m agent chat --offline`（手工提供录制模型响应）或 `python -m agent chat --online`（从环境读取 `DEEPSEEK_API_KEY`，先校验配置模型）。同样通过上述 uv 命令运行；写操作仍需独立的 L1/L2 确认。PowerShell 管道出现中文乱码时可先设置 `$env:PYTHONUTF8='1'`。
 
 演示使用合成实例和录制响应，分别要求确认约束变更及正式计划。评测是七类合成管线 smoke，不衡量 DeepSeek 准确率或代替 D7 人工研究评测。结果和脱敏 trace 由 ArtifactStore 写入 `artifacts/`。状态和 LangGraph 检查点仅保存在进程内，重启后不可恢复；线上适配需配置环境变量并先通过模型列表核验，默认离线演示不访问网络。
+
+### P7 本地重规划工作台
+
+需要 Python 3.11 与 uv、Java 17、Node 24，以及真实 PostgreSQL 17。项目内的 Maven Wrapper 使用固定的 Maven 3.9.11。服务默认监听本机。工作台没有登录和角色管理，操作者名称用于本地审计，L1 和 L2 是操作确认。将 `.env.example` 中需要的值设为进程环境变量，数据库密码只在本机设置。
+
+从项目根目录运行以下命令。默认使用 Docker Compose 启动 PostgreSQL，并构建并启动 FastAPI、Spring Boot 与 Vue。
+
+```powershell
+uv run --locked --python 3.11 python tools/p7_stack.py up
+```
+
+已有本机 PostgreSQL 时，先创建空数据库并设置 `P7_DB_URL`（JDBC 格式）、`P7_DB_USER`、`P7_DB_PASSWORD`，用 `up --external-db`。`P7_MAVEN` 可指定本机 Maven。默认页面为 `http://127.0.0.1:5173`。端口占用时可分别设置 `P7_SCHEDULER_PORT`、`SERVER_PORT`、`P7_FRONTEND_PORT`。使用另一终端运行同一命令入口的 `health`、`wait` 或 `down`，或在启动终端按 Ctrl+C。关闭栈保留数据库数据。日志在 `artifacts/tmp/p7-stack/`。
+
+1. 进入导入页并粘贴实例 JSON。可设置 `$env:PYTHONPATH='src'`，用 `uv run --locked --python 3.11 python -c "from agent.miniature import miniature; print(miniature().model_dump_json())"` 生成合成实例。
+2. 提交初始调度，选择候选并完成 L2，形成正式版本。进入重规划工作台，预览停用或急件事件，完成 L1 后等待作业。
+3. 比较候选差异和甘特图，选择并完成 L2 提交。页面更新正式版本、任务与设备阻塞窗口；版本页可查审计并预览 L2 回滚。不可行和超时结果也会阻塞同实验室的后续批次，明确放弃后可继续。超时表示预算内未得到结论，松弛项是未获授权的假设提案。
+
+设置 `$env:PYTHONPATH='src'` 后，运行 `uv run --locked --python 3.11 python tools/e2e_p7.py --db-mode compose` 验证 HTTP 与数据库闭环。使用本机数据库时提供 `PGHOST`、`PGPORT`、`PGUSER`、`PGPASSWORD`，必要时设 `P7_PSQL`，并用默认的 `--db-mode local`。非 `p7_demo` 库提供 `--database`。运行记录由 ArtifactStore 写入 `artifacts/runs/experiment/p7_local_demo/`。可在 `apps/frontend` 以 `npx playwright test` 对已启动的栈复验界面主线。
+
+默认 `P7_LLM=fake` 让可重复的模型响应经过真实 Pydantic、语义校验和 L1。对话可输入 `outage d1 2026-01-01T00:25:00Z 2026-01-01T00:40:00Z` 观察待确认卡片。真实模型质量、跨进程会话恢复和 D7 不在本地验收范围。资源和任务通过实例导入与只读视图提供，仿真页只提供手动事件入口。CSV、SSE、真实登录、运行中超时事件及完整容器化部署留待后续。

@@ -1,0 +1,364 @@
+{
+  "candidates": [
+    {
+      "candidate_id": "00000000000000000000000000000001.replan.l0.w0",
+      "diff": [
+        {
+          "added": false,
+          "after": {
+            "device_id": "device-a",
+            "end": 7,
+            "end_iso": "2026-11-24T08:35:00+08:00",
+            "person_id": null,
+            "start": 4,
+            "start_iso": "2026-11-24T08:20:00+08:00",
+            "task_id": "task-a"
+          },
+          "before": {
+            "device_id": "device-a",
+            "end": 3,
+            "end_iso": "2026-11-24T08:15:00+08:00",
+            "person_id": null,
+            "start": 0,
+            "start_iso": "2026-11-24T08:00:00+08:00",
+            "task_id": "task-a"
+          },
+          "device_changed": false,
+          "moved": true,
+          "person_changed": false,
+          "removed": false,
+          "start_delta": 4,
+          "task_id": "task-a"
+        },
+        {
+          "added": true,
+          "after": {
+            "device_id": "device-b",
+            "end": 3,
+            "end_iso": "2026-11-24T08:15:00+08:00",
+            "person_id": null,
+            "start": 1,
+            "start_iso": "2026-11-24T08:05:00+08:00",
+            "task_id": "urgent-a"
+          },
+          "before": null,
+          "device_changed": false,
+          "moved": false,
+          "person_changed": false,
+          "removed": false,
+          "start_delta": null,
+          "task_id": "urgent-a"
+        }
+      ],
+      "evidence": {
+        "base_plan": {
+          "assignments": {
+            "task-a": {
+              "device_id": "device-a",
+              "end": 3,
+              "person_id": null,
+              "start": 0,
+              "task_id": "task-a"
+            }
+          },
+          "id": "00000000000000000000000000000001",
+          "metrics": {
+            "gap": 0.0,
+            "makespan": 3,
+            "moved": 0,
+            "shift_total": 0,
+            "solve_seconds": 0.0025783,
+            "switched": 0,
+            "tardiness": 0.0,
+            "urgent_delay": 0.0
+          },
+          "parent_id": null
+        },
+        "context": {
+          "deadline_authorizations": [],
+          "end_changes": [],
+          "not_started": [],
+          "running_block_bindings": [],
+          "snapshot": {
+            "as_of": 0,
+            "base_as_of": null,
+            "plan_id": "00000000000000000000000000000001",
+            "records": []
+          }
+        },
+        "free": [
+          "urgent-a",
+          "task-a"
+        ],
+        "instance": {
+          "axis": {
+            "horizon_slots": 36,
+            "slot_minutes": 5,
+            "t0": "2026-11-24T00:00:00Z"
+          },
+          "blocked": [
+            {
+              "device_id": "device-a",
+              "end": 4,
+              "kind": "FAULT",
+              "start": 0
+            }
+          ],
+          "devices": [
+            {
+              "capabilities": [],
+              "capacity": 1,
+              "id": "device-a",
+              "type": "bench"
+            },
+            {
+              "capabilities": [],
+              "capacity": 1,
+              "id": "device-b",
+              "type": "bench"
+            }
+          ],
+          "now": 0,
+          "persons": [],
+          "precedences": [],
+          "setups": [],
+          "tasks": [
+            {
+              "compatible_devices": [
+                "device-a",
+                "device-b"
+              ],
+              "deadline": 14,
+              "deadline_level": "NEGOTIABLE",
+              "demand": 1,
+              "duration": 3,
+              "experiment_id": "e1",
+              "id": "task-a",
+              "preemptible": false,
+              "release": 0,
+              "required_skills": [],
+              "requires_person": false,
+              "status": "PENDING",
+              "type": "test",
+              "weight": 2.0
+            },
+            {
+              "compatible_devices": [
+                "device-a",
+                "device-b"
+              ],
+              "deadline": 12,
+              "deadline_level": "HARD",
+              "demand": 1,
+              "duration": 2,
+              "experiment_id": "e2",
+              "id": "urgent-a",
+              "preemptible": false,
+              "release": 1,
+              "required_skills": [],
+              "requires_person": false,
+              "status": "PENDING",
+              "type": "test",
+              "weight": 1.0
+            }
+          ]
+        },
+        "plan": {
+          "assignments": {
+            "task-a": {
+              "device_id": "device-a",
+              "end": 7,
+              "person_id": null,
+              "start": 4,
+              "task_id": "task-a"
+            },
+            "urgent-a": {
+              "device_id": "device-b",
+              "end": 3,
+              "person_id": null,
+              "start": 1,
+              "task_id": "urgent-a"
+            }
+          },
+          "id": "00000000000000000000000000000001.replan.l0.w0",
+          "metrics": {
+            "gap": null,
+            "makespan": 7,
+            "moved": 1,
+            "shift_total": 4,
+            "solve_seconds": 0.003278499934822321,
+            "switched": 0,
+            "tardiness": 0.0,
+            "urgent_delay": 3.0
+          },
+          "parent_id": "00000000000000000000000000000001"
+        },
+        "revision": 0
+      },
+      "explanation": "任务 task-a added：false；任务 task-a device_changed：false；任务 task-a moved：true；任务 task-a person_changed：false；任务 task-a removed：false；任务 task-a 原人员：无；任务 task-a 原开始：0槽；任务 task-a 原结束：3槽；任务 task-a 原设备：device-a；任务 task-a 开始变化：20分钟；任务 task-a 影响分组：affected；任务 task-a 影响原因：outage:device-a；任务 task-a 新人员：无；任务 task-a 新开始：4槽；任务 task-a 新结束：7槽；任务 task-a 新设备：device-a；任务 task-a 结束变化：20分钟；任务 task-a 逾期变化：0分钟；任务 urgent-a added：true；任务 urgent-a device_changed：false；任务 urgent-a moved：false；任务 urgent-a person_changed：false；任务 urgent-a removed：false；任务 urgent-a 原安排：无；任务 urgent-a 影响分组：affected；任务 urgent-a 影响原因：new task；任务 urgent-a 新人员：无；任务 urgent-a 新开始：1槽；任务 urgent-a 新结束：3槽；任务 urgent-a 新设备：device-b；候选目标 f1：0.0加权槽；候选目标 f2：2.011111111111111综合分；候选目标 f3：3.0槽；影响任务数：2个；指标 gap：未知；指标 makespan：7槽；指标 moved：1个；指标 shift_total：4槽；指标 solve_seconds：0.003278499934822321秒；指标 switched：0个；指标 tardiness：0.0加权槽；指标 urgent_delay：3.0槽；更换设备数：0个；移动任务数：1个；计划总工期：35分钟。",
+      "f1": 0.0,
+      "f2": 2.011111111111111,
+      "f3": 3.0,
+      "instance_post_sha256": "879007d530c651f3ba379811122995cc44ce9ef6a866698bac67de4919acc32c",
+      "label": "均衡",
+      "level": 0,
+      "plan_sha256": "a3fb5fbdc604b396f55576e21d5ffce45aed136377d761275c026478de1d6db7",
+      "validation": {
+        "passed": true,
+        "violations": []
+      },
+      "view": {
+        "assignments": [
+          {
+            "changed": true,
+            "deadline": 14,
+            "device_id": "device-a",
+            "end": 7,
+            "end_iso": "2026-11-24T08:35:00+08:00",
+            "late": false,
+            "person_id": null,
+            "start": 4,
+            "start_iso": "2026-11-24T08:20:00+08:00",
+            "task_id": "task-a",
+            "task_type": "test"
+          },
+          {
+            "changed": true,
+            "deadline": 12,
+            "device_id": "device-b",
+            "end": 3,
+            "end_iso": "2026-11-24T08:15:00+08:00",
+            "late": false,
+            "person_id": null,
+            "start": 1,
+            "start_iso": "2026-11-24T08:05:00+08:00",
+            "task_id": "urgent-a",
+            "task_type": "test"
+          }
+        ],
+        "blocked": [
+          {
+            "device_id": "device-a",
+            "end": 4,
+            "end_iso": "2026-11-24T08:20:00+08:00",
+            "kind": "FAULT",
+            "start": 0,
+            "start_iso": "2026-11-24T08:00:00+08:00"
+          }
+        ],
+        "devices": [
+          {
+            "capacity": 1,
+            "id": "device-a",
+            "type": "bench"
+          },
+          {
+            "capacity": 1,
+            "id": "device-b",
+            "type": "bench"
+          }
+        ]
+      },
+      "weights": [
+        1.0,
+        0.5
+      ]
+    }
+  ],
+  "conflict": null,
+  "impact": {
+    "affected": [
+      "task-a",
+      "urgent-a"
+    ],
+    "frozen": [],
+    "reasons": {
+      "task-a": "outage:device-a",
+      "urgent-a": "new task"
+    },
+    "unaffected": []
+  },
+  "instance_post": {
+    "axis": {
+      "horizon_slots": 36,
+      "slot_minutes": 5,
+      "t0": "2026-11-24T00:00:00Z"
+    },
+    "blocked": [
+      {
+        "device_id": "device-a",
+        "end": 4,
+        "kind": "FAULT",
+        "start": 0
+      }
+    ],
+    "devices": [
+      {
+        "capabilities": [],
+        "capacity": 1,
+        "id": "device-a",
+        "type": "bench"
+      },
+      {
+        "capabilities": [],
+        "capacity": 1,
+        "id": "device-b",
+        "type": "bench"
+      }
+    ],
+    "now": 0,
+    "persons": [],
+    "precedences": [],
+    "setups": [],
+    "tasks": [
+      {
+        "compatible_devices": [
+          "device-a",
+          "device-b"
+        ],
+        "deadline": 14,
+        "deadline_level": "NEGOTIABLE",
+        "demand": 1,
+        "duration": 3,
+        "experiment_id": "e1",
+        "id": "task-a",
+        "preemptible": false,
+        "release": 0,
+        "required_skills": [],
+        "requires_person": false,
+        "status": "PENDING",
+        "type": "test",
+        "weight": 2.0
+      },
+      {
+        "compatible_devices": [
+          "device-a",
+          "device-b"
+        ],
+        "deadline": 12,
+        "deadline_level": "HARD",
+        "demand": 1,
+        "duration": 2,
+        "experiment_id": "e2",
+        "id": "urgent-a",
+        "preemptible": false,
+        "release": 1,
+        "required_skills": [],
+        "requires_person": false,
+        "status": "PENDING",
+        "type": "test",
+        "weight": 1.0
+      }
+    ]
+  },
+  "instance_post_sha256": "879007d530c651f3ba379811122995cc44ce9ef6a866698bac67de4919acc32c",
+  "relaxations": [],
+  "result_status": "OK",
+  "solver": {
+    "budget_s": 10.0,
+    "level_reached": 3,
+    "ortools_version": "9.15.6755",
+    "wall_seconds": 0.06804270017892122
+  },
+  "warnings": []
+}

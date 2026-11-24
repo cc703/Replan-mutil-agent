@@ -1,0 +1,114 @@
+{
+  "candidates": [],
+  "conflict": {
+    "descriptions": [
+      "Device device-a capacity",
+      "Device device-b capacity",
+      "Task task-a deadline 14",
+      "Device device-a FAULT window 2026-11-24T00:00:00+00:00–2026-11-24T01:15:00+00:00",
+      "Device device-b FAULT window 2026-11-24T00:00:00+00:00–2026-11-24T01:15:00+00:00"
+    ],
+    "group_ids": [
+      "capacity:device-a",
+      "capacity:device-b",
+      "deadline:task-a",
+      "window:device-a:0:15:FAULT",
+      "window:device-b:0:15:FAULT"
+    ],
+    "minimal": true
+  },
+  "impact": {
+    "affected": [
+      "task-a"
+    ],
+    "frozen": [],
+    "reasons": {
+      "task-a": "outage:device-a"
+    },
+    "unaffected": []
+  },
+  "instance_post": {
+    "axis": {
+      "horizon_slots": 36,
+      "slot_minutes": 5,
+      "t0": "2026-11-24T00:00:00Z"
+    },
+    "blocked": [
+      {
+        "device_id": "device-a",
+        "end": 15,
+        "kind": "FAULT",
+        "start": 0
+      },
+      {
+        "device_id": "device-b",
+        "end": 15,
+        "kind": "FAULT",
+        "start": 0
+      }
+    ],
+    "devices": [
+      {
+        "capabilities": [],
+        "capacity": 1,
+        "id": "device-a",
+        "type": "bench"
+      },
+      {
+        "capabilities": [],
+        "capacity": 1,
+        "id": "device-b",
+        "type": "bench"
+      }
+    ],
+    "now": 0,
+    "persons": [],
+    "precedences": [],
+    "setups": [],
+    "tasks": [
+      {
+        "compatible_devices": [
+          "device-a",
+          "device-b"
+        ],
+        "deadline": 14,
+        "deadline_level": "NEGOTIABLE",
+        "demand": 1,
+        "duration": 3,
+        "experiment_id": "e1",
+        "id": "task-a",
+        "preemptible": false,
+        "release": 0,
+        "required_skills": [],
+        "requires_person": false,
+        "status": "PENDING",
+        "type": "test",
+        "weight": 2.0
+      }
+    ]
+  },
+  "instance_post_sha256": "1fb7d0a4b8c0897fd921fd3c855823791e51df72a6e404ef6a55541c4febfd8d",
+  "relaxations": [
+    {
+      "cost": 8.0,
+      "cost_unit": "任务权重×截止期延后槽数",
+      "deltas": {
+        "task-a": 4
+      },
+      "description": "若获授权，截止期延后 {'task-a': 4} 槽",
+      "hypothetical": true,
+      "relaxed_groups": [
+        "deadline:task-a"
+      ],
+      "verified": true
+    }
+  ],
+  "result_status": "INFEASIBLE",
+  "solver": {
+    "budget_s": 10.0,
+    "level_reached": 3,
+    "ortools_version": "9.15.6755",
+    "wall_seconds": 0.031761299818754196
+  },
+  "warnings": []
+}

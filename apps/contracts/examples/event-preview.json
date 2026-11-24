@@ -1,0 +1,11 @@
+{
+  "back_translation": "设备 device-a 停用 2026-11-24T00:00:00+00:00 至 2026-11-24T00:20:00+00:00",
+  "event_normalized": {
+    "device_id": "device-a",
+    "end": 4,
+    "start": 0,
+    "type": "DEVICE_OUTAGE"
+  },
+  "ok": true,
+  "warnings": []
+}

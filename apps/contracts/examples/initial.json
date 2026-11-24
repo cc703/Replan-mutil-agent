@@ -1,0 +1,245 @@
+{
+  "candidates": [
+    {
+      "candidate_id": "00000000000000000000000000000001",
+      "diff": [],
+      "evidence": {
+        "base_plan": null,
+        "context": null,
+        "free": null,
+        "instance": {
+          "axis": {
+            "horizon_slots": 36,
+            "slot_minutes": 5,
+            "t0": "2026-11-24T00:00:00Z"
+          },
+          "blocked": [],
+          "devices": [
+            {
+              "capabilities": [],
+              "capacity": 1,
+              "id": "device-a",
+              "type": "bench"
+            },
+            {
+              "capabilities": [],
+              "capacity": 1,
+              "id": "device-b",
+              "type": "bench"
+            }
+          ],
+          "now": 0,
+          "persons": [],
+          "precedences": [],
+          "setups": [],
+          "tasks": [
+            {
+              "compatible_devices": [
+                "device-a",
+                "device-b"
+              ],
+              "deadline": 14,
+              "deadline_level": "NEGOTIABLE",
+              "demand": 1,
+              "duration": 3,
+              "experiment_id": "e1",
+              "id": "task-a",
+              "preemptible": false,
+              "release": 0,
+              "required_skills": [],
+              "requires_person": false,
+              "status": "PENDING",
+              "type": "test",
+              "weight": 2.0
+            }
+          ]
+        },
+        "plan": {
+          "assignments": {
+            "task-a": {
+              "device_id": "device-a",
+              "end": 3,
+              "person_id": null,
+              "start": 0,
+              "task_id": "task-a"
+            }
+          },
+          "id": "00000000000000000000000000000001",
+          "metrics": {
+            "gap": 0.0,
+            "makespan": 3,
+            "moved": 0,
+            "shift_total": 0,
+            "solve_seconds": 0.0025783,
+            "switched": 0,
+            "tardiness": 0.0,
+            "urgent_delay": 0.0
+          },
+          "parent_id": null
+        },
+        "revision": 0
+      },
+      "explanation": null,
+      "f1": 0.0,
+      "f2": 0,
+      "f3": 0,
+      "instance_post_sha256": "8852a241549c9d071de68e5b765a42c403eb3637acb836105b0ced2f30405d58",
+      "label": "初始计划",
+      "level": 0,
+      "plan_sha256": "97c5116670f590b8c8dbe5296c922c01cedb77b8e297868e5d130e891f9483e6",
+      "validation": {
+        "passed": true,
+        "violations": []
+      },
+      "view": {
+        "assignments": [
+          {
+            "changed": false,
+            "deadline": 14,
+            "device_id": "device-a",
+            "end": 3,
+            "end_iso": "2026-11-24T08:15:00+08:00",
+            "late": false,
+            "person_id": null,
+            "start": 0,
+            "start_iso": "2026-11-24T08:00:00+08:00",
+            "task_id": "task-a",
+            "task_type": "test"
+          }
+        ],
+        "blocked": [],
+        "devices": [
+          {
+            "capacity": 1,
+            "id": "device-a",
+            "type": "bench"
+          },
+          {
+            "capacity": 1,
+            "id": "device-b",
+            "type": "bench"
+          }
+        ]
+      },
+      "weights": [
+        1,
+        1
+      ]
+    }
+  ],
+  "conflict": null,
+  "instance_post": {
+    "axis": {
+      "horizon_slots": 36,
+      "slot_minutes": 5,
+      "t0": "2026-11-24T00:00:00Z"
+    },
+    "blocked": [],
+    "devices": [
+      {
+        "capabilities": [],
+        "capacity": 1,
+        "id": "device-a",
+        "type": "bench"
+      },
+      {
+        "capabilities": [],
+        "capacity": 1,
+        "id": "device-b",
+        "type": "bench"
+      }
+    ],
+    "now": 0,
+    "persons": [],
+    "precedences": [],
+    "setups": [],
+    "tasks": [
+      {
+        "compatible_devices": [
+          "device-a",
+          "device-b"
+        ],
+        "deadline": 14,
+        "deadline_level": "NEGOTIABLE",
+        "demand": 1,
+        "duration": 3,
+        "experiment_id": "e1",
+        "id": "task-a",
+        "preemptible": false,
+        "release": 0,
+        "required_skills": [],
+        "requires_person": false,
+        "status": "PENDING",
+        "type": "test",
+        "weight": 2.0
+      }
+    ]
+  },
+  "instance_post_sha256": "8852a241549c9d071de68e5b765a42c403eb3637acb836105b0ced2f30405d58",
+  "plan": {
+    "assignments": {
+      "task-a": {
+        "device_id": "device-a",
+        "end": 3,
+        "person_id": null,
+        "start": 0,
+        "task_id": "task-a"
+      }
+    },
+    "id": "00000000000000000000000000000001",
+    "metrics": {
+      "gap": 0.0,
+      "makespan": 3,
+      "moved": 0,
+      "shift_total": 0,
+      "solve_seconds": 0.0025783,
+      "switched": 0,
+      "tardiness": 0.0,
+      "urgent_delay": 0.0
+    },
+    "parent_id": null
+  },
+  "plan_sha256": "97c5116670f590b8c8dbe5296c922c01cedb77b8e297868e5d130e891f9483e6",
+  "relaxations": [],
+  "result_status": "OK",
+  "solver": {
+    "budget_s": 30,
+    "ortools_version": "9.15.6755",
+    "status": "OPTIMAL",
+    "wall_seconds": 0.0025783
+  },
+  "validation": {
+    "passed": true,
+    "violations": []
+  },
+  "view": {
+    "assignments": [
+      {
+        "changed": false,
+        "deadline": 14,
+        "device_id": "device-a",
+        "end": 3,
+        "end_iso": "2026-11-24T08:15:00+08:00",
+        "late": false,
+        "person_id": null,
+        "start": 0,
+        "start_iso": "2026-11-24T08:00:00+08:00",
+        "task_id": "task-a",
+        "task_type": "test"
+      }
+    ],
+    "blocked": [],
+    "devices": [
+      {
+        "capacity": 1,
+        "id": "device-a",
+        "type": "bench"
+      },
+      {
+        "capacity": 1,
+        "id": "device-b",
+        "type": "bench"
+      }
+    ]
+  }
+}

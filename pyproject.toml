@@ -3,11 +3,14 @@ name = "replan-governance"
 version = "0.0.0"
 requires-python = ">=3.11,<3.12"
 dependencies = [
+    "fastapi==0.115.12",
+    "httpx==0.28.1",
     "langgraph==1.0.10",
     "numpy==2.4.6",
     "ortools==9.15.6755",
     "pydantic==2.14.3",
     "pyyaml==6.0.3",
+    "uvicorn==0.34.3",
 ]
 
 [dependency-groups]

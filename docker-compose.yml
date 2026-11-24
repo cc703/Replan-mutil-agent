@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:17.12
+    environment:
+      POSTGRES_DB: p7_demo
+      POSTGRES_USER: ${P7_DB_USER:-p7_local}
+      POSTGRES_PASSWORD: ${P7_DB_PASSWORD:?set P7_DB_PASSWORD}
+    ports:
+      - "127.0.0.1:${P7_DB_PORT:-5432}:5432"
+    volumes:
+      - p7-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  p7-postgres:

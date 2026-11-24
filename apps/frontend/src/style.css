@@ -1,0 +1,319 @@
+:root {
+  font: 15px/1.6 system-ui,"Microsoft YaHei",sans-serif;
+  color: #192d30;
+  background: #eef3f1;
+  --accent: #176652;
+  --line: #d7e4e0;
+  --muted: #536c68;
+  --el-color-primary: #176652;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 3px;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 14px 30px;
+  background: #142f30;
+  color: #f0faf7;
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  text-decoration: none;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.mark {
+  display: grid;
+  place-items: center;
+  background: #316155;
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+}
+
+.top-fields,.actions,.fields,.legend {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.top-fields label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.top-fields input {
+  width: 140px;
+}
+
+.shell {
+  display: grid;
+  grid-template-columns: 180px minmax(0,1fr);
+  max-width: 1600px;
+  margin: auto;
+}
+
+nav {
+  padding: 32px 14px;
+  display: grid;
+  gap: 5px;
+  align-content: start;
+}
+
+nav a {
+  padding: 9px 12px;
+  text-decoration: none;
+  color: #29443f;
+  border-radius: 8px;
+}
+
+.router-link-active:not(.identity) {
+  background: #d4e6df;
+  color: #124638;
+  font-weight: 650;
+}
+
+main {
+  padding: 28px;
+  min-width: 0;
+}
+
+h1,h2,h3 {
+  line-height: 1.25;
+  margin: 0 0 12px;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 17px;
+}
+
+.panel {
+  padding: 20px;
+  margin: 18px 0;
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.panel > :last-child {
+  margin-bottom: 0;
+}
+
+label {
+  display: grid;
+  gap: 4px;
+  color: inherit;
+}
+
+input,select,textarea {
+  font: inherit;
+  color: #192d30;
+  background: white;
+  border: 1px solid #a9bfba;
+  border-radius: 6px;
+  padding: 7px 9px;
+  min-width: 0;
+}
+
+textarea {
+  width: 100%;
+  resize: vertical;
+}
+
+textarea.code,pre {
+  font-family: ui-monospace,Consolas,monospace;
+}
+
+pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background: #f1f6f4;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+.error {
+  background: #fce8e6;
+  color: #752d27;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.notice {
+  background: #fbf2d8;
+  color: #624718;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.success {
+  color: #165a45;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+fieldset {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin: 12px 0;
+  padding: 12px;
+  min-width: 0;
+}
+
+.table-scroll {
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th,td {
+  padding: 8px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+th {
+  color: #33534c;
+  white-space: nowrap;
+}
+
+td {
+  overflow-wrap: anywhere;
+}
+
+summary {
+  cursor: pointer;
+  color: var(--accent);
+}
+
+.vis-item.task {
+  background: #c7e5df;
+  border-color: #518f81;
+}
+
+.vis-item.new {
+  background: #b5daca;
+  border-color: #34765c;
+}
+
+.vis-item.old {
+  background: #dadddf;
+  border-color: #9ba5aa;
+}
+
+.vis-item.late {
+  background: #f5d4a4;
+  border-color: #aa6125;
+}
+
+.vis-item.vis-background.closed {
+  background: #e0e6ea;
+}
+
+.vis-item.vis-background.maint {
+  background: #f7e8bf;
+}
+
+.vis-item.vis-background.fault {
+  background: #f9d9d6;
+}
+
+.vis-item.vis-background.running {
+  background: #dce3f8;
+}
+
+.legend span::before {
+  content: "";
+  display: inline-block;
+  width: .85em;
+  height: .85em;
+  border-radius: 3px;
+  background: var(--color);
+  margin-right: .4em;
+}
+
+.vis-timeline {
+  border-radius: 8px;
+}
+
+.timeline {
+  margin-top: 10px;
+}
+
+.el-dialog {
+  max-width: calc(100vw - 28px);
+}
+
+@media(max-width:760px) {
+  .top {
+    align-items: flex-start;
+    padding: 12px;
+    flex-direction: column;
+  }
+  .shell {
+    display: block;
+  }
+  nav {
+    display: flex;
+    overflow: auto;
+    padding: 9px;
+  }
+  nav a {
+    white-space: nowrap;
+  }
+  main {
+    padding: 14px;
+  }
+  .panel {
+    padding: 14px;
+  }
+}
+
+.spaced {
+  margin-top: 16px;
+}

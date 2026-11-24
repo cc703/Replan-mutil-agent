@@ -12,3 +12,7 @@ node_modules/
 .DS_Store
 *.pyc
 *.log
+apps/backend/target/
+apps/frontend/dist/
+apps/frontend/test-results/
+apps/frontend/playwright-report/

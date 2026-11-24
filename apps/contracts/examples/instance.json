@@ -1,0 +1,31 @@
+{
+  "axis": {
+    "horizon_slots": 36,
+    "slot_minutes": 5,
+    "t0": "2026-11-24T00:00:00Z"
+  },
+  "devices": [
+    {
+      "id": "device-a",
+      "type": "bench"
+    },
+    {
+      "id": "device-b",
+      "type": "bench"
+    }
+  ],
+  "tasks": [
+    {
+      "compatible_devices": [
+        "device-a",
+        "device-b"
+      ],
+      "deadline": 14,
+      "duration": 3,
+      "experiment_id": "e1",
+      "id": "task-a",
+      "type": "test",
+      "weight": 2
+    }
+  ]
+}

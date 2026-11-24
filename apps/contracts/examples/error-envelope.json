@@ -1,0 +1,8 @@
+{
+  "error": {
+    "code": "UNKNOWN_ENTITY",
+    "details": {},
+    "message": "Unknown device",
+    "trace_id": "p7-contract-example"
+  }
+}

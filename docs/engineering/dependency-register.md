@@ -64,3 +64,29 @@ Windows cp311 wheel SHA256 `781fb09d6c9f46015291f706bd7c7e0815db1bec6e92c7471634
 其余本次新增包的已安装版本与许可字段：langgraph-checkpoint 4.3.2、langgraph-prebuilt 1.0.13、langgraph-sdk 0.3.15、langchain-core 1.8.1、langchain-protocol 0.0.21、langsmith 0.14.17、anyio 4.16.0、charset-normalizer 3.5.2、h11 0.16.0、truststore 0.10.5、urllib3 2.8.0 为 MIT；httpx2 2.16.2、httpcore2 2.16.2、uuid-utils 0.19.0、zstandard 0.25.0、jsonpatch 1.47、jsonpointer 3.12、httpcore 1.0.9、httpx 0.28.1、idna 3.20、websockets 17.4 为 BSD-3-Clause；xxhash 4.1.0 为 BSD-2-Clause；requests 2.34.2、requests-toolbelt 1.0.0、distro 1.9.0、tenacity 9.2.1 为 Apache-2.0；ormsgpack 1.13.1 为 Apache-2.0 OR MIT；sniffio 1.3.1 为 MIT OR Apache-2.0。可通过 `https://pypi.org/pypi/<名称>/<版本>/json` 查询官方固定版本元数据，实际发行前仍须逐包核验完整许可、捆绑内容和通知。
 
 2026-11-17 对照 DeepSeek 官方 [Chat Completions](https://api-docs.deepseek.com/api/create-chat-completion/)、[模型列表](https://api-docs.deepseek.com/api/list-models/) 和 [思考模式](https://api-docs.deepseek.com/guides/thinking_mode/)：接口分别为 POST `/chat/completions`、GET `/models`；非思考使用 `thinking.type=disabled`。配置 ID 为 `deepseek-flash`，仅作为配置读取；在线启动须实际列模型精确匹配，无法连接或缺失时停止，不调用付费模型作本次验证。离线传输替身和真实 API 不等价，线上服务能力与计费未在本次调用验证。
+
+## P7 本地应用
+
+2026-11-24 从官方固定版本元数据、已装包与锁文件核实。Python Web 边界完全位于 `src/service/`，正式排程仍走原内核。
+
+| 依赖 | 版本与许可证 | 用途/已核接口 |
+| --- | --- | --- |
+| [FastAPI](https://pypi.org/project/fastapi/0.115.12/) | 0.115.12，MIT | Pydantic 请求、内部 REST、`app.openapi()` 合同导出。 |
+| [Uvicorn](https://pypi.org/project/uvicorn/0.34.3/) | 0.34.3，BSD-3-Clause | `uvicorn.run`，实际 Python 3.11 回环服务和追踪回显已预检。 |
+| [HTTPX](https://pypi.org/project/httpx/0.28.1/) | 0.28.1，BSD-3-Clause | 已有 P6 传递依赖提升为直接依赖；HTTP E2E 使用同步 Client。 |
+| [Starlette](https://pypi.org/project/starlette/0.46.2/)、[Click](https://pypi.org/project/click/8.5.1/) | 0.46.2 和 8.5.1，BSD-3-Clause | FastAPI/Uvicorn 新增传递依赖。既有锁定版本未更新。 |
+| [PostgreSQL](https://www.postgresql.org/about/licence/) | 17.12，PostgreSQL License | 真实本地数据库。使用 [Windows 二进制](https://www.postgresql.org/download/windows/) 实测 UTF-8、SCRAM 回环连接；[SQL 行锁与 SKIP LOCKED](https://www.postgresql.org/docs/17/sql-select.html)。容器方案固定镜像标签，不入库镜像。 |
+| [Apache Maven](https://release-catalog.apache.org/maven/3.9.11/index.html) | 3.9.11，Apache-2.0 | Windows JDK 17 下运行，构建工具与缓存不入库。 |
+
+前端锁文件内的 BlueOak-1.0.0 条目为传递依赖。[许可证全文](https://blueoakcouncil.org/license/1.0.0)给出宽松许可，复制时随附许可证或链接，[OSI 已批准](https://opensource.org/license/blueoak-1.0.0)。未打包分发第三方依赖、运行镜像或二进制。
+
+| 依赖 | 版本与许可证 | 用途/核实来源 |
+| --- | --- | --- |
+| [Spring Boot](https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-starter-parent/3.5.8/) / Spring Framework | 3.5.8 / 6.2.14，Apache-2.0 | 官方 Maven POM/BOM；REST 控制器、HTTP 网关、事务控制与工作线程。 |
+| [MyBatis-Plus Boot 3 starter](https://repo.maven.apache.org/maven2/com/baomidou/mybatis-plus-spring-boot3-starter/3.5.14/) / MyBatis / MyBatis-Spring | 3.5.14 / 3.5.19 / 3.0.5，Apache-2.0 | 原设计数据层选项，沿 MyBatis Mapper 执行参数绑定的 PostgreSQL SQL。 |
+| [Flyway](https://repo.maven.apache.org/maven2/org/flywaydb/flyway-core/11.7.2/) 与 [PostgreSQL 模块](https://repo.maven.apache.org/maven2/org/flywaydb/flyway-database-postgresql/11.7.2/) | 11.7.2，Apache-2.0 | 版本化迁移及数据库部分唯一索引。 |
+| [PostgreSQL JDBC](https://repo.maven.apache.org/maven2/org/postgresql/postgresql/42.7.8/) | 42.7.8，BSD-2-Clause | JSONB、事务、UTC 会话和真实本地 PostgreSQL 连接。 |
+| [嵌入式 Tomcat](https://repo.maven.apache.org/maven2/org/apache/tomcat/embed/tomcat-embed-core/10.1.49/) / [Tomcat Annotations API](https://repo.maven.apache.org/maven2/org/apache/tomcat/tomcat-annotations-api/10.1.49/) / [Log4j2](https://repo.maven.apache.org/maven2/org/apache/logging/log4j/log4j-core/2.24.3/) | 10.1.49 / 10.1.49 / 2.24.3，Apache-2.0 | 嵌入式 HTTP 容器、其兼容 Java 注解、JSON 结构化日志。排除默认 Logback、单独的 Jakarta 注解实现。 |
+| [Vue](https://registry.npmjs.org/vue/3.5.30)、[Vue Router](https://registry.npmjs.org/vue-router/4.6.4)、[Element Plus](https://registry.npmjs.org/element-plus/2.13.5) | 3.5.30、4.6.4、2.13.5，MIT | 响应式界面、页面路由、表单和确认交互。 |
+| [vis-timeline](https://registry.npmjs.org/vis-timeline/8.5.0) 与 [Moment](https://registry.npmjs.org/moment/2.30.1) | 8.5.0，Apache-2.0 OR MIT；2.30.1，MIT | D3；[官方 Timeline API](https://visjs.github.io/vis-timeline/docs/timeline/) 的设备组、任务范围、背景窗口和时间显示。npm 锁定对等依赖。 |
+| [TypeScript](https://registry.npmjs.org/typescript/5.9.3)、[Vite](https://registry.npmjs.org/vite/7.3.1)、[Vitest](https://registry.npmjs.org/vitest/4.0.18)、[Playwright](https://registry.npmjs.org/@playwright/test/1.61.1) | 5.9.3 Apache-2.0；7.3.1、4.0.18 MIT；1.61.1 Apache-2.0 | Node 24 下类型检查、回环构建预览、组件证据与 Chromium 浏览器验收。测试辅助包与传递版本见 npm 锁和各交接。 |

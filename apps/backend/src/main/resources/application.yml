@@ -1,0 +1,21 @@
+server:
+  address: 127.0.0.1
+  port: ${SERVER_PORT:8080}
+spring:
+  datasource:
+    url: ${P7_DB_URL:jdbc:postgresql://127.0.0.1:5432/p7_demo}
+    username: ${P7_DB_USER:postgres}
+    password: ${P7_DB_PASSWORD:}
+    hikari:
+      connection-init-sql: SET TIME ZONE 'UTC'
+  flyway:
+    locations: classpath:db/migration
+p7:
+  scheduler-url: ${P7_SCHEDULER_URL:http://127.0.0.1:8000}
+  workers: ${P7_WORKERS:4}
+  poll-ms: ${P7_POLL_MS:200}
+
+logging:
+  structured:
+    format:
+      console: logstash

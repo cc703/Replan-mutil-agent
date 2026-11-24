@@ -1,0 +1,2887 @@
+{
+  "components": {
+    "schemas": {
+      "Assignment": {
+        "additionalProperties": false,
+        "properties": {
+          "device_id": {
+            "title": "Device Id",
+            "type": "string"
+          },
+          "end": {
+            "minimum": 0.0,
+            "title": "End",
+            "type": "integer"
+          },
+          "person_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Person Id"
+          },
+          "start": {
+            "minimum": 0.0,
+            "title": "Start",
+            "type": "integer"
+          },
+          "task_id": {
+            "title": "Task Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "start",
+          "end",
+          "task_id",
+          "device_id"
+        ],
+        "title": "Assignment",
+        "type": "object"
+      },
+      "BlockedWindow": {
+        "additionalProperties": false,
+        "properties": {
+          "device_id": {
+            "title": "Device Id",
+            "type": "string"
+          },
+          "end": {
+            "minimum": 0.0,
+            "title": "End",
+            "type": "integer"
+          },
+          "kind": {
+            "enum": [
+              "CLOSED",
+              "MAINT",
+              "FAULT",
+              "RUNNING"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "start": {
+            "minimum": 0.0,
+            "title": "Start",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "start",
+          "end",
+          "device_id",
+          "kind"
+        ],
+        "title": "BlockedWindow",
+        "type": "object"
+      },
+      "Constraint": {
+        "additionalProperties": false,
+        "properties": {
+          "ir": {
+            "additionalProperties": true,
+            "title": "Ir",
+            "type": "object"
+          },
+          "type": {
+            "const": "CONSTRAINT_CHANGE",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "ir"
+        ],
+        "title": "Constraint",
+        "type": "object"
+      },
+      "DeadlineAuthorization": {
+        "additionalProperties": false,
+        "properties": {
+          "acted_at": {
+            "minimum": 0.0,
+            "title": "Acted At",
+            "type": "integer"
+          },
+          "confirmation_id": {
+            "minLength": 1,
+            "title": "Confirmation Id",
+            "type": "string"
+          },
+          "original_deadline": {
+            "minimum": 0.0,
+            "title": "Original Deadline",
+            "type": "integer"
+          },
+          "plan_id": {
+            "minLength": 1,
+            "title": "Plan Id",
+            "type": "string"
+          },
+          "relaxed_deadline": {
+            "minimum": 0.0,
+            "title": "Relaxed Deadline",
+            "type": "integer"
+          },
+          "task_id": {
+            "minLength": 1,
+            "title": "Task Id",
+            "type": "string"
+          },
+          "valid_until": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid Until"
+          }
+        },
+        "required": [
+          "task_id",
+          "plan_id",
+          "original_deadline",
+          "relaxed_deadline",
+          "confirmation_id",
+          "acted_at"
+        ],
+        "title": "DeadlineAuthorization",
+        "type": "object"
+      },
+      "Device": {
+        "additionalProperties": false,
+        "properties": {
+          "capabilities": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Capabilities",
+            "type": "array",
+            "uniqueItems": true
+          },
+          "capacity": {
+            "default": 1,
+            "exclusiveMinimum": 0.0,
+            "title": "Capacity",
+            "type": "integer"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "type": {
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "type"
+        ],
+        "title": "Device",
+        "type": "object"
+      },
+      "DiffRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "base_plan": {
+            "$ref": "#/components/schemas/Plan"
+          },
+          "instance": {
+            "$ref": "#/components/schemas/Instance"
+          },
+          "plan": {
+            "$ref": "#/components/schemas/Plan"
+          }
+        },
+        "required": [
+          "instance",
+          "base_plan",
+          "plan"
+        ],
+        "title": "DiffRequest",
+        "type": "object"
+      },
+      "Edge": {
+        "additionalProperties": false,
+        "properties": {
+          "lag_max_minutes": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lag Max Minutes"
+          },
+          "lag_min_minutes": {
+            "default": 0,
+            "minimum": 0.0,
+            "title": "Lag Min Minutes",
+            "type": "integer"
+          },
+          "pred": {
+            "title": "Pred",
+            "type": "string"
+          },
+          "succ": {
+            "title": "Succ",
+            "type": "string"
+          }
+        },
+        "required": [
+          "pred",
+          "succ"
+        ],
+        "title": "Edge",
+        "type": "object"
+      },
+      "ErrorDetail": {
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          },
+          "details": {
+            "additionalProperties": true,
+            "title": "Details",
+            "type": "object"
+          },
+          "message": {
+            "title": "Message",
+            "type": "string"
+          },
+          "trace_id": {
+            "title": "Trace Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "details",
+          "trace_id"
+        ],
+        "title": "ErrorDetail",
+        "type": "object"
+      },
+      "ErrorEnvelope": {
+        "properties": {
+          "error": {
+            "$ref": "#/components/schemas/ErrorDetail"
+          }
+        },
+        "required": [
+          "error"
+        ],
+        "title": "ErrorEnvelope",
+        "type": "object"
+      },
+      "Evidence": {
+        "additionalProperties": false,
+        "properties": {
+          "base_plan": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Plan"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "context": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ValidationContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "free": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array",
+                "uniqueItems": true
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Free"
+          },
+          "instance": {
+            "$ref": "#/components/schemas/Instance"
+          },
+          "plan": {
+            "$ref": "#/components/schemas/Plan"
+          },
+          "revision": {
+            "default": 0,
+            "minimum": 0.0,
+            "title": "Revision",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "instance",
+          "plan"
+        ],
+        "title": "Evidence",
+        "type": "object"
+      },
+      "ExecutionRecord": {
+        "additionalProperties": false,
+        "properties": {
+          "actual_end": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actual End"
+          },
+          "device_id": {
+            "minLength": 1,
+            "title": "Device Id",
+            "type": "string"
+          },
+          "event_id": {
+            "minLength": 1,
+            "title": "Event Id",
+            "type": "string"
+          },
+          "person_id": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Person Id"
+          },
+          "planned_end": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Planned End"
+          },
+          "remaining_estimate": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Remaining Estimate"
+          },
+          "start": {
+            "minimum": 0.0,
+            "title": "Start",
+            "type": "integer"
+          },
+          "status": {
+            "enum": [
+              "RUNNING",
+              "DONE"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "task_id": {
+            "minLength": 1,
+            "title": "Task Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "task_id",
+          "status",
+          "device_id",
+          "start",
+          "event_id"
+        ],
+        "title": "ExecutionRecord",
+        "type": "object"
+      },
+      "ExecutionSnapshot": {
+        "additionalProperties": false,
+        "properties": {
+          "as_of": {
+            "minimum": 0.0,
+            "title": "As Of",
+            "type": "integer"
+          },
+          "base_as_of": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Base As Of"
+          },
+          "plan_id": {
+            "minLength": 1,
+            "title": "Plan Id",
+            "type": "string"
+          },
+          "records": {
+            "items": {
+              "$ref": "#/components/schemas/ExecutionRecord"
+            },
+            "title": "Records",
+            "type": "array"
+          }
+        },
+        "required": [
+          "plan_id",
+          "as_of"
+        ],
+        "title": "ExecutionSnapshot",
+        "type": "object"
+      },
+      "FrozenEndChange": {
+        "additionalProperties": false,
+        "properties": {
+          "acted_at": {
+            "minimum": 0.0,
+            "title": "Acted At",
+            "type": "integer"
+          },
+          "base_plan_id": {
+            "minLength": 1,
+            "title": "Base Plan Id",
+            "type": "string"
+          },
+          "event_id": {
+            "minLength": 1,
+            "title": "Event Id",
+            "type": "string"
+          },
+          "new_end": {
+            "minimum": 0.0,
+            "title": "New End",
+            "type": "integer"
+          },
+          "old_end": {
+            "minimum": 0.0,
+            "title": "Old End",
+            "type": "integer"
+          },
+          "plan_id": {
+            "minLength": 1,
+            "title": "Plan Id",
+            "type": "string"
+          },
+          "task_id": {
+            "minLength": 1,
+            "title": "Task Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "task_id",
+          "plan_id",
+          "base_plan_id",
+          "old_end",
+          "new_end",
+          "event_id",
+          "acted_at"
+        ],
+        "title": "FrozenEndChange",
+        "type": "object"
+      },
+      "HashRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "payload": {
+            "title": "Payload"
+          }
+        },
+        "required": [
+          "payload"
+        ],
+        "title": "HashRequest",
+        "type": "object"
+      },
+      "InitialParams": {
+        "additionalProperties": false,
+        "properties": {
+          "num_workers": {
+            "default": 8,
+            "maximum": 32.0,
+            "minimum": 1.0,
+            "title": "Num Workers",
+            "type": "integer"
+          },
+          "objective_weights": {
+            "anyOf": [
+              {
+                "additionalProperties": {
+                  "type": "number"
+                },
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Objective Weights"
+          },
+          "seed": {
+            "default": 0,
+            "maximum": 2147483647.0,
+            "minimum": 0.0,
+            "title": "Seed",
+            "type": "integer"
+          },
+          "time_limit_s": {
+            "default": 30,
+            "exclusiveMinimum": 0.0,
+            "maximum": 120.0,
+            "title": "Time Limit S",
+            "type": "number"
+          }
+        },
+        "title": "InitialParams",
+        "type": "object"
+      },
+      "InitialRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "instance": {
+            "$ref": "#/components/schemas/Instance"
+          },
+          "params": {
+            "$ref": "#/components/schemas/InitialParams"
+          },
+          "revision": {
+            "default": 0,
+            "minimum": 0.0,
+            "title": "Revision",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "instance"
+        ],
+        "title": "InitialRequest",
+        "type": "object"
+      },
+      "Instance": {
+        "additionalProperties": false,
+        "properties": {
+          "axis": {
+            "$ref": "#/components/schemas/TimeAxis"
+          },
+          "blocked": {
+            "items": {
+              "$ref": "#/components/schemas/BlockedWindow"
+            },
+            "title": "Blocked",
+            "type": "array"
+          },
+          "devices": {
+            "items": {
+              "$ref": "#/components/schemas/Device"
+            },
+            "title": "Devices",
+            "type": "array"
+          },
+          "now": {
+            "default": 0,
+            "minimum": 0.0,
+            "title": "Now",
+            "type": "integer"
+          },
+          "persons": {
+            "items": {
+              "$ref": "#/components/schemas/Person"
+            },
+            "title": "Persons",
+            "type": "array"
+          },
+          "precedences": {
+            "items": {
+              "$ref": "#/components/schemas/Precedence"
+            },
+            "title": "Precedences",
+            "type": "array"
+          },
+          "setups": {
+            "items": {
+              "$ref": "#/components/schemas/SetupRule"
+            },
+            "title": "Setups",
+            "type": "array"
+          },
+          "tasks": {
+            "items": {
+              "$ref": "#/components/schemas/Task"
+            },
+            "title": "Tasks",
+            "type": "array"
+          }
+        },
+        "required": [
+          "axis",
+          "devices",
+          "tasks"
+        ],
+        "title": "Instance",
+        "type": "object"
+      },
+      "InstanceRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "instance": {
+            "$ref": "#/components/schemas/Instance"
+          }
+        },
+        "required": [
+          "instance"
+        ],
+        "title": "InstanceRequest",
+        "type": "object"
+      },
+      "NotStartedEvidence": {
+        "additionalProperties": false,
+        "description": "Caller-supplied observation that a baseline assignment did not start.",
+        "properties": {
+          "base_plan_id": {
+            "minLength": 1,
+            "title": "Base Plan Id",
+            "type": "string"
+          },
+          "blocked_at": {
+            "minimum": 0.0,
+            "title": "Blocked At",
+            "type": "integer"
+          },
+          "event_id": {
+            "minLength": 1,
+            "title": "Event Id",
+            "type": "string"
+          },
+          "observed_at": {
+            "minimum": 0.0,
+            "title": "Observed At",
+            "type": "integer"
+          },
+          "planned_device_id": {
+            "minLength": 1,
+            "title": "Planned Device Id",
+            "type": "string"
+          },
+          "planned_end": {
+            "minimum": 0.0,
+            "title": "Planned End",
+            "type": "integer"
+          },
+          "planned_person_id": {
+            "anyOf": [
+              {
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Planned Person Id"
+          },
+          "planned_start": {
+            "minimum": 0.0,
+            "title": "Planned Start",
+            "type": "integer"
+          },
+          "task_id": {
+            "minLength": 1,
+            "title": "Task Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "task_id",
+          "base_plan_id",
+          "planned_device_id",
+          "planned_start",
+          "planned_end",
+          "planned_person_id",
+          "blocked_at",
+          "observed_at",
+          "event_id"
+        ],
+        "title": "NotStartedEvidence",
+        "type": "object"
+      },
+      "Outage": {
+        "additionalProperties": false,
+        "properties": {
+          "device_id": {
+            "title": "Device Id",
+            "type": "string"
+          },
+          "end": {
+            "format": "date-time",
+            "title": "End",
+            "type": "string"
+          },
+          "start": {
+            "format": "date-time",
+            "title": "Start",
+            "type": "string"
+          },
+          "type": {
+            "const": "DEVICE_OUTAGE",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "device_id",
+          "start",
+          "end"
+        ],
+        "title": "Outage",
+        "type": "object"
+      },
+      "Overrun": {
+        "additionalProperties": false,
+        "properties": {
+          "end": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "End"
+          },
+          "task_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Task Id"
+          },
+          "type": {
+            "const": "TASK_OVERRUN",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type"
+        ],
+        "title": "Overrun",
+        "type": "object"
+      },
+      "Person": {
+        "additionalProperties": false,
+        "properties": {
+          "blocked": {
+            "items": {
+              "$ref": "#/components/schemas/PersonBlockedWindow"
+            },
+            "title": "Blocked",
+            "type": "array"
+          },
+          "id": {
+            "minLength": 1,
+            "title": "Id",
+            "type": "string"
+          },
+          "skills": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "title": "Skills",
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "title": "Person",
+        "type": "object"
+      },
+      "PersonBlockedWindow": {
+        "additionalProperties": false,
+        "properties": {
+          "end": {
+            "minimum": 0.0,
+            "title": "End",
+            "type": "integer"
+          },
+          "start": {
+            "minimum": 0.0,
+            "title": "Start",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "start",
+          "end"
+        ],
+        "title": "PersonBlockedWindow",
+        "type": "object"
+      },
+      "Plan": {
+        "additionalProperties": false,
+        "properties": {
+          "assignments": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Assignment"
+            },
+            "title": "Assignments",
+            "type": "object"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "metrics": {
+            "$ref": "#/components/schemas/PlanMetrics"
+          },
+          "parent_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Id"
+          }
+        },
+        "required": [
+          "id",
+          "assignments"
+        ],
+        "title": "Plan",
+        "type": "object"
+      },
+      "PlanMetrics": {
+        "additionalProperties": false,
+        "properties": {
+          "gap": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Gap"
+          },
+          "makespan": {
+            "default": 0,
+            "minimum": 0.0,
+            "title": "Makespan",
+            "type": "integer"
+          },
+          "moved": {
+            "default": 0,
+            "minimum": 0.0,
+            "title": "Moved",
+            "type": "integer"
+          },
+          "shift_total": {
+            "default": 0,
+            "minimum": 0.0,
+            "title": "Shift Total",
+            "type": "integer"
+          },
+          "solve_seconds": {
+            "default": 0.0,
+            "minimum": 0.0,
+            "title": "Solve Seconds",
+            "type": "number"
+          },
+          "switched": {
+            "default": 0,
+            "minimum": 0.0,
+            "title": "Switched",
+            "type": "integer"
+          },
+          "tardiness": {
+            "default": 0.0,
+            "minimum": 0.0,
+            "title": "Tardiness",
+            "type": "number"
+          },
+          "urgent_delay": {
+            "default": 0.0,
+            "minimum": 0.0,
+            "title": "Urgent Delay",
+            "type": "number"
+          }
+        },
+        "title": "PlanMetrics",
+        "type": "object"
+      },
+      "Precedence": {
+        "additionalProperties": false,
+        "properties": {
+          "lag_max": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lag Max"
+          },
+          "lag_min": {
+            "default": 0,
+            "minimum": 0.0,
+            "title": "Lag Min",
+            "type": "integer"
+          },
+          "pred": {
+            "title": "Pred",
+            "type": "string"
+          },
+          "succ": {
+            "title": "Succ",
+            "type": "string"
+          }
+        },
+        "required": [
+          "pred",
+          "succ"
+        ],
+        "title": "Precedence",
+        "type": "object"
+      },
+      "PreviewRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "base_plan": {
+            "$ref": "#/components/schemas/Plan"
+          },
+          "context": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ValidationContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "event": {
+            "discriminator": {
+              "mapping": {
+                "CONSTRAINT_CHANGE": "#/components/schemas/Constraint",
+                "DEVICE_OUTAGE": "#/components/schemas/Outage",
+                "TASK_OVERRUN": "#/components/schemas/Overrun",
+                "URGENT_INSERT": "#/components/schemas/Urgent"
+              },
+              "propertyName": "type"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/Outage"
+              },
+              {
+                "$ref": "#/components/schemas/Urgent"
+              },
+              {
+                "$ref": "#/components/schemas/Overrun"
+              },
+              {
+                "$ref": "#/components/schemas/Constraint"
+              }
+            ],
+            "title": "Event"
+          },
+          "instance": {
+            "$ref": "#/components/schemas/Instance"
+          },
+          "pending_events": {
+            "items": {
+              "discriminator": {
+                "mapping": {
+                  "CONSTRAINT_CHANGE": "#/components/schemas/Constraint",
+                  "DEVICE_OUTAGE": "#/components/schemas/Outage",
+                  "TASK_OVERRUN": "#/components/schemas/Overrun",
+                  "URGENT_INSERT": "#/components/schemas/Urgent"
+                },
+                "propertyName": "type"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/Outage"
+                },
+                {
+                  "$ref": "#/components/schemas/Urgent"
+                },
+                {
+                  "$ref": "#/components/schemas/Overrun"
+                },
+                {
+                  "$ref": "#/components/schemas/Constraint"
+                }
+              ]
+            },
+            "title": "Pending Events",
+            "type": "array"
+          }
+        },
+        "required": [
+          "instance",
+          "base_plan",
+          "event"
+        ],
+        "title": "PreviewRequest",
+        "type": "object"
+      },
+      "ReplanParams": {
+        "additionalProperties": false,
+        "properties": {
+          "alpha": {
+            "default": 1.0,
+            "title": "Alpha",
+            "type": "number"
+          },
+          "beta_moved": {
+            "default": 2.0,
+            "title": "Beta Moved",
+            "type": "number"
+          },
+          "beta_shift": {
+            "default": 0.1,
+            "title": "Beta Shift",
+            "type": "number"
+          },
+          "beta_switched": {
+            "default": 5.0,
+            "title": "Beta Switched",
+            "type": "number"
+          },
+          "gamma": {
+            "default": 5.0,
+            "title": "Gamma",
+            "type": "number"
+          },
+          "max_level": {
+            "default": 3,
+            "title": "Max Level",
+            "type": "integer"
+          },
+          "num_workers": {
+            "default": 8,
+            "title": "Num Workers",
+            "type": "integer"
+          },
+          "seed": {
+            "default": 0,
+            "title": "Seed",
+            "type": "integer"
+          },
+          "total_budget_s": {
+            "default": 10.0,
+            "title": "Total Budget S",
+            "type": "number"
+          },
+          "weight_grid": {
+            "items": {
+              "maxItems": 2,
+              "minItems": 2,
+              "prefixItems": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "number"
+                }
+              ],
+              "type": "array"
+            },
+            "title": "Weight Grid",
+            "type": "array"
+          },
+          "window_slots": {
+            "default": 48,
+            "title": "Window Slots",
+            "type": "integer"
+          }
+        },
+        "title": "ReplanParams",
+        "type": "object"
+      },
+      "ReplanRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "base_plan": {
+            "$ref": "#/components/schemas/Plan"
+          },
+          "budget_s": {
+            "anyOf": [
+              {
+                "exclusiveMinimum": 0.0,
+                "maximum": 120.0,
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Budget S"
+          },
+          "context": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ValidationContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "events": {
+            "items": {
+              "discriminator": {
+                "mapping": {
+                  "CONSTRAINT_CHANGE": "#/components/schemas/Constraint",
+                  "DEVICE_OUTAGE": "#/components/schemas/Outage",
+                  "TASK_OVERRUN": "#/components/schemas/Overrun",
+                  "URGENT_INSERT": "#/components/schemas/Urgent"
+                },
+                "propertyName": "type"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/Outage"
+                },
+                {
+                  "$ref": "#/components/schemas/Urgent"
+                },
+                {
+                  "$ref": "#/components/schemas/Overrun"
+                },
+                {
+                  "$ref": "#/components/schemas/Constraint"
+                }
+              ]
+            },
+            "maxItems": 50,
+            "title": "Events",
+            "type": "array"
+          },
+          "explain": {
+            "default": true,
+            "title": "Explain",
+            "type": "boolean"
+          },
+          "instance": {
+            "$ref": "#/components/schemas/Instance"
+          },
+          "max_candidates": {
+            "default": 5,
+            "maximum": 10.0,
+            "minimum": 1.0,
+            "title": "Max Candidates",
+            "type": "integer"
+          },
+          "params": {
+            "$ref": "#/components/schemas/ReplanParams"
+          },
+          "revision": {
+            "default": 0,
+            "minimum": 0.0,
+            "title": "Revision",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "instance",
+          "base_plan",
+          "events"
+        ],
+        "title": "ReplanRequest",
+        "type": "object"
+      },
+      "RollbackRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "base_plan": {
+            "$ref": "#/components/schemas/Plan"
+          },
+          "context": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ValidationContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "events": {
+            "items": {
+              "discriminator": {
+                "mapping": {
+                  "CONSTRAINT_CHANGE": "#/components/schemas/Constraint",
+                  "DEVICE_OUTAGE": "#/components/schemas/Outage",
+                  "TASK_OVERRUN": "#/components/schemas/Overrun",
+                  "URGENT_INSERT": "#/components/schemas/Urgent"
+                },
+                "propertyName": "type"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/Outage"
+                },
+                {
+                  "$ref": "#/components/schemas/Urgent"
+                },
+                {
+                  "$ref": "#/components/schemas/Overrun"
+                },
+                {
+                  "$ref": "#/components/schemas/Constraint"
+                }
+              ]
+            },
+            "title": "Events",
+            "type": "array"
+          },
+          "instance": {
+            "$ref": "#/components/schemas/Instance"
+          },
+          "revision": {
+            "default": 0,
+            "minimum": 0.0,
+            "title": "Revision",
+            "type": "integer"
+          },
+          "target_plan": {
+            "$ref": "#/components/schemas/Plan"
+          }
+        },
+        "required": [
+          "instance",
+          "base_plan",
+          "target_plan"
+        ],
+        "title": "RollbackRequest",
+        "type": "object"
+      },
+      "RunningBlockBinding": {
+        "additionalProperties": false,
+        "properties": {
+          "device_id": {
+            "minLength": 1,
+            "title": "Device Id",
+            "type": "string"
+          },
+          "end": {
+            "minimum": 0.0,
+            "title": "End",
+            "type": "integer"
+          },
+          "start": {
+            "minimum": 0.0,
+            "title": "Start",
+            "type": "integer"
+          },
+          "task_id": {
+            "minLength": 1,
+            "title": "Task Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "device_id",
+          "start",
+          "end",
+          "task_id"
+        ],
+        "title": "RunningBlockBinding",
+        "type": "object"
+      },
+      "SetupRule": {
+        "additionalProperties": false,
+        "properties": {
+          "device_id": {
+            "title": "Device Id",
+            "type": "string"
+          },
+          "slots": {
+            "minimum": 0.0,
+            "title": "Slots",
+            "type": "integer"
+          },
+          "task_type": {
+            "title": "Task Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "device_id",
+          "task_type",
+          "slots"
+        ],
+        "title": "SetupRule",
+        "type": "object"
+      },
+      "Task": {
+        "additionalProperties": false,
+        "properties": {
+          "compatible_devices": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Compatible Devices",
+            "type": "array"
+          },
+          "deadline": {
+            "anyOf": [
+              {
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deadline"
+          },
+          "deadline_level": {
+            "default": "NEGOTIABLE",
+            "enum": [
+              "HARD",
+              "NEGOTIABLE"
+            ],
+            "title": "Deadline Level",
+            "type": "string"
+          },
+          "demand": {
+            "default": 1,
+            "exclusiveMinimum": 0.0,
+            "title": "Demand",
+            "type": "integer"
+          },
+          "duration": {
+            "exclusiveMinimum": 0.0,
+            "title": "Duration",
+            "type": "integer"
+          },
+          "experiment_id": {
+            "title": "Experiment Id",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "preemptible": {
+            "default": false,
+            "title": "Preemptible",
+            "type": "boolean"
+          },
+          "release": {
+            "default": 0,
+            "minimum": 0.0,
+            "title": "Release",
+            "type": "integer"
+          },
+          "required_skills": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "title": "Required Skills",
+            "type": "array",
+            "uniqueItems": true
+          },
+          "requires_person": {
+            "default": false,
+            "title": "Requires Person",
+            "type": "boolean"
+          },
+          "status": {
+            "default": "PENDING",
+            "enum": [
+              "PENDING",
+              "SCHEDULED",
+              "RUNNING",
+              "DONE",
+              "INTERRUPTED",
+              "FAILED",
+              "CANCELLED"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "type": {
+            "title": "Type",
+            "type": "string"
+          },
+          "weight": {
+            "default": 1.0,
+            "minimum": 0.0,
+            "title": "Weight",
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "experiment_id",
+          "type",
+          "duration",
+          "compatible_devices"
+        ],
+        "title": "Task",
+        "type": "object"
+      },
+      "TimeAxis": {
+        "additionalProperties": false,
+        "description": "A UTC-normalized axis with inclusive horizon endpoint.",
+        "properties": {
+          "horizon_slots": {
+            "exclusiveMinimum": 0.0,
+            "title": "Horizon Slots",
+            "type": "integer"
+          },
+          "slot_minutes": {
+            "default": 5,
+            "exclusiveMinimum": 0.0,
+            "title": "Slot Minutes",
+            "type": "integer"
+          },
+          "t0": {
+            "format": "date-time",
+            "title": "T0",
+            "type": "string"
+          }
+        },
+        "required": [
+          "t0",
+          "horizon_slots"
+        ],
+        "title": "TimeAxis",
+        "type": "object"
+      },
+      "TurnRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "actor": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Actor",
+            "type": "string"
+          },
+          "base_plan": {
+            "$ref": "#/components/schemas/Plan"
+          },
+          "context": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ValidationContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "events": {
+            "items": {
+              "discriminator": {
+                "mapping": {
+                  "CONSTRAINT_CHANGE": "#/components/schemas/Constraint",
+                  "DEVICE_OUTAGE": "#/components/schemas/Outage",
+                  "TASK_OVERRUN": "#/components/schemas/Overrun",
+                  "URGENT_INSERT": "#/components/schemas/Urgent"
+                },
+                "propertyName": "type"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/Outage"
+                },
+                {
+                  "$ref": "#/components/schemas/Urgent"
+                },
+                {
+                  "$ref": "#/components/schemas/Overrun"
+                },
+                {
+                  "$ref": "#/components/schemas/Constraint"
+                }
+              ]
+            },
+            "title": "Events",
+            "type": "array"
+          },
+          "instance": {
+            "$ref": "#/components/schemas/Instance"
+          },
+          "lab_id": {
+            "title": "Lab Id",
+            "type": "string"
+          },
+          "revision": {
+            "default": 0,
+            "minimum": 0.0,
+            "title": "Revision",
+            "type": "integer"
+          },
+          "session_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Session Id"
+          },
+          "text": {
+            "maxLength": 8000,
+            "minLength": 1,
+            "pattern": "\\S",
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "instance",
+          "base_plan",
+          "lab_id",
+          "text",
+          "actor"
+        ],
+        "title": "TurnRequest",
+        "type": "object"
+      },
+      "Urgent": {
+        "additionalProperties": false,
+        "properties": {
+          "precedences": {
+            "items": {
+              "$ref": "#/components/schemas/Edge"
+            },
+            "title": "Precedences",
+            "type": "array"
+          },
+          "tasks": {
+            "items": {
+              "$ref": "#/components/schemas/UrgentTask"
+            },
+            "minItems": 1,
+            "title": "Tasks",
+            "type": "array"
+          },
+          "type": {
+            "const": "URGENT_INSERT",
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "tasks"
+        ],
+        "title": "Urgent",
+        "type": "object"
+      },
+      "UrgentTask": {
+        "additionalProperties": false,
+        "properties": {
+          "compatible_devices": {
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1,
+            "title": "Compatible Devices",
+            "type": "array"
+          },
+          "deadline": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Deadline"
+          },
+          "deadline_level": {
+            "default": "NEGOTIABLE",
+            "enum": [
+              "HARD",
+              "NEGOTIABLE"
+            ],
+            "title": "Deadline Level",
+            "type": "string"
+          },
+          "demand": {
+            "default": 1,
+            "exclusiveMinimum": 0.0,
+            "title": "Demand",
+            "type": "integer"
+          },
+          "duration_minutes": {
+            "exclusiveMinimum": 0.0,
+            "title": "Duration Minutes",
+            "type": "integer"
+          },
+          "experiment_id": {
+            "title": "Experiment Id",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "release": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Release"
+          },
+          "required_skills": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Required Skills",
+            "type": "array",
+            "uniqueItems": true
+          },
+          "requires_person": {
+            "default": false,
+            "title": "Requires Person",
+            "type": "boolean"
+          },
+          "type": {
+            "title": "Type",
+            "type": "string"
+          },
+          "weight": {
+            "default": 1,
+            "title": "Weight",
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "experiment_id",
+          "type",
+          "duration_minutes",
+          "compatible_devices"
+        ],
+        "title": "UrgentTask",
+        "type": "object"
+      },
+      "ValidateRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "additional_events": {
+            "items": {
+              "discriminator": {
+                "mapping": {
+                  "CONSTRAINT_CHANGE": "#/components/schemas/Constraint",
+                  "DEVICE_OUTAGE": "#/components/schemas/Outage",
+                  "TASK_OVERRUN": "#/components/schemas/Overrun",
+                  "URGENT_INSERT": "#/components/schemas/Urgent"
+                },
+                "propertyName": "type"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/Outage"
+                },
+                {
+                  "$ref": "#/components/schemas/Urgent"
+                },
+                {
+                  "$ref": "#/components/schemas/Overrun"
+                },
+                {
+                  "$ref": "#/components/schemas/Constraint"
+                }
+              ]
+            },
+            "title": "Additional Events",
+            "type": "array"
+          },
+          "base_plan": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Plan"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "context": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ValidationContext"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "current_base_plan": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Plan"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "expected_plan_sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Expected Plan Sha256"
+          },
+          "free": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array",
+                "uniqueItems": true
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Free"
+          },
+          "instance": {
+            "$ref": "#/components/schemas/Instance"
+          },
+          "plan": {
+            "$ref": "#/components/schemas/Plan"
+          },
+          "revision": {
+            "default": 0,
+            "minimum": 0.0,
+            "title": "Revision",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "instance",
+          "plan"
+        ],
+        "title": "ValidateRequest",
+        "type": "object"
+      },
+      "ValidationContext": {
+        "additionalProperties": false,
+        "properties": {
+          "deadline_authorizations": {
+            "items": {
+              "$ref": "#/components/schemas/DeadlineAuthorization"
+            },
+            "title": "Deadline Authorizations",
+            "type": "array"
+          },
+          "end_changes": {
+            "items": {
+              "$ref": "#/components/schemas/FrozenEndChange"
+            },
+            "title": "End Changes",
+            "type": "array"
+          },
+          "not_started": {
+            "items": {
+              "$ref": "#/components/schemas/NotStartedEvidence"
+            },
+            "title": "Not Started",
+            "type": "array"
+          },
+          "running_block_bindings": {
+            "items": {
+              "$ref": "#/components/schemas/RunningBlockBinding"
+            },
+            "title": "Running Block Bindings",
+            "type": "array"
+          },
+          "snapshot": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ExecutionSnapshot"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "title": "ValidationContext",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "title": "Replan Scheduler Service",
+    "version": "1.0.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/internal/v1/agent/turn": {
+      "post": {
+        "operationId": "agent_turn_internal_v1_agent_turn_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TurnRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Agent Turn Internal V1 Agent Turn Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Invalid input"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Unknown endpoint"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Request exceeds body limit"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Independent validation or evidence failure"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Unexpected scheduler failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "LLM transport or envelope failure"
+          }
+        },
+        "summary": "Agent Turn"
+      }
+    },
+    "/internal/v1/diff": {
+      "post": {
+        "operationId": "diff_plan_internal_v1_diff_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DiffRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Diff Plan Internal V1 Diff Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Invalid input"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Unknown endpoint"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Request exceeds body limit"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Independent validation or evidence failure"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Unexpected scheduler failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "LLM transport or envelope failure"
+          }
+        },
+        "summary": "Diff Plan"
+      }
+    },
+    "/internal/v1/events/preview": {
+      "post": {
+        "operationId": "preview_internal_v1_events_preview_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PreviewRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Preview Internal V1 Events Preview Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Invalid input"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Unknown endpoint"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Request exceeds body limit"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Independent validation or evidence failure"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Unexpected scheduler failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "LLM transport or envelope failure"
+          }
+        },
+        "summary": "Preview"
+      }
+    },
+    "/internal/v1/hash": {
+      "post": {
+        "operationId": "payload_hash_internal_v1_hash_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/HashRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "title": "Response Payload Hash Internal V1 Hash Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Invalid input"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Unknown endpoint"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Request exceeds body limit"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Independent validation or evidence failure"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Unexpected scheduler failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "LLM transport or envelope failure"
+          }
+        },
+        "summary": "Payload Hash"
+      }
+    },
+    "/internal/v1/health": {
+      "get": {
+        "operationId": "health_internal_v1_health_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Health Internal V1 Health Get",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Invalid input"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Unknown endpoint"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Request exceeds body limit"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Independent validation or evidence failure"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Unexpected scheduler failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "LLM transport or envelope failure"
+          }
+        },
+        "summary": "Health"
+      }
+    },
+    "/internal/v1/initial": {
+      "post": {
+        "operationId": "initial_plan_internal_v1_initial_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InitialRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Initial Plan Internal V1 Initial Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Invalid input"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Unknown endpoint"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Request exceeds body limit"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Independent validation or evidence failure"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Unexpected scheduler failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "LLM transport or envelope failure"
+          }
+        },
+        "summary": "Initial Plan"
+      }
+    },
+    "/internal/v1/instances/check": {
+      "post": {
+        "operationId": "instance_check_internal_v1_instances_check_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/InstanceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Instance Check Internal V1 Instances Check Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Invalid input"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Unknown endpoint"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Request exceeds body limit"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Independent validation or evidence failure"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Unexpected scheduler failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "LLM transport or envelope failure"
+          }
+        },
+        "summary": "Instance Check"
+      }
+    },
+    "/internal/v1/replan": {
+      "post": {
+        "operationId": "replan_plans_internal_v1_replan_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReplanRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Replan Plans Internal V1 Replan Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Invalid input"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Unknown endpoint"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Request exceeds body limit"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Independent validation or evidence failure"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Unexpected scheduler failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "LLM transport or envelope failure"
+          }
+        },
+        "summary": "Replan Plans"
+      }
+    },
+    "/internal/v1/rollback": {
+      "post": {
+        "operationId": "rollback_plan_internal_v1_rollback_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RollbackRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Rollback Plan Internal V1 Rollback Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Invalid input"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Unknown endpoint"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Request exceeds body limit"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Independent validation or evidence failure"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Unexpected scheduler failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "LLM transport or envelope failure"
+          }
+        },
+        "summary": "Rollback Plan"
+      }
+    },
+    "/internal/v1/validate": {
+      "post": {
+        "operationId": "validate_plan_internal_v1_validate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ValidateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response Validate Plan Internal V1 Validate Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Invalid input"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Unknown endpoint"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Request exceeds body limit"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Independent validation or evidence failure"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Unexpected scheduler failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "LLM transport or envelope failure"
+          }
+        },
+        "summary": "Validate Plan"
+      }
+    },
+    "/internal/v1/view": {
+      "post": {
+        "operationId": "view_plan_internal_v1_view_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Evidence"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "additionalProperties": true,
+                  "title": "Response View Plan Internal V1 View Post",
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Invalid input"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Unknown endpoint"
+          },
+          "413": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Request exceeds body limit"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Independent validation or evidence failure"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "Unexpected scheduler failure"
+          },
+          "502": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorEnvelope"
+                }
+              }
+            },
+            "description": "LLM transport or envelope failure"
+          }
+        },
+        "summary": "View Plan"
+      }
+    }
+  }
+}

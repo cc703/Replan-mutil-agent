@@ -1,5 +1,7 @@
 # 角色索引
 
+P7：Claude 原会话 Sonnet 5.5 Medium 给出 v001；`/root/temp` 已按用户要求退出本包规划且未产出方案。`/root/p7_implementation`、`/root/p7_spring`、`/root/p7_vue` 分责实施 FastAPI、Spring 和 Vue。唯一独立 `/root/p7_review` 最终 ACCEPT；四个专项均实际使用 `gpt-6.2-sol/low/fork_turns=none`。按 [P7 G1 合同和写入边界](../work-packages/p7.md)实施，root 独占集成验收和同步。
+
 P6：`/root/temp_p6`（gpt-6-astra/high/fork none）规划已交付；`/root/p6_implementation`、唯一独立 `/root/p6_review`（均gpt-6.1-terra/high/fork none）完成返工及G3 ACCEPT。来源：Claude原会话Edge输入几何不可用、IAB超时后的用户temp授权，不冒称Claude。完整自包含提示词、G1/G4与范围见 [P6卡](../work-packages/p6.md)，真实结果见双方handoff；root独占进度和Git。
 
 2026-11-17 P5：原Claude102规划、temp_p5_g1工程Δ；p5_core核心、p5_implementation候选互斥实施；p5_review唯一独立G3 ACCEPT。Codex专项均gpt-6.1-terra/high/fork_turns=none。合同/prompt/G1与范围见 [P5 工作包](../work-packages/p5.md)。

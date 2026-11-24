@@ -1,3 +1,7 @@
+# 2026-11-24 P7 本轮模型策略
+
+用户明确覆盖旧策略：所有 Codex 子智能体（temp规划、实施、独立审查）统一 gpt-6.2-sol / low / fork_turns=none；不可用报告、不替换。外部 Claude 仍优先；历史实际模型与来源不改写。仅本轮 P7，P8 后续。
+
 # 项目智能体约束
 
 2026-11-17 用户模型策略更新：Claude 不可用时，temp 规划使用 `gpt-6-astra/high/fork_turns=none`，覆盖下文 temp 的旧 Terra 要求；实施及独立审查继续 `gpt-6.1-terra/high/fork_turns=none`。模型不可用须报告，不自行替换。P6 仅按原 CP-SAT 设计推进，不引入 Kaiwu/QUBO 或多求解器。
