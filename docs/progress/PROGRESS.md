@@ -1,6 +1,6 @@
 # 项目进度
 
-2026-11-24 P7 IN-REVIEW，工程验收通过，待 G5 普通同步及远端 SHA 核验。Claude v001 和用户范围裁决已归档。唯一独立 G3 ACCEPT，root 统一检查 1125 passed、1 个既有 Windows symlink skip、214 文件静态通过，真实 PostgreSQL/Spring 验证及 13 项 Vue、1 项真实 Chromium 通过；最终 HTTP/数据库闭环、独立校验、并发组批和实际 Spring 重启均通过。P8 待后续。见 [P7 工作包](../work-packages/p7.md)。
+2026-11-24 P7 ACCEPTED，G0–G5 PASS。源码 `0776ef69391b9f4581bad2098b95a131043a20e5` 由 cc703 普通推送至 `origin/codex/p0-governance` 并逐字核验（作者 chm），远端 main 保持 `40cdafd47c66d3dd075d16a81d004eee088b97ab`。唯一独立 G3 ACCEPT，root 统一检查 1125 passed、1 个既有 Windows symlink skip、214 文件静态通过，真实 PostgreSQL/Spring 验证及 13 项 Vue、1 项真实 Chromium 通过。最终 HTTP/数据库闭环、独立校验、并发组批和实际 Spring 重启均通过。`p7-accepted` 在同步本回执后创建。P8 待后续。[P7 工作包](../work-packages/p7.md)
 
 P6 最终ACCEPTED，路由补丁G3/G5 PASS，源码 `eefd1bbcddc367a6921ace3a83a9b8a595985f7e` 已核远端一致（cc703/chm）：严格Pydantic已覆盖在线及图路由，额外字段/错误类型/未知动作拒绝，未知回滚目标澄清，合法回滚仍L2。root复验Agent44 passed、全仓同参mypy199文件及改动Ruff/格式PASS；未重复整套check。原公开ab18cc6/p6-accepted保留，以本回执同步后创建的p6-accepted-r1为完整验收标签。未进入P7。
 
@@ -122,7 +122,7 @@ ead0c62087e933748a824426f32c37676c4d230b（refactor(core): split validator into 
 | P4 | 重规划 | ACCEPTED（G3 通过，G5 远端 SHA 已核验） |
 | P5 | 诊断、松弛和候选 | ACCEPTED（G3通过，G5远端SHA已核验） |
 | P6 | 业务 Agent | ACCEPTED（G3/G5通过） |
-| P7 | 后端和前端 | IN-REVIEW，工程验收通过，待同步 |
+| P7 | 后端和前端 | ACCEPTED，源码已同步核验 |
 | P8 | 实验框架 | TODO |
 
 ## 决策与来源
